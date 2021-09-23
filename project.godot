@@ -13,6 +13,12 @@ config_version=4
 config/name="Cosmic Eater"
 config/icon="res://icon.png"
 
+[autoload]
+
+ScenesHandler="*res://scenes_handler.gd"
+Global="*res://global.gd"
+GameEvents="*res://game_events.gd"
+
 [display]
 
 window/size/width=720
