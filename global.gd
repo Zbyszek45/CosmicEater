@@ -1,8 +1,10 @@
 extends Node
 
+var wind_size: Vector2
+
 
 func _ready():
-	pass # Replace with function body.
+	wind_size = get_viewport().get_visible_rect().size
 
 
 func show_error(script_name, description):
