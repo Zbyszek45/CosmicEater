@@ -8,3 +8,5 @@
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+
+[node name="CanvasInterface" type="CanvasLayer" parent="."]
