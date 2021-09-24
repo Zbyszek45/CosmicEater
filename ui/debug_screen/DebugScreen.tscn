@@ -40,3 +40,15 @@ margin_top = 213.0
 margin_right = 260.0
 margin_bottom = 284.0
 text = "Decr. Ene"
+
+[node name="GrowSmall" type="Button" parent="VBoxContainer"]
+margin_top = 288.0
+margin_right = 260.0
+margin_bottom = 359.0
+text = "GrowSmall"
+
+[node name="GrowBig" type="Button" parent="VBoxContainer"]
+margin_top = 363.0
+margin_right = 260.0
+margin_bottom = 434.0
+text = "GrowBig"

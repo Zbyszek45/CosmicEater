@@ -1,2 +1,6 @@
 extends Node
 
+signal increase_enemies_number
+signal decrease_enemies_number
+
+signal update_enemies_number
