@@ -30,10 +30,12 @@ func on_DecreaseEnemies_pressed():
 
 func on_GrowSmall_pressed():
 	get_tree().call_group("enemies", "scale_it", -0.05)
+	GameEvents.emit_signal("player_grow_up", -0.05)
 
 
 func on_GrowBig_pressed():
 	get_tree().call_group("enemies", "scale_it", -0.3)
+	GameEvents.emit_signal("player_grow_up", -0.3)
 
 
 func enemies_number_label_update(amount):

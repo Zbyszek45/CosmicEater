@@ -26,8 +26,11 @@ func _physics_process(delta):
 
 
 func scale_it(amount: float) -> void:
-	scale += Vector2(amount, amount)
+	if scale.x + amount < 0.1: scale = Vector2(0.1, 0.1)
+	else: scale += Vector2(amount, amount)
 	
+	speed *=(1+amount)
+	if speed < 100: speed = 100
 	#when scaling up
 	if amount > 0: amount = amount + amount
 	
