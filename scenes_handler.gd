@@ -3,7 +3,7 @@ extends Node
 enum {MENU, WORLD}
 
 var menu : PackedScene = preload("res://ui/menu/Menu.tscn")
-var world : PackedScene = null
+var world : PackedScene = preload("res://gameplay/world/World.tscn")
 
 var current_scene : Node = null
 
