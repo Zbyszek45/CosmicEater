@@ -7,6 +7,8 @@ onready var about_button = $AboutButton
 onready var aipriority_button = $AIPriorityButton
 onready var upgrades_button = $UpgradesButton
 
+onready var help_button = $HelpButton
+
 
 func _ready():
 	start_button.connect("pressed", self, "on_StartButton_pressed")
@@ -15,6 +17,8 @@ func _ready():
 	about_button.connect("pressed", self, "on_AboutButton_pressed")
 	aipriority_button.connect("pressed", self, "on_AIPriority_pressed")
 	upgrades_button.connect("pressed", self, "on_UpgradesButton_pressed")
+	
+	help_button.connect("pressed", self, "on_HelpButton_pressed")
 
 
 func on_StartButton_pressed():
@@ -38,4 +42,8 @@ func on_AIPriority_pressed():
 
 
 func on_UpgradesButton_pressed():
+	pass
+
+
+func on_HelpButton_pressed():
 	pass
