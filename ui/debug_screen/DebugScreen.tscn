@@ -1,8 +1,42 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/debug_screen/DebugScreen.gd" type="Script" id=2]
 
 [node name="DebugScreen" type="Control"]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -496.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="FPSLabel" type="Label" parent="VBoxContainer"]
+margin_right = 260.0
+margin_bottom = 65.0
+text = "FPS"
+
+[node name="EneNumberLabel" type="Label" parent="VBoxContainer"]
+margin_top = 69.0
+margin_right = 260.0
+margin_bottom = 134.0
+text = "Ene Amount"
+
+[node name="AddEnemies" type="Button" parent="VBoxContainer"]
+margin_top = 138.0
+margin_right = 260.0
+margin_bottom = 209.0
+text = "Add Ene"
+
+[node name="DecreaseEnemies" type="Button" parent="VBoxContainer"]
+margin_top = 213.0
+margin_right = 260.0
+margin_bottom = 284.0
+text = "Decr. Ene"
