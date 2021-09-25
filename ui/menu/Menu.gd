@@ -22,7 +22,7 @@ func _ready():
 
 
 func on_StartButton_pressed():
-	ScenesHandler.switch_scene(ScenesHandler.WORLD)
+	ScenesHandler.switch_scene(ScenesHandler.TRANSITION)
 
 
 func on_ExitButton_pressed():

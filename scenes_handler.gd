@@ -1,8 +1,9 @@
 extends Node
 
-enum {MENU, WORLD}
+enum {MENU, WORLD, TRANSITION}
 
 var menu : PackedScene = preload("res://ui/menu/Menu.tscn")
+var transition : PackedScene = preload("res://ui/transition_screen/TransitionScreen.tscn")
 var world : PackedScene = preload("res://gameplay/world/World.tscn")
 
 var current_scene : Node = null
@@ -22,6 +23,8 @@ func _deferred_switch_scene(new_scene_choice) -> void:
 		new_scene = menu
 	elif new_scene_choice == WORLD:
 		new_scene = world
+	elif new_scene_choice == TRANSITION:
+		new_scene = transition
 	
 	
 	current_scene = new_scene.instance()
