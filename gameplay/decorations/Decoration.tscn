@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gameplay/decorations/Decoration.gd" type="Script" id=1]
+[ext_resource path="res://gameplay/decorations/textures/background_medium_1.png" type="Texture" id=2]
+[ext_resource path="res://gameplay/decorations/textures/background_medium_2.png" type="Texture" id=3]
+[ext_resource path="res://gameplay/decorations/textures/background_medium_3.png" type="Texture" id=4]
+
+[node name="Decoration" type="Sprite"]
+script = ExtResource( 1 )
+textures = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]

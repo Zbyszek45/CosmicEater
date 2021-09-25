@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "Decoration",
+"language": "GDScript",
+"path": "res://gameplay/decorations/Decoration.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "EnemyBase",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://gameplay/player/Player.gd"
 } ]
 _global_script_class_icons={
+"Decoration": "",
 "EnemyBase": "",
 "Joystick": "",
 "Player": ""
