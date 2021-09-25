@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ui/menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/main_theme.tres" type="Theme" id=2]
@@ -11,12 +11,27 @@
 [ext_resource path="res://ui/common/button_base/icons/icon_upgrades.png" type="Texture" id=9]
 [ext_resource path="res://ui/common/button_small/ButtonSmall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ui/common/button_small/icons/icon_help.png" type="Texture" id=11]
+[ext_resource path="res://ui/transition_screen/animation/egg_anim0000.png" type="Texture" id=12]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+texture = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

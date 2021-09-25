@@ -19,11 +19,17 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="TransitionScreen" type="Node2D"]
+[node name="TransitionScreen" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 360, 640 )
 frames = SubResource( 1 )
 animation = "start"
 
