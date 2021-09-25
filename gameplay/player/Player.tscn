@@ -24,7 +24,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,3 +32,19 @@ shape = SubResource( 2 )
 
 [node name="Trail" parent="." instance=ExtResource( 1 )]
 width = 50.0
+
+[node name="DirectionJoint" type="Position2D" parent="."]
+
+[node name="LeftSide" type="Position2D" parent="DirectionJoint"]
+position = Vector2( 0, -32 )
+
+[node name="Trail" parent="DirectionJoint/LeftSide" instance=ExtResource( 1 )]
+width = 20.0
+length = 15
+
+[node name="RightSide" type="Position2D" parent="DirectionJoint"]
+position = Vector2( 0, 32 )
+
+[node name="Trail" parent="DirectionJoint/RightSide" instance=ExtResource( 1 )]
+width = 20.0
+length = 15

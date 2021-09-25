@@ -18,5 +18,6 @@ func _physics_process(delta):
 	else:
 		Global.show_error("res://entities/player/Player.gd", "Joystick is NULL")
 	
+	$DirectionJoint.global_rotation = direction.angle()
 	
 	var _vel = move_and_slide(direction * speed)
