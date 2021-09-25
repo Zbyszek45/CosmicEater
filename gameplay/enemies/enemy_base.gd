@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name EnemyBase
 
-export(int) var speed = 450
+export(int) var speed = 100
 
 var direction = Vector2()
 var player: Player
@@ -30,7 +30,7 @@ func scale_it(amount: float) -> void:
 	else: scale += Vector2(amount, amount)
 	
 	speed *=(1+amount)
-	if speed < 100: speed = 100
+	if speed < 50: speed = 50
 	#when scaling up
 	if amount > 0: amount = amount + amount
 	

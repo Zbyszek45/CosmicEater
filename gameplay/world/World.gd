@@ -4,11 +4,18 @@ onready var spawn_point = $SpawnPoint
 onready var spawn_strategy = $SpawnStrategy
 onready var enemies = $Enemies
 onready var player = $Player
+onready var interface = $CanvasInterface/Interface
 
 func _ready():
 	randomize()
 	
 	spawn_strategy.connect("spawn_enemy", self, "spawn_enemy")
+	
+	set_children_variables()
+
+
+func set_children_variables():
+	player.joystick = interface.joystick
 
 
 func _input(event):

@@ -3,6 +3,10 @@ extends Node
 var wind_size: Vector2
 var range_limit
 
+enum JsSides {LEFT, RIGHT}
+enum JsSizes {SMALL, MEDIUM, BIG, HUGE}
+var js_side = JsSides.RIGHT
+var js_size = JsSizes.MEDIUM
 
 func _ready():
 	wind_size = get_viewport().get_visible_rect().size

@@ -2,7 +2,7 @@ extends Node
 
 var test_enemy = preload("res://gameplay/enemies/test_enemy/TestEnemy.tscn")
 
-export(int) var enemies_number = 5
+export(int) var enemies_number = 10
 
 signal spawn_enemy(enemy)
 
