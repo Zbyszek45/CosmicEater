@@ -1,7 +1,6 @@
 extends KinematicBody2D
 class_name Player
 
-
 var joystick: Joystick = null
 
 var direction := Vector2()
@@ -18,5 +17,6 @@ func _physics_process(delta):
 		direction = joystick.get_movement()
 	else:
 		Global.show_error("res://entities/player/Player.gd", "Joystick is NULL")
+	
 	
 	var _vel = move_and_slide(direction * speed)

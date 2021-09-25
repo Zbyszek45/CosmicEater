@@ -5,7 +5,7 @@ var test_enemy = preload("res://gameplay/enemies/test_enemy/TestEnemy.tscn")
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
 
 export(int) var enemies_number = 10
-export(int) var decorations_number = 10
+export(int) var decorations_number = 20
 
 signal spawn_enemy(enemy)
 signal spawn_decoration(decoration)

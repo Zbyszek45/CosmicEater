@@ -14,15 +14,7 @@ func _ready():
 	var rand_scale_value = rand_range(0.5, 1.0)
 	scale = Vector2(rand_scale_value, rand_scale_value)
 	
-	var side = randi()%4
-	if side == 0:
-		pass
-	elif side == 1:
-		rotate(PI/2)
-	elif side == 2:
-		rotate(PI)
-	elif side == 3:
-		rotate(3*PI/2)
+	rotate(rand_range(-PI, PI))
 
 
 func set_decoration(_player) -> void:
