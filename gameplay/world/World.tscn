@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://gameplay/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/interface/Interface.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://ui/debug_screen/DebugScreen.tscn" type="PackedScene" id=9]
 [ext_resource path="res://gameplay/world/TimeTimer.gd" type="Script" id=10]
 [ext_resource path="res://gameplay/world/Popups.gd" type="Script" id=11]
+[ext_resource path="res://gameplay/world/assets/dust_texture.png" type="Texture" id=12]
+[ext_resource path="res://gameplay/world/assets/star_texture.png" type="Texture" id=13]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 8 )
@@ -28,6 +30,13 @@ text2 = "[center]Catch [color=yellow][shake level=20]stars[/shake][/color] and [
 time = 20.0
 should_clear = false
 size_trigger = 0
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.335404, 0.89441, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.3, 1, 1, 1, 0.3, 1, 1, 1, 0 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.353982, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.699115, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -60,6 +69,35 @@ current = true
 script = ExtResource( 7 )
 
 [node name="Tween" type="Tween" parent="Player/Camera2D"]
+
+[node name="DustParticles" type="CPUParticles2D" parent="Player/Camera2D"]
+amount = 22
+lifetime = 4.0
+fract_delta = false
+local_coords = false
+texture = ExtResource( 12 )
+emission_shape = 2
+emission_rect_extents = Vector2( 460, 740 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+scale_amount = 0.0
+scale_amount_random = 0.75
+color_ramp = SubResource( 3 )
+
+[node name="StarParticles" type="CPUParticles2D" parent="Player/Camera2D"]
+lifetime = 5.0
+lifetime_randomness = 0.9
+fract_delta = false
+local_coords = false
+texture = ExtResource( 13 )
+emission_shape = 2
+emission_rect_extents = Vector2( 460, 740 )
+gravity = Vector2( 0, 0 )
+scale_amount = 0.0
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 4 )
 
 [node name="Messages" type="Node" parent="."]
 
