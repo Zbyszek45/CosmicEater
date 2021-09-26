@@ -28,7 +28,7 @@ func _physics_process(delta):
 
 func scale_it(amount: float) -> void:
 	# because they are futher
-	amount /= 2
+	amount /= 1.5
 	
 	if scale.x + amount < 0.1: scale = Vector2(0.1, 0.1)
 	else: scale += Vector2(amount, amount)

@@ -1,11 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://gameplay/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/interface/Interface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/world/MessagesHandler.gd" type="Script" id=3]
 [ext_resource path="res://gameplay/world/SpawnPoint.gd" type="Script" id=4]
 [ext_resource path="res://gameplay/world/World.gd" type="Script" id=5]
 [ext_resource path="res://gameplay/world/SpawnStrategy.gd" type="Script" id=6]
 [ext_resource path="res://gameplay/world/Camera2D.gd" type="Script" id=7]
+[ext_resource path="res://resources/message_res/AlaMessageRes.gd" type="Script" id=8]
+[ext_resource path="res://ui/debug_screen/DebugScreen.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 8 )
+text1 = "[center]Eat [wave amp=100]smaller[/wave]
+Run away from[shake level=20]bigger"
+text2 = "[center]Catch [color=yellow][shake level=20]stars[/shake][/color] and [color=blue][wave amp=100]comets[/wave][/color] for upgrades"
+time = 20.0
+clear_option = 1
+size_trigger = 0
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -15,6 +27,10 @@ script = ExtResource( 4 )
 
 [node name="SpawnStrategy" type="Node" parent="."]
 script = ExtResource( 6 )
+
+[node name="MessagesHandler" type="Node" parent="."]
+script = ExtResource( 3 )
+starting_message = SubResource( 1 )
 
 [node name="Decorations" type="Node2D" parent="."]
 
@@ -33,3 +49,5 @@ script = ExtResource( 7 )
 [node name="CanvasInterface" type="CanvasLayer" parent="."]
 
 [node name="Interface" parent="CanvasInterface" instance=ExtResource( 2 )]
+
+[node name="DebugScreen" parent="CanvasInterface" instance=ExtResource( 9 )]

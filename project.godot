@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "AlaMessageRes",
+"language": "GDScript",
+"path": "res://resources/message_res/AlaMessageRes.gd"
+}, {
 "base": "Sprite",
 "class": "Decoration",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://gameplay/player/Player.gd"
 } ]
 _global_script_class_icons={
+"AlaMessageRes": "",
 "Decoration": "",
 "EnemyBase": "",
 "Joystick": "",

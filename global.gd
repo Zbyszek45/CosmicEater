@@ -2,6 +2,7 @@ extends Node
 
 var wind_size: Vector2
 var range_limit
+var size_division = 1000
 
 enum JsSides {LEFT, RIGHT}
 enum JsSizes {SMALL, MEDIUM, BIG, HUGE}

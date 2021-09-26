@@ -1,8 +1,7 @@
 extends MarginContainer
 class_name Message
 
-const SPAWNED_CLEAR = true
-const SPAWNED_IGNORE = false
+enum ClearOption {SPAWNED_CLEAR, SPAWNED_IGNORE}
 
 onready var timer = $Timer
 onready var richlabel1 = $VBoxContainer/RichTextLabel
@@ -15,7 +14,7 @@ func _ready():
 	animation_player.play("fade_in")
 
 
-func set_message(player_pos: Vector2, text1: String, text2:String, time: float, should_clear: bool):
+func set_message(player_pos: Vector2, text1: String, text2:String, time: float, should_clear: int):
 	set_global_position(player_pos+Vector2(Global.wind_size.x/-2, Global.wind_size.y/-2))
 	
 	richlabel1.bbcode_text = text1
@@ -24,7 +23,7 @@ func set_message(player_pos: Vector2, text1: String, text2:String, time: float, 
 	timer.wait_time = time
 	timer.start()
 	
-	if should_clear:
+	if should_clear == ClearOption.SPAWNED_CLEAR:
 		pass
 
 

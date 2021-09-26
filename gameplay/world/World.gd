@@ -17,8 +17,6 @@ func _ready():
 	spawn_strategy.connect("spawn_decoration", self, "spawn_decoration")
 	
 	set_children_variables()
-	
-	spawn_message()
 
 
 func set_children_variables():

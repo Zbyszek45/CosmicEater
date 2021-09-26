@@ -10,9 +10,9 @@ func _ready():
 	animated_sprite.play("start")
 
 
-func _input(event):
-	if event is InputEventMouseButton or event is InputEventScreenTouch:
-		change_screen()
+#func _input(event):
+#	if event is InputEventMouseButton or event is InputEventScreenTouch:
+#		change_screen()
 
 
 func change_screen():
