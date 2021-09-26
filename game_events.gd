@@ -13,3 +13,7 @@ signal player_grew_up
 
 # show message with parameter as an resource
 signal show_message
+
+# stop and start spawning and clear spawned
+signal stop_spawning_spawnable
+signal start_spawning_spawnable

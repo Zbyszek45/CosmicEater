@@ -6,10 +6,12 @@ export(int) var speed = 100
 var direction = Vector2()
 var player: Player
 
+var should_vanish: bool = false
 
 func _ready():
 	add_to_group("enemies")
 	add_to_group("spawnable")
+	GameEvents.connect("stop_spawning_spawnable", self, "vanish")
 
 
 func set_enemy(_player) -> void:
@@ -20,6 +22,11 @@ func set_enemy(_player) -> void:
 
 
 func _physics_process(delta):
+	if should_vanish:
+		modulate.a -= 1.0*delta
+		if modulate.a <= 0.1:
+			queue_free()
+	
 	if global_position.distance_to(player.global_position) > Global.range_limit:
 		destroy()
 	
@@ -41,3 +48,7 @@ func scale_it(amount: float) -> void:
 
 func destroy():
 	queue_free()
+
+
+func vanish():
+	should_vanish = true
