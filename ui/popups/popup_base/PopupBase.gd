@@ -10,11 +10,11 @@ signal finished
 var on_accept_method = "_on_accept"
 
 func _ready():
-	accept_button.connect("pressed", self, "accept")
+	accept_button.connect("pressed", self, "on_accept_pressed")
 	get_tree().paused = true
 
 
-func accept():
+func on_accept_pressed():
 	if has_method(on_accept_method):
 		call(on_accept_method)
 	else:

@@ -20,3 +20,6 @@ signal start_spawning_spawnable
 
 # time for interface
 signal time_changed
+
+# emited when pause popup shows
+signal show_popup_pause

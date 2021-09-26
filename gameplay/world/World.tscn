@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://gameplay/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/interface/Interface.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://resources/message_res/AlaMessageRes.gd" type="Script" id=8]
 [ext_resource path="res://ui/debug_screen/DebugScreen.tscn" type="PackedScene" id=9]
 [ext_resource path="res://gameplay/world/TimeTimer.gd" type="Script" id=10]
+[ext_resource path="res://gameplay/world/Popups.gd" type="Script" id=11]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 8 )
@@ -30,6 +31,9 @@ size_trigger = 0
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="Popups" type="Node" parent="."]
+script = ExtResource( 11 )
 
 [node name="TimeTimer" type="Timer" parent="."]
 script = ExtResource( 10 )

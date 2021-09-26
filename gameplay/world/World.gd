@@ -9,6 +9,8 @@ onready var decorations = $Decorations
 onready var messages = $Messages
 onready var player = $Player
 onready var interface = $CanvasInterface/Interface
+onready var popups = $Popups
+onready var canvas = $CanvasInterface
 
 func _ready():
 	randomize()
@@ -23,6 +25,8 @@ func _ready():
 func set_children_variables():
 	player.joystick = interface.joystick
 	player.grow_up(0)
+	
+	popups.canvas = canvas
 
 
 func _input(event):
