@@ -1,9 +1,12 @@
 extends Node2D
 
+var message_scene = preload("res://gameplay/message/Message.tscn")
+
 onready var spawn_point = $SpawnPoint
 onready var spawn_strategy = $SpawnStrategy
 onready var enemies = $Enemies
 onready var decorations = $Decorations
+onready var messages = $Messages
 onready var player = $Player
 onready var interface = $CanvasInterface/Interface
 
@@ -14,6 +17,8 @@ func _ready():
 	spawn_strategy.connect("spawn_decoration", self, "spawn_decoration")
 	
 	set_children_variables()
+	
+	spawn_message()
 
 
 func set_children_variables():
@@ -43,3 +48,12 @@ func spawn_decoration(decoration: PackedScene):
 	new_decoration.global_position = spawn_point.get_rand_point(player.global_position)
 	decorations.add_child(new_decoration)
 	new_decoration.set_decoration(player)
+
+
+func spawn_message():
+	var new_message = message_scene.instance()
+	messages.add_child(new_message)
+	new_message.set_message(player.global_position \
+	, "[center]Eat [color=green][wave amp=100]smaller[/wave][/color]\nRun away from [color=red][shake level=20]bigger" \
+	, "[center];3" \
+	, 5, Message.SPAWNED_IGNORE)

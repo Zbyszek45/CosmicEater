@@ -28,6 +28,8 @@ script = ExtResource( 7 )
 
 [node name="Tween" type="Tween" parent="Player/Camera2D"]
 
+[node name="Messages" type="Node" parent="."]
+
 [node name="CanvasInterface" type="CanvasLayer" parent="."]
 
 [node name="Interface" parent="CanvasInterface" instance=ExtResource( 2 )]
