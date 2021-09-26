@@ -7,10 +7,12 @@ const SPAWNED_IGNORE = false
 onready var timer = $Timer
 onready var richlabel1 = $VBoxContainer/RichTextLabel
 onready var richlabel2= $VBoxContainer/RichTextLabel2
+onready var animation_player = $AnimationPlayer
 
 
 func _ready():
-	timer.connect("timeout", self, "destroy")
+	timer.connect("timeout", self, "start_destroying")
+	animation_player.play("fade_in")
 
 
 func set_message(player_pos: Vector2, text1: String, text2:String, time: float, should_clear: bool):
@@ -24,6 +26,10 @@ func set_message(player_pos: Vector2, text1: String, text2:String, time: float, 
 	
 	if should_clear:
 		pass
+
+
+func start_destroying():
+	animation_player.play("fade_out")
 
 
 func destroy():

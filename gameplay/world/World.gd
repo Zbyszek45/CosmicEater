@@ -55,5 +55,5 @@ func spawn_message():
 	messages.add_child(new_message)
 	new_message.set_message(player.global_position \
 	, "[center]Eat [color=green][wave amp=100]smaller[/wave][/color]\nRun away from [color=red][shake level=20]bigger" \
-	, "[center];3" \
-	, 5, Message.SPAWNED_IGNORE)
+	, "[center]Catch [color=yellow][shake amp=100]stars[/shake][/color] and [color=blue][wave level=20]comets[/wave][/color] for upgrades" \
+	, 10, Message.SPAWNED_IGNORE)
