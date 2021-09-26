@@ -17,3 +17,6 @@ signal show_message
 # stop and start spawning and clear spawned
 signal stop_spawning_spawnable
 signal start_spawning_spawnable
+
+# time for interface
+signal time_changed

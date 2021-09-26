@@ -17,6 +17,7 @@ animations = [ {
 [node name="ButtonSmall" type="TextureButton"]
 margin_right = 80.0
 margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -24,7 +25,6 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
 playing = true
 centered = false
 
