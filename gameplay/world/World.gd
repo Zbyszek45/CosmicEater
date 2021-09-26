@@ -15,12 +15,14 @@ func _ready():
 	
 	spawn_strategy.connect("spawn_enemy", self, "spawn_enemy")
 	spawn_strategy.connect("spawn_decoration", self, "spawn_decoration")
+	GameEvents.connect("show_message", self, "spawn_message")
 	
 	set_children_variables()
 
 
 func set_children_variables():
 	player.joystick = interface.joystick
+	player.grow_up(0)
 
 
 func _input(event):
@@ -48,10 +50,7 @@ func spawn_decoration(decoration: PackedScene):
 	new_decoration.set_decoration(player)
 
 
-func spawn_message():
+func spawn_message(message_info):
 	var new_message = message_scene.instance()
 	messages.add_child(new_message)
-	new_message.set_message(player.global_position \
-	, "[center]Eat [color=green][wave amp=100]smaller[/wave][/color]\nRun away from [color=red][shake level=20]bigger" \
-	, "[center]Catch [color=yellow][shake amp=100]stars[/shake][/color] and [color=blue][wave level=20]comets[/wave][/color] for upgrades" \
-	, 10, Message.SPAWNED_IGNORE)
+	new_message.set_message(player.global_position, message_info)

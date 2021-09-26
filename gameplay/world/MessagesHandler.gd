@@ -11,5 +11,5 @@ func _ready():
 
 func check_size(player_size: int, amount: float):
 	if not start_message_showed and player_size >= starting_message.size_trigger:
-		# show message
+		GameEvents.emit_signal("show_message", starting_message)
 		start_message_showed = true

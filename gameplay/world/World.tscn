@@ -12,11 +12,11 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 8 )
-text1 = "[center]Eat [wave amp=100]smaller[/wave]
-Run away from[shake level=20]bigger"
-text2 = "[center]Catch [color=yellow][shake level=20]stars[/shake][/color] and [color=blue][wave amp=100]comets[/wave][/color] for upgrades"
+text1 = "[center]Eat [wave amp=80]smaller[/wave]
+Run away from [shake level=20]bigger"
+text2 = "[center]Catch [color=yellow][shake level=20]stars[/shake][/color] and [color=blue][wave amp=80]comets[/wave][/color] for upgrades"
 time = 20.0
-clear_option = 1
+should_clear = false
 size_trigger = 0
 
 [node name="World" type="Node2D"]

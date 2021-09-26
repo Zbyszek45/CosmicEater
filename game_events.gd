@@ -10,3 +10,6 @@ signal force_player_grow_up
 
 # after player growth, parameters: size - new size, amount - how much in scale
 signal player_grew_up
+
+# show message with parameter as an resource
+signal show_message
