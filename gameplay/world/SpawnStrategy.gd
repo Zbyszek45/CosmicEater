@@ -18,7 +18,13 @@ export(int) var enemies_number = 30
 export(int) var decorations_number = 20
 
 var player_size = 0
+var world_level = 0
 
+# variables for difficculty
+var difficulty_speed = 0
+var level_ceiling = 4000
+
+# check if can spawn things
 var can_spawn: bool = true
 
 signal spawn_enemy(enemy)
@@ -31,6 +37,9 @@ func _ready():
 	GameEvents.connect("stop_spawning_spawnable", self, "_stop_spawning")
 	GameEvents.connect("start_spawning_spawnable", self, "_resume_spawning")
 	GameEvents.connect("player_grew_up", self, "_update_size")
+	
+	yield(get_parent(), "ready")
+	set_world_level(0)
 
 
 func _physics_process(delta):
@@ -42,7 +51,8 @@ func _physics_process(delta):
 
 
 func spawn_enemy():
-	var player_index = round(player_size/Global.size_division as float) as int
+	var player_size_division = player_size%(Global.size_division*enemies.size())
+	var player_index = round(player_size_division/Global.size_division as float) as int
 	var choose_index = 0
 	var random_f = randf()
 	if random_f < 0.2:
@@ -54,8 +64,8 @@ func spawn_enemy():
 	else:
 		choose_index = clamp(player_index+1, 0, enemies.size()-1)
 	
-	print("Player index: ", player_index, ", choose indes: ", choose_index)
-	emit_signal("spawn_enemy", enemies[choose_index], 0)
+#	print("Player index: ", player_index, ", choose indes: ", choose_index)
+	emit_signal("spawn_enemy", enemies[choose_index], difficulty_speed)
 
 
 func spawn_decoration():
@@ -64,6 +74,17 @@ func spawn_decoration():
 
 func _update_size(size: int, amount: float):
 	player_size = size
+	if size >= level_ceiling:
+		set_world_level(world_level+1)
+
+
+func set_world_level(level):
+	world_level = level
+	difficulty_speed = world_level * (Global.base_speed/10)
+	level_ceiling = Global.size_division*(world_level+1)*enemies.size()
+	
+	GameEvents.emit_signal("world_level_up", world_level)
+#	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
 
 
 func _increase_enemies_number(amount):

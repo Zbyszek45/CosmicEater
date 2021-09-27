@@ -24,9 +24,9 @@ func _ready():
 
 func set_children_variables():
 	player.joystick = interface.joystick
-	player.grow_up(0)
-	
 	popups.canvas = canvas
+	player.grow_up(0)
+
 
 
 func _input(event):
