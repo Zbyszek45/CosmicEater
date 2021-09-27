@@ -1,11 +1,23 @@
 extends Node
 
-var test_enemy = preload("res://gameplay/enemies/test_enemy/TestEnemy.tscn")
+var enemy_bouncy = preload("res://gameplay/enemies/enemy_bouncy/EnemyBouncy.tscn")
+var enemy_mouthy = preload("res://gameplay/enemies/enemy_mouthy/EnemyMouthy.tscn")
+var enemy_spiky = preload("res://gameplay/enemies/enemy_spiky/EnemySpiky.tscn")
+var enemy_wavy = preload("res://gameplay/enemies/enemy_wavy/EnemyWavy.tscn")
+
+var enemies = [
+	enemy_bouncy,
+	enemy_wavy,
+	enemy_spiky,
+	enemy_mouthy
+]
 
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
 
-export(int) var enemies_number = 10
+export(int) var enemies_number = 30
 export(int) var decorations_number = 20
+
+var player_size = 0
 
 var can_spawn: bool = true
 
@@ -18,6 +30,7 @@ func _ready():
 	GameEvents.connect("decrease_enemies_number", self, "_decrease_enemies_number")
 	GameEvents.connect("stop_spawning_spawnable", self, "_stop_spawning")
 	GameEvents.connect("start_spawning_spawnable", self, "_resume_spawning")
+	GameEvents.connect("player_grew_up", self, "_update_size")
 
 
 func _physics_process(delta):
@@ -29,11 +42,28 @@ func _physics_process(delta):
 
 
 func spawn_enemy():
-	emit_signal("spawn_enemy", test_enemy, 0)
+	var player_index = round(player_size/Global.size_division as float) as int
+	var choose_index = 0
+	var random_f = randf()
+	if random_f < 0.2:
+		choose_index = clamp(player_index-2, 0, enemies.size()-1)
+	elif random_f < 0.5:
+		choose_index = clamp(player_index-1, 0, enemies.size()-1)
+	elif random_f < 0.8:
+		choose_index = clamp(player_index-0, 0, enemies.size()-1)
+	else:
+		choose_index = clamp(player_index+1, 0, enemies.size()-1)
+	
+	print("Player index: ", player_index, ", choose indes: ", choose_index)
+	emit_signal("spawn_enemy", enemies[choose_index], 0)
 
 
 func spawn_decoration():
 	emit_signal("spawn_decoration", decoration)
+
+
+func _update_size(size: int, amount: float):
+	player_size = size
 
 
 func _increase_enemies_number(amount):

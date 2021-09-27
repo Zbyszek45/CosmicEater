@@ -14,6 +14,8 @@ var TemperData = {
 	Temper.HYPERAGGRESSIVE: {"min_speed": Global.base_speed/2}
 }
 
+onready var animation_sprite = $AnimatedSprite
+
 export(Role) var role
 export(float) var idle_speed_divider = 1.2
 
@@ -80,6 +82,8 @@ func set_enemy(_player, _difficulty_speed) -> void:
 
 
 func _physics_process(delta):
+	animation_sprite.global_rotation = direction.angle()
+	
 	if should_vanish:
 		modulate.a -= 1.0*delta
 		if modulate.a <= 0.1:
