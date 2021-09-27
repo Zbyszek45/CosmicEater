@@ -40,12 +40,11 @@ func _input(event):
 			$Player/Camera2D.zoom.y += 0.05
 
 
-func spawn_enemy(enemy: PackedScene):
-	pass
-#	var new_enemy: EnemyBase = enemy.instance()
-#	new_enemy.global_position = spawn_point.get_rand_point(player.global_position)
-#	enemies.add_child(new_enemy)
-#	new_enemy.set_enemy(player)
+func spawn_enemy(enemy: PackedScene, difficulty_speed):
+	var new_enemy: EnemyBase = enemy.instance()
+	new_enemy.global_position = spawn_point.get_rand_point(player.global_position)
+	enemies.add_child(new_enemy)
+	new_enemy.set_enemy(player, difficulty_speed)
 
 
 func spawn_decoration(decoration: PackedScene):

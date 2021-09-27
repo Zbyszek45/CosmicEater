@@ -1,6 +1,6 @@
 extends Node
 
-var test_enemy
+var test_enemy = preload("res://gameplay/enemies/test_enemy/TestEnemy.tscn")
 
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
 
@@ -29,7 +29,7 @@ func _physics_process(delta):
 
 
 func spawn_enemy():
-	emit_signal("spawn_enemy", test_enemy)
+	emit_signal("spawn_enemy", test_enemy, 0)
 
 
 func spawn_decoration():

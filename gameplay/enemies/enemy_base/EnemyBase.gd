@@ -4,15 +4,30 @@ class_name EnemyBase
 enum Temper {HYPERPEACEFUL, PEACEFUL, SEMIPEACEFUL, NEUTRAL, SEMIAGGRESSIVE, AGGRESSIVE, HYPERAGGRESSIVE}
 enum Role {PREY, NORMAL, PREDATOR}
 
-export(Role) var role
+var TemperData = {
+	Temper.HYPERPEACEFUL: {"min_speed": Global.base_speed},
+	Temper.PEACEFUL: {"min_speed": Global.base_speed/1.16},
+	Temper.SEMIPEACEFUL: {"min_speed": Global.base_speed/1.33},
+	Temper.NEUTRAL: {"min_speed": Global.base_speed/1.5},
+	Temper.SEMIAGGRESSIVE: {"min_speed": Global.base_speed/1.66},
+	Temper.AGGRESSIVE: {"min_speed": Global.base_speed/1.83},
+	Temper.HYPERAGGRESSIVE: {"min_speed": Global.base_speed/2}
+}
 
-var idle_speed = 100
-var run_speed = 100
-var temper
+export(Role) var role
+export(float) var idle_speed_divider = 1.2
+
+var idle_speed: int = 0
+var run_speed: int = 0
+var temper = 0
 
 var direction = Vector2()
+
 var player
+var difficulty_speed: float
+
 var should_vanish: bool = false
+
 
 func _ready():
 	add_to_group("enemies")
@@ -35,21 +50,31 @@ func set_temper():
 		if choice == 0:
 			temper = Temper.SEMIPEACEFUL
 		elif choice == 1:
-			temper = Temper.PEACEFUL
+			temper = Temper.NEUTRAL
 		else:
 			temper = Temper.SEMIAGGRESSIVE
 	
 	elif role == Role.PREDATOR:
 		var choice = randi()%2
 		if choice == 0:
-			temper = Temper.HYPERPEACEFUL
+			temper = Temper.AGGRESSIVE
 		else:
-			temper = Temper.PEACEFUL
+			temper = Temper.HYPERAGGRESSIVE
 
 
-func set_enemy(_player) -> void:
+func set_enemy(_player, _difficulty_speed) -> void:
 	player = _player
+	difficulty_speed = _difficulty_speed
 	
+	# setting run and idle speed
+	var random_speed = randi()%int(Global.base_speed/2 + difficulty_speed)
+	run_speed = TemperData[temper].min_speed + random_speed
+	idle_speed = run_speed/idle_speed_divider
+	
+#	print("Enemy ",role ," temper: ",temper , ", run speed: "\
+#	 , str(run_speed), ", idle_speed: ", idle_speed)
+	
+	# random the rotation
 	direction = (player.global_position - global_position).normalized() \
 		.rotated(rand_range(-PI / 4, PI / 4))
 
