@@ -1,4 +1,4 @@
-extends "res://ui/popups/popup_base/PopupBase.gd"
+extends "res://ui/popups/popup_base_accept/PopupBaseAccept.gd"
 
 onready var exit_button = $MargCont/Vbox/Buttons/ExitButton
 

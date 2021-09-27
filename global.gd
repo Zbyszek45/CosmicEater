@@ -1,10 +1,18 @@
 extends Node
 
+# size of opened app window
 var wind_size: Vector2
+
+# how far from player will trigger destroy for spawnable
 var range_limit
+
+# used to set the mile points for spawning enemies
 var size_division = 1000
+
+# base speed for all enemies, speed range is calculated by using this
 var base_speed = 100
 
+# joystick configuration
 enum JsSides {LEFT, RIGHT}
 enum JsSizes {SMALL, MEDIUM, BIG, HUGE}
 var js_side = JsSides.RIGHT

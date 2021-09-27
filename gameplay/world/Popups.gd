@@ -1,6 +1,6 @@
 extends Node
 
-var popup_pause_scene: PackedScene = preload("res://ui/popups/popup_pause/PausePopup.tscn")
+var popup_pause_scene: PackedScene = preload("res://ui/popups/popup_pause/PopupPause.tscn")
 
 var popup = null
 var canvas: CanvasLayer = null

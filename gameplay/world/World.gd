@@ -41,10 +41,11 @@ func _input(event):
 
 
 func spawn_enemy(enemy: PackedScene):
-	var new_enemy: EnemyBase = enemy.instance()
-	new_enemy.global_position = spawn_point.get_rand_point(player.global_position)
-	enemies.add_child(new_enemy)
-	new_enemy.set_enemy(player)
+	pass
+#	var new_enemy: EnemyBase = enemy.instance()
+#	new_enemy.global_position = spawn_point.get_rand_point(player.global_position)
+#	enemies.add_child(new_enemy)
+#	new_enemy.set_enemy(player)
 
 
 func spawn_decoration(decoration: PackedScene):
