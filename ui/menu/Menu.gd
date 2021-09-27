@@ -19,6 +19,15 @@ func _ready():
 	upgrades_button.connect("pressed", self, "on_UpgradesButton_pressed")
 	
 	help_button.connect("pressed", self, "on_HelpButton_pressed")
+	
+	var dir = Directory.new()
+	if not dir.dir_exists(Global.SAVE_FOLDER_PATH):
+		Global.show_error("res://ui/menu/Menu.gd", "Directory save not exist")
+		return
+	if not dir.file_exists(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH)):
+		print("file not exist")
+	else:
+		print("file exist ;3")
 
 
 func on_StartButton_pressed():

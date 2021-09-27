@@ -42,3 +42,7 @@ func grow_up(food_scale):
 	
 	# emit information
 	GameEvents.emit_signal("player_grew_up", size, scale_amount)
+
+
+func on_load(_size):
+	size = _size

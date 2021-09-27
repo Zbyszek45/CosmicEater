@@ -18,6 +18,10 @@ enum JsSizes {SMALL, MEDIUM, BIG, HUGE}
 var js_side = JsSides.RIGHT
 var js_size = JsSizes.MEDIUM
 
+# save location if exists
+const SAVE_NAME_PATH = "savegame.tres"
+const SAVE_FOLDER_PATH = "user://save"
+
 func _ready():
 	wind_size = get_viewport().get_visible_rect().size
 	range_limit = Vector2(0, 0).distance_to(wind_size) * 1.05

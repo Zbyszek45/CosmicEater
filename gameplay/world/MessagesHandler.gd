@@ -27,3 +27,8 @@ func check_size(player_size: int, amount: float):
 func show_new_world_message(level):
 	if level > 0:
 		GameEvents.emit_signal("show_message", new_world_message)
+
+
+func on_load(player_size):
+	if player_size > starting_message.size_trigger: start_message_showed = true
+	if player_size > planet_message.size_trigger: planet_message_showed = true

@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "AlaGameSave",
+"language": "GDScript",
+"path": "res://resources/save_game_res/game_save.gd"
+}, {
+"base": "Resource",
 "class": "AlaMessageRes",
 "language": "GDScript",
 "path": "res://resources/message_res/AlaMessageRes.gd"
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://gameplay/player/Player.gd"
 } ]
 _global_script_class_icons={
+"AlaGameSave": "",
 "AlaMessageRes": "",
 "Decoration": "",
 "EnemyBase": "",

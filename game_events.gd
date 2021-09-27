@@ -26,3 +26,6 @@ signal show_popup_pause
 
 # world level up
 signal world_level_up
+
+# to save game
+signal save_game_state

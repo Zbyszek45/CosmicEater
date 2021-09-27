@@ -7,7 +7,6 @@
 [ext_resource path="res://ui/common/button_base/icons/icon_exit.png" type="Texture" id=5]
 
 [node name="PopupPause" instance=ExtResource( 3 )]
-visible = true
 script = ExtResource( 4 )
 
 [node name="Icon" parent="MargCont/Vbox" index="0"]
@@ -18,11 +17,16 @@ bbcode_text = "[center][color=#d1f1fc][shake level=10]Pause"
 text = "Pause"
 
 [node name="ExitButton" parent="MargCont/Vbox/Buttons" index="0" instance=ExtResource( 1 )]
-margin_left = 100.0
-margin_right = 228.0
+margin_left = 44.0
+margin_right = 172.0
 size_flags_horizontal = 6
 icon = ExtResource( 5 )
 
-[node name="AcceptButton" parent="MargCont/Vbox/Buttons" index="1"]
-margin_left = 432.0
-margin_right = 560.0
+[node name="SaveExitButton" parent="MargCont/Vbox/Buttons" index="1" instance=ExtResource( 1 )]
+margin_left = 265.0
+margin_right = 393.0
+size_flags_horizontal = 6
+
+[node name="AcceptButton" parent="MargCont/Vbox/Buttons" index="2"]
+margin_left = 487.0
+margin_right = 615.0

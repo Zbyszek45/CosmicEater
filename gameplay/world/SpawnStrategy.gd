@@ -37,9 +37,6 @@ func _ready():
 	GameEvents.connect("stop_spawning_spawnable", self, "_stop_spawning")
 	GameEvents.connect("start_spawning_spawnable", self, "_resume_spawning")
 	GameEvents.connect("player_grew_up", self, "_update_size")
-	
-	yield(get_parent(), "ready")
-	set_world_level(0)
 
 
 func _physics_process(delta):
@@ -84,7 +81,13 @@ func set_world_level(level):
 	level_ceiling = Global.size_division*(world_level+1)*enemies.size()
 	
 	GameEvents.emit_signal("world_level_up", world_level)
-#	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
+	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
+
+
+func on_load(_player_size):
+	if player_size != _player_size: player_size = _player_size
+	var new_world_level = int(_player_size/(enemies.size()*Global.size_division))
+	set_world_level(new_world_level)
 
 
 func _increase_enemies_number(amount):
