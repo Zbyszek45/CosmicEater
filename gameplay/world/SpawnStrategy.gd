@@ -1,6 +1,6 @@
 extends Node
 
-var test_enemy = preload("res://gameplay/enemies/test_enemy/TestEnemy.tscn")
+var test_enemy
 
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
 
