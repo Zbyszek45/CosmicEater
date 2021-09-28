@@ -49,7 +49,6 @@ func grow_up(food_scale):
 	var added_size = food_scale * food_multiplier
 	var scale_amount = added_size/Global.size_division
 	size += added_size
-	print(added_size)
 	# every other object should scale down
 	get_tree().call_group("spawnable", "scale_it", -scale_amount)
 	

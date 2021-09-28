@@ -20,9 +20,12 @@ animations = [ {
 } ]
 
 [node name="EnemyMouthy" instance=ExtResource( 1 )]
+role = 2
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
+
+[editable path="AI"]

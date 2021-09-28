@@ -26,3 +26,5 @@ frames = SubResource( 1 )
 animation = "idle"
 frame = 3
 playing = true
+
+[editable path="AI"]

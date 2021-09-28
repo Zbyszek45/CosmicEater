@@ -24,6 +24,8 @@ var world_level = 0
 
 # variables for difficculty
 var difficulty_speed = 0
+var difficulty_ai_time = 0.0
+var difficulty_ai_prob = 0.0
 var level_ceiling = 4000
 
 # check if can spawn things
@@ -55,7 +57,7 @@ func _physics_process(delta):
 func queue_enemy_to_spawn():
 	var current_size = get_tree().get_nodes_in_group("enemies").size()
 	if current_size < enemies_number:
-		enemies_queue = ceil(enemies_number/10) as int
+		enemies_queue = ceil(enemies_number/10.0 as float) as int
 
 
 func spawn_enemy():
@@ -78,7 +80,8 @@ func spawn_enemy():
 		scale = rand_range(1.1, 2.0)
 	
 #	print("Player index: ", player_index, ", choose indes: ", choose_index)
-	emit_signal("spawn_enemy", enemies[choose_index], scale, difficulty_speed)
+	emit_signal("spawn_enemy", enemies[choose_index], scale, difficulty_speed \
+	, difficulty_ai_time, difficulty_ai_prob)
 
 
 func spawn_decoration():
@@ -93,7 +96,9 @@ func _update_size(size: int, amount: float):
 
 func set_world_level(level):
 	world_level = level
-	difficulty_speed = world_level * (Global.base_speed/10)
+	
+	set_difficulty()
+	
 	level_ceiling = Global.size_division*(world_level+1)*enemies.size()
 	
 	GameEvents.emit_signal("world_level_up", world_level)
@@ -104,12 +109,21 @@ func on_load(save: AlaGameSave):
 	player_size = save.player_size as int
 	var new_world_level = int(player_size/(enemies.size()*Global.size_division))
 	world_level = new_world_level
-	difficulty_speed = world_level * (Global.base_speed/10)
+	
+	set_difficulty()
+	
 	level_ceiling = Global.size_division*(world_level+1)*enemies.size()
 	can_spawn = true
 	enemies_queue = 0
 	
 	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
+
+
+func set_difficulty():
+	difficulty_speed = world_level * (Global.base_speed/10)
+	difficulty_ai_time = 2.0 - (world_level*0.1)
+	if difficulty_ai_time < 1.0: difficulty_ai_time = 1.0
+	difficulty_ai_prob = 0.05 * world_level
 
 
 func _increase_enemies_number(amount):

@@ -5,17 +5,18 @@ enum Temper {HYPERPEACEFUL, PEACEFUL, SEMIPEACEFUL, NEUTRAL, SEMIAGGRESSIVE, AGG
 enum Role {PREY, NORMAL, PREDATOR}
 
 var TemperData = {
-	Temper.HYPERPEACEFUL: {"min_speed": Global.base_speed},
-	Temper.PEACEFUL: {"min_speed": Global.base_speed/1.16},
-	Temper.SEMIPEACEFUL: {"min_speed": Global.base_speed/1.33},
-	Temper.NEUTRAL: {"min_speed": Global.base_speed/1.5},
-	Temper.SEMIAGGRESSIVE: {"min_speed": Global.base_speed/1.66},
-	Temper.AGGRESSIVE: {"min_speed": Global.base_speed/1.83},
-	Temper.HYPERAGGRESSIVE: {"min_speed": Global.base_speed/2}
+	Temper.HYPERPEACEFUL: {"min_speed": Global.base_speed, "atta_prob": 0.0, "flee_prob": 0.5},
+	Temper.PEACEFUL: {"min_speed": Global.base_speed/1.16, "atta_prob": 0.08, "flee_prob": 0.41},
+	Temper.SEMIPEACEFUL: {"min_speed": Global.base_speed/1.33, "atta_prob": 0.16, "flee_prob": 0.33},
+	Temper.NEUTRAL: {"min_speed": Global.base_speed/1.5, "atta_prob": 0.25, "flee_prob": 0.25},
+	Temper.SEMIAGGRESSIVE: {"min_speed": Global.base_speed/1.66, "atta_prob": 0.33, "flee_prob": 0.16},
+	Temper.AGGRESSIVE: {"min_speed": Global.base_speed/1.83, "atta_prob": 0.41, "flee_prob": 0.08},
+	Temper.HYPERAGGRESSIVE: {"min_speed": Global.base_speed/2, "atta_prob": 0.5, "flee_prob": 0.0}
 }
 
 onready var animation_sprite = $AnimatedSprite
 onready var eat_area = $EatArea
+onready var ai = $AI
 
 export(Role) var role
 export(float) var idle_speed_divider = 1.2
@@ -31,14 +32,22 @@ var difficulty_speed: float
 
 var should_vanish: bool = false
 
+# for ai
+var ai_target = null
+var ai_action = Global.AI_Action.MOVING
+
 
 func _ready():
 	add_to_group("enemies")
 	add_to_group("spawnable")
 	GameEvents.connect("stop_spawning_spawnable", self, "vanish")
 	eat_area.connect("body_entered", self, "on_eatArea_body_entered")
+	ai.connect("attack", self, "attack_ai")
+	ai.connect("flee", self, "flee_ai")
+	ai.connect("move", self, "move_ai")
 	
 	set_temper()
+	ai.set_priority(AI.AI_FLEE, AI.AI_ATTACK, AI.AI_MOVE)
 
 
 func set_temper():
@@ -66,7 +75,7 @@ func set_temper():
 			temper = Temper.HYPERAGGRESSIVE
 
 
-func set_enemy(_player, _scale, _difficulty_speed) -> void:
+func set_enemy(_player, _scale, _difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob) -> void:
 	player = _player
 	difficulty_speed = _difficulty_speed
 	scale = Vector2(_scale, _scale)
@@ -75,6 +84,12 @@ func set_enemy(_player, _scale, _difficulty_speed) -> void:
 	var random_speed = randi()%int(Global.base_speed/2 + difficulty_speed)
 	run_speed = TemperData[temper].min_speed + random_speed
 	idle_speed = run_speed/idle_speed_divider
+	
+	# setting ai
+	ai.set_probality(TemperData[temper].atta_prob + _difficulty_ai_prob\
+		, TemperData[temper].flee_prob + _difficulty_ai_prob)
+	ai.set_action_time(_difficulty_ai_time)
+	ai.start_ai()
 	
 #	print("Enemy ",role ," temper: ",temper , ", run speed: "\
 #	 , str(run_speed), ", idle_speed: ", idle_speed)
@@ -85,8 +100,6 @@ func set_enemy(_player, _scale, _difficulty_speed) -> void:
 
 
 func _physics_process(delta):
-	animation_sprite.global_rotation = direction.angle()
-	
 	if should_vanish:
 		modulate.a -= 1.0*delta
 		if modulate.a <= 0.1:
@@ -95,7 +108,19 @@ func _physics_process(delta):
 	if global_position.distance_to(player.global_position) > Global.range_limit:
 		destroy()
 	
-	var _vel = move_and_slide(direction * idle_speed)
+	if ai_action == Global.AI_Action.ATTACKING and is_instance_valid(ai_target):
+		var new_dir = (ai_target.global_position-global_position).normalized()
+		animation_sprite.global_rotation = new_dir.angle()
+		var _vel = move_and_slide(new_dir * run_speed)
+		
+	elif ai_action == Global.AI_Action.FLEEING and is_instance_valid(ai_target):
+		var new_dir = (global_position-ai_target.global_position).normalized()
+		animation_sprite.global_rotation = new_dir.angle()
+		var _vel = move_and_slide(new_dir * run_speed)
+		
+	else:
+		animation_sprite.global_rotation = direction.angle()
+		var _vel = move_and_slide(direction * idle_speed)
 
 
 func on_eatArea_body_entered(body: Node):
@@ -123,6 +148,23 @@ func scale_it(amount: float) -> void:
 	
 	var dir = (player.global_position - global_position)*amount
 	global_position -= dir
+
+
+func attack_ai(body):
+	animation_sprite.play("run")
+	ai_action = Global.AI_Action.ATTACKING
+	ai_target = body
+
+
+func flee_ai(body):
+	animation_sprite.play("run")
+	ai_action = Global.AI_Action.FLEEING
+	ai_target = body
+
+
+func move_ai():
+	animation_sprite.play("idle")
+	ai_action = Global.AI_Action.MOVING
 
 
 func get_scale():

@@ -15,6 +15,9 @@ var base_speed = 100
 # scale number to see what can eat
 var eat_limit = 0.1
 
+# ai enums
+enum AI_Action {ATTACKING, FLEEING, MOVING}
+
 # joystick configuration
 enum JsSides {LEFT, RIGHT}
 enum JsSizes {SMALL, MEDIUM, BIG, HUGE}

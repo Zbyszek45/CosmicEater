@@ -66,6 +66,7 @@ script = ExtResource( 4 )
 "saved",
 ]]
 script = ExtResource( 6 )
+enemies_number = 1
 
 [node name="EnemySpawnTimer" type="Timer" parent="SpawnStrategy"]
 process_mode = 0

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "AI",
+"language": "GDScript",
+"path": "res://gameplay/common/ai/AI.gd"
+}, {
 "base": "Resource",
 "class": "AlaGameSave",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://gameplay/player/Player.gd"
 } ]
 _global_script_class_icons={
+"AI": "",
 "AlaGameSave": "",
 "AlaMessageRes": "",
 "Decoration": "",
@@ -110,8 +116,10 @@ pointing/emulate_touch_from_mouse=true
 
 2d_physics/layer_1="player_body"
 2d_physics/layer_2="player_eatbox"
+2d_physics/layer_3="player_ai_areas"
 2d_physics/layer_6="enemy_body"
 2d_physics/layer_7="enemy_eatbox"
+2d_physics/layer_8="enemy_ai_areas"
 
 [physics]
 
