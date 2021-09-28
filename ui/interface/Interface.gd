@@ -27,3 +27,7 @@ func _update_time_label(time):
 
 func pause_game():
 	GameEvents.emit_signal("show_popup_pause")
+
+
+func on_load(save: AlaGameSave):
+	size_label.text = "Size: " + str(save.player_size)

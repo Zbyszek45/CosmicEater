@@ -6,7 +6,7 @@ var joystick: Joystick = null
 var direction := Vector2()
 
 export(int) var speed = 100
-export(int) var size = 0
+var size = 0
 export(float) var eating_speed = 0.5
 
 var food_multiplier = 0
@@ -44,5 +44,5 @@ func grow_up(food_scale):
 	GameEvents.emit_signal("player_grew_up", size, scale_amount)
 
 
-func on_load(_size):
-	size = _size
+func on_load(save: AlaGameSave):
+	size = save.player_size

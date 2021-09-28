@@ -8,7 +8,9 @@
 [ext_resource path="res://ui/common/button_small/icons/icon_help.png" type="Texture" id=6]
 [ext_resource path="res://ui/common/button_small/icons/icon_pause.png" type="Texture" id=7]
 
-[node name="Interface" type="Control"]
+[node name="Interface" type="Control" groups=[
+"saved",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )

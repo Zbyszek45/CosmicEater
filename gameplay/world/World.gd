@@ -33,25 +33,13 @@ func _ready():
 func load_save():
 	var save: AlaGameSave = initial_save
 	
-	# messages first so it wont show when initializing rest
-	messages_handler.on_load(save.player_size)
-	
-	#we set the loaded size to the player
-	player.on_load(save.player_size)
-	
-	# will calculate world level and set it
-	spawn_strategy.on_load(save.player_size)
-	timer_timer.s = save.time_s
-	timer_timer.m = save.time_m
-	timer_timer.h = save.time_h
+	get_tree().call_group("saved", "on_load", save)
+
 
 
 func set_children_variables():
 	player.joystick = interface.joystick
 	popups.canvas = canvas
-	
-	# we need to update interface, world level is already calculated
-	player.grow_up(0)
 
 
 func save_game():

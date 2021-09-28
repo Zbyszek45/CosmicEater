@@ -54,16 +54,22 @@ initial_save = ExtResource( 14 )
 [node name="Popups" type="Node" parent="."]
 script = ExtResource( 11 )
 
-[node name="TimeTimer" type="Timer" parent="."]
+[node name="TimeTimer" type="Timer" parent="." groups=[
+"saved",
+]]
 script = ExtResource( 10 )
 
 [node name="SpawnPoint" type="Node" parent="."]
 script = ExtResource( 4 )
 
-[node name="SpawnStrategy" type="Node" parent="."]
+[node name="SpawnStrategy" type="Node" parent="." groups=[
+"saved",
+]]
 script = ExtResource( 6 )
 
-[node name="MessagesHandler" type="Node" parent="."]
+[node name="MessagesHandler" type="Node" parent="." groups=[
+"saved",
+]]
 script = ExtResource( 3 )
 planet_message = SubResource( 1 )
 starting_message = SubResource( 2 )

@@ -30,3 +30,9 @@ func _on_Timer_timeout():
 		h += 1
 	
 	GameEvents.emit_signal("time_changed", get_formated_time())
+
+
+func on_load(save: AlaGameSave):
+	s = save.time_s
+	m = save.time_m
+	h = save.time_h

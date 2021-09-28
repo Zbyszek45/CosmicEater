@@ -84,10 +84,15 @@ func set_world_level(level):
 	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
 
 
-func on_load(_player_size):
-	if player_size != _player_size: player_size = _player_size
-	var new_world_level = int(_player_size/(enemies.size()*Global.size_division))
-	set_world_level(new_world_level)
+func on_load(save: AlaGameSave):
+	player_size = save.player_size
+	var new_world_level = int(player_size/(enemies.size()*Global.size_division))
+	world_level = new_world_level
+	difficulty_speed = world_level * (Global.base_speed/10)
+	level_ceiling = Global.size_division*(world_level+1)*enemies.size()
+	can_spawn = true
+	
+	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
 
 
 func _increase_enemies_number(amount):
