@@ -56,8 +56,6 @@ func queue_enemy_to_spawn():
 	var current_size = get_tree().get_nodes_in_group("enemies").size()
 	if current_size < enemies_number:
 		enemies_queue = ceil(enemies_number/10) as int
-	
-	print(enemies_queue)
 
 
 func spawn_enemy():

@@ -32,14 +32,16 @@ func _ready():
 
 func load_save():
 	var save: AlaGameSave = initial_save
-	
 	get_tree().call_group("saved", "on_load", save)
-
 
 
 func set_children_variables():
 	player.joystick = interface.joystick
 	popups.canvas = canvas
+
+
+func after_ready():
+	messages_handler.check_size(player.size, 0)
 
 
 func save_game():
