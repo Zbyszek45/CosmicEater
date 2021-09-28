@@ -104,6 +104,7 @@ func on_load(save: AlaGameSave):
 	difficulty_speed = world_level * (Global.base_speed/10)
 	level_ceiling = Global.size_division*(world_level+1)*enemies.size()
 	can_spawn = true
+	enemies_queue = 0
 	
 	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
 
