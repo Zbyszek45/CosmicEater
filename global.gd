@@ -12,6 +12,9 @@ var size_division = 1000
 # base speed for all enemies, speed range is calculated by using this
 var base_speed = 100
 
+# scale number to see what can eat
+var eat_limit = 0.1
+
 # joystick configuration
 enum JsSides {LEFT, RIGHT}
 enum JsSizes {SMALL, MEDIUM, BIG, HUGE}
