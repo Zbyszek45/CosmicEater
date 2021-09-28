@@ -38,6 +38,7 @@ func load_save():
 		if save == null:
 			Global.show_error("res://gameplay/world/World.gd", "Should load save but not existing")
 			save = initial_save
+		Global.delete_save()
 	else:
 		save = initial_save
 	
