@@ -17,6 +17,7 @@ var TemperData = {
 onready var animation_sprite = $AnimatedSprite
 onready var eat_area = $EatArea
 onready var ai = $AI
+onready var destroy_particles = $StandardDestroyParticles
 
 export(Role) var role
 export(float) var idle_speed_divider = 1.2
@@ -31,6 +32,7 @@ var player
 var difficulty_speed: float
 
 var should_vanish: bool = false
+var should_destroy: bool = false
 
 # for ai
 var ai_target = null
@@ -105,6 +107,9 @@ func _physics_process(delta):
 		if modulate.a <= 0.1:
 			queue_free()
 	
+	if should_destroy and destroy_particles.emitting == false:
+		queue_free()
+	
 	if global_position.distance_to(player.global_position) > Global.range_limit:
 		destroy()
 	
@@ -172,7 +177,8 @@ func get_scale():
 
 
 func destroy():
-	queue_free()
+	destroy_particles.emitting = true
+	should_destroy = true
 
 
 func vanish():

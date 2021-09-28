@@ -55,9 +55,6 @@ func grow_up(food_scale):
 	# emit information
 	GameEvents.emit_signal("player_grew_up", size, scale_amount)
 	
-	# reset area so will eat everyone inside
-	eat_area.set_deferred("monitoring", false)
-	eat_area.set_deferred("monitoring", true)
 
 
 func on_load(save: AlaGameSave):
