@@ -36,9 +36,8 @@ func _physics_process(delta):
 
 func on_eatArea_body_entered(body: Node):
 	if body.has_method("get_scale"):
-		var body_scale = body.get_scale()
-		if body_scale <= scale.x - Global.eat_limit:
-			grow_up(body_scale)
+		if can_eat(body.get_scale()):
+			grow_up(body.get_scale())
 			body.destroy()
 	else:
 		Global.show_error("res://gameplay/player/Player.gd", "Body don't have method: "+body.name)
@@ -54,7 +53,13 @@ func grow_up(food_scale):
 	
 	# emit information
 	GameEvents.emit_signal("player_grew_up", size, scale_amount)
-	
+
+
+func can_eat(body_scale) -> bool:
+	if body_scale <= scale.x - Global.eat_limit:
+		return true
+	else:
+		return false
 
 
 func on_load(save: AlaGameSave):

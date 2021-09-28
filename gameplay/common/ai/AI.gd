@@ -66,15 +66,15 @@ func stop_ai():
 
 func on_body_AttackArea_entered(body: Node):
 	if body.has_method("get_scale"):
-		if body.get_scale() <= get_parent().scale.x - Global.eat_limit:
+		if get_parent().can_eat(body.get_scale()):
 			bodies_attack.append(body)
 	else:
 		Global.show_error("res://gameplay/common/ai/AI.gd", "Body don't have method: "+body.name)
 
 
 func on_body_FleeArea_entered(body: Node):
-	if body.has_method("get_scale"):
-		if body.get_scale() >= get_parent().scale.x + Global.eat_limit:
+	if body.has_method("can_eat"):
+		if body.can_eat(get_parent().get_scale()):
 			bodies_flee.append(body)
 	else:
 		Global.show_error("res://gameplay/common/ai/AI.gd", "Body don't have method: "+body.name)
