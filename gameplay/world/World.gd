@@ -58,7 +58,6 @@ func set_children_variables():
 
 
 func after_ready():
-	print("Player loaded size ",player.size)
 	messages_handler.check_size(player.size, 0)
 
 
