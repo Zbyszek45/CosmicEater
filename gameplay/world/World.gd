@@ -97,7 +97,7 @@ func spawn_enemy(enemy: PackedScene, scale, difficulty_speed, _difficulty_ai_tim
 
 func spawn_decoration(decoration: PackedScene):
 	var new_decoration: Decoration = decoration.instance()
-	new_decoration.global_position = spawn_point.get_rand_point(player.global_position)
+	new_decoration.global_position = spawn_point.get_rand_point_decoratives(player.global_position)
 	decorations.add_child(new_decoration)
 	new_decoration.set_decoration(player)
 
