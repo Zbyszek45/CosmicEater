@@ -110,7 +110,9 @@ func _physics_process(delta):
 	if should_destroy and destroy_particles.emitting == false:
 		queue_free()
 	
-	if global_position.distance_to(player.global_position) > Global.range_limit:
+	if abs(player.global_position.x - global_position.x) > Global.range_spawn.x + 10:
+		destroy()
+	if abs(player.global_position.y - global_position.y) > Global.range_spawn.y + 10:
 		destroy()
 	
 	if ai_action == Global.AI_Action.ATTACKING and is_instance_valid(ai_target):
@@ -184,6 +186,7 @@ func get_scale():
 
 func destroy():
 	destroy_particles.emitting = true
+	animation_sprite.hide()
 	should_destroy = true
 
 

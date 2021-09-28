@@ -3,8 +3,9 @@ extends Node
 # size of opened app window
 var wind_size: Vector2
 
-# how far from player will trigger destroy for spawnable
+# how far from player will trigger destroy for spawnable and spawn things
 var range_limit
+var range_spawn: Vector2
 
 # used to set the mile points for spawning enemies
 var size_division = 1000
@@ -14,6 +15,9 @@ var base_speed = 100
 
 # scale number to see what can eat
 var eat_limit = 0.1
+
+# the size in pixels
+var base_char_size = 88
 
 # ai enums
 enum AI_Action {ATTACKING, FLEEING, MOVING}
@@ -36,7 +40,9 @@ var continue_save: bool = false
 
 func _ready():
 	wind_size = get_viewport().get_visible_rect().size
-	range_limit = Vector2(0, 0).distance_to(wind_size) * 1.05
+	range_spawn.x = (Global.wind_size.x/2) + (Global.base_char_size*2)
+	range_spawn.y = (Global.wind_size.y/2) + (Global.base_char_size*2)
+	range_limit = Vector2(0, 0).distance_to(range_spawn) * 1.05
 
 
 func show_error(script_name, description):
