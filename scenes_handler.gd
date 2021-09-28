@@ -30,6 +30,3 @@ func _deferred_switch_scene(new_scene_choice) -> void:
 	current_scene = new_scene.instance()
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
-	
-	if current_scene.has_method("after_ready"):
-		current_scene.after_ready()

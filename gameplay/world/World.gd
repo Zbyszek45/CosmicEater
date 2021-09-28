@@ -28,11 +28,28 @@ func _ready():
 	
 	load_save()
 	set_children_variables()
+	after_ready()
 
 
 func load_save():
-	var save: AlaGameSave = initial_save
-	get_tree().call_group("saved", "on_load", save)
+	var save: AlaGameSave
+	if Global.continue_save:
+		save = Global.load_save()
+		if save == null:
+			Global.show_error("res://gameplay/world/World.gd", "Should load save but not existing")
+			save = initial_save
+	else:
+		save = initial_save
+	
+	# call group seems very looose, it will call but after some time
+#	get_tree().call_group("saved", "on_load", save)
+	
+	# this is better because its strict
+	for i in get_tree().get_nodes_in_group("saved"):
+		if i.has_method("on_load"):
+			i.on_load(save)
+		else:
+			Global.show_error("res://gameplay/world/World.gd", i.get_path()+" dont have method")
 
 
 func set_children_variables():
@@ -41,16 +58,17 @@ func set_children_variables():
 
 
 func after_ready():
+	print("Player loaded size ",player.size)
 	messages_handler.check_size(player.size, 0)
 
 
 func save_game():
 	print("saving")
 	var new_save = AlaGameSave.new()
-	new_save.player_size = player.size
-	new_save.time_h = timer_timer.h
-	new_save.time_m = timer_timer.m
-	new_save.time_s = timer_timer.s
+	new_save.player_size = player.size as int
+	new_save.time_h = timer_timer.h as int
+	new_save.time_m = timer_timer.m as int
+	new_save.time_s = timer_timer.s as int
 	
 	var dir = Directory.new()
 	if not dir.dir_exists(Global.SAVE_FOLDER_PATH):

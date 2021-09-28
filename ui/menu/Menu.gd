@@ -6,8 +6,8 @@ onready var settings_button = $SettingButton
 onready var about_button = $AboutButton
 onready var aipriority_button = $AIPriorityButton
 onready var upgrades_button = $UpgradesButton
-
 onready var help_button = $HelpButton
+onready var popups = $Popups
 
 
 func _ready():
@@ -17,9 +17,13 @@ func _ready():
 	about_button.connect("pressed", self, "on_AboutButton_pressed")
 	aipriority_button.connect("pressed", self, "on_AIPriority_pressed")
 	upgrades_button.connect("pressed", self, "on_UpgradesButton_pressed")
-	
 	help_button.connect("pressed", self, "on_HelpButton_pressed")
 	
+	if Global.just_started:
+		check_save()
+
+
+func check_save():
 	var dir = Directory.new()
 	if not dir.dir_exists(Global.SAVE_FOLDER_PATH):
 		print("directory not exist")
@@ -27,10 +31,12 @@ func _ready():
 	if not dir.file_exists(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH)):
 		print("file not exist")
 	else:
-		print("file exist ;3")
+		popups.show_popup_save_continue(self)
 
 
 func on_StartButton_pressed():
+	Global.just_started = false
+	Global.continue_save = false
 	ScenesHandler.switch_scene(ScenesHandler.TRANSITION)
 
 

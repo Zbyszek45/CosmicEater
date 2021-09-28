@@ -22,6 +22,12 @@ var js_size = JsSizes.MEDIUM
 const SAVE_NAME_PATH = "savegame.tres"
 const SAVE_FOLDER_PATH = "user://save"
 
+# used to check if game was just started up
+var just_started: bool = true
+
+# stores information whatever we should continue a previous save
+var continue_save: bool = false
+
 func _ready():
 	wind_size = get_viewport().get_visible_rect().size
 	range_limit = Vector2(0, 0).distance_to(wind_size) * 1.05
@@ -44,3 +50,20 @@ func show_error(script_name, description):
 	error += "######################################"
 	error += "\n"
 	print(error)
+
+
+func load_save() -> Resource:
+	var res = null
+	var dir = Directory.new()
+	if dir.file_exists(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH)):
+		res = load(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH))
+	
+	# when save is loaded it shouldnt check anymore
+	continue_save = false
+	return res
+
+
+func delete_save():
+	var dir = Directory.new()
+	if dir.file_exists(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH)):
+		dir.remove(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH))

@@ -96,7 +96,7 @@ func set_world_level(level):
 
 
 func on_load(save: AlaGameSave):
-	player_size = save.player_size
+	player_size = save.player_size as int
 	var new_world_level = int(player_size/(enemies.size()*Global.size_division))
 	world_level = new_world_level
 	difficulty_speed = world_level * (Global.base_speed/10)

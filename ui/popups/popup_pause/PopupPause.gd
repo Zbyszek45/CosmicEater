@@ -9,6 +9,8 @@ func _ready():
 
 
 func on_exit_pressed():
+	Global.delete_save()
+	
 	unpause_tree()
 	ScenesHandler.switch_scene(ScenesHandler.MENU)
 

@@ -46,3 +46,4 @@ func grow_up(food_scale):
 
 func on_load(save: AlaGameSave):
 	size = save.player_size
+	print("Player new size: ", size)

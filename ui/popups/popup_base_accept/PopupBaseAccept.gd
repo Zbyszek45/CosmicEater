@@ -9,11 +9,13 @@ func _ready():
 
 
 func on_accept_pressed():
+	unpause_tree()
+	
 	if has_method(on_accept_method):
 		call(on_accept_method)
 	else:
 		Global.show_error("res://ui/popups/popup_base/PopupBase.gd" \
 		, "Inherited scene dont have method '_on_accept_and_resume'")
 	
-	unpause_tree()
+	
 	emit_signal("finished")
