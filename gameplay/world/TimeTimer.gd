@@ -4,8 +4,6 @@ var s : int = 0
 var m : int = 0
 var h : int = 0
 
-signal time_changed
-
 func _ready():
 	connect("timeout", self, "_on_Timer_timeout")
 	start()
