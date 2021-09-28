@@ -32,3 +32,4 @@ func show_new_world_message(level):
 func on_load(save: AlaGameSave):
 	if save.player_size > starting_message.size_trigger: start_message_showed = true
 	if save.player_size > planet_message.size_trigger: planet_message_showed = true
+	check_size(save.player_size, 0)

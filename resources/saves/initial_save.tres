@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-player_size = 8562
-time_s = 2
-time_m = 1
-time_h = 4
+player_size = 5000
+time_s = 0
+time_m = 0
+time_h = 0

@@ -14,6 +14,8 @@ var enemies = [
 
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
 
+onready var enemy_spawn_timer = $EnemySpawnTimer
+
 export(int) var enemies_number = 30
 export(int) var decorations_number = 20
 
@@ -26,12 +28,14 @@ var level_ceiling = 4000
 
 # check if can spawn things
 var can_spawn: bool = true
+var enemies_queue: int = 0
 
 signal spawn_enemy(enemy)
 signal spawn_decoration(decoration)
 
 
 func _ready():
+	enemy_spawn_timer.connect("timeout", self, "queue_enemy_to_spawn")
 	GameEvents.connect("increase_enemies_number", self, "_increase_enemies_number")
 	GameEvents.connect("decrease_enemies_number", self, "_decrease_enemies_number")
 	GameEvents.connect("stop_spawning_spawnable", self, "_stop_spawning")
@@ -41,10 +45,19 @@ func _ready():
 
 func _physics_process(delta):
 	if can_spawn:
-		if get_tree().get_nodes_in_group("enemies").size() < enemies_number:
+		if enemies_queue > 0:
 			spawn_enemy()
+			enemies_queue -= 1
 		if get_tree().get_nodes_in_group("decorations").size() < decorations_number:
 			spawn_decoration()
+
+
+func queue_enemy_to_spawn():
+	var current_size = get_tree().get_nodes_in_group("enemies").size()
+	if current_size < enemies_number:
+		enemies_queue = ceil(enemies_number/10) as int
+	
+	print(enemies_queue)
 
 
 func spawn_enemy():
