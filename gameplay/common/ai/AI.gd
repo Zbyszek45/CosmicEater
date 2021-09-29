@@ -90,18 +90,19 @@ func on_body_FleeArea_exited(body: Node):
 
 func take_action():
 	var should_stop = false
-	should_stop = call(first_action)
+	var probality: float = randf()
+	should_stop = call(first_action, probality)
 	if should_stop:
 		return
-	should_stop = call(second_action)
+	should_stop = call(second_action, probality)
 	if should_stop:
 		return
-	should_stop = call(third_action)
+	should_stop = call(third_action, probality)
 
 
-func attack_action():
+func attack_action(probality):
 	if bodies_attack.size() > 0:
-		if randf() < attack_probality:
+		if probality < attack_probality:
 			emit_signal("attack", bodies_attack[0])
 		else:
 			emit_signal("move")
@@ -110,9 +111,9 @@ func attack_action():
 		return false
 
 
-func flee_action():
+func flee_action(probality):
 	if bodies_flee.size() > 0:
-		if randf() < flee_probality:
+		if probality < flee_probality:
 			emit_signal("flee", bodies_flee[0])
 		else:
 			emit_signal("move")
@@ -121,5 +122,5 @@ func flee_action():
 		return false
 
 
-func move_action():
+func move_action(probality):
 	emit_signal("move")
