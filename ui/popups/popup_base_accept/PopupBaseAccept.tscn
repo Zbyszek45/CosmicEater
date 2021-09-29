@@ -9,13 +9,13 @@
 script = ExtResource( 2 )
 
 [node name="Content" parent="MargCont/Vbox" index="2"]
-margin_bottom = 1088.0
+margin_bottom = 1056.0
 
 [node name="Buttons" parent="MargCont/Vbox" index="3"]
-margin_top = 1092.0
+margin_top = 1088.0
 
 [node name="AcceptButton" parent="MargCont/Vbox/Buttons" index="0" instance=ExtResource( 3 )]
-margin_left = 266.0
-margin_right = 394.0
+margin_left = 264.0
+margin_right = 392.0
 size_flags_horizontal = 6
 icon = ExtResource( 4 )

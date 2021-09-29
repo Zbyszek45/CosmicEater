@@ -127,4 +127,8 @@ margin_bottom = -160.0
 icon = ExtResource( 9 )
 
 [node name="HelpButton" parent="." instance=ExtResource( 10 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 112.0
+margin_bottom = 112.0
 icon = ExtResource( 11 )
