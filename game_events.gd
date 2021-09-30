@@ -23,6 +23,7 @@ signal time_changed
 
 # emited when pause popup shows
 signal show_popup_pause
+signal show_popup_mutation_selection
 
 # world level up
 signal world_level_up

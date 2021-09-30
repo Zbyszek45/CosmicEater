@@ -121,6 +121,8 @@ scale_amount = 0.0
 scale_amount_random = 1.0
 scale_amount_curve = SubResource( 5 )
 
+[node name="Events" type="Node2D" parent="."]
+
 [node name="Messages" type="Node" parent="."]
 
 [node name="CanvasInterface" type="CanvasLayer" parent="."]

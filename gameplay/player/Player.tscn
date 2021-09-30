@@ -29,7 +29,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -55,9 +55,8 @@ width = 20.0
 length = 15
 
 [node name="EatArea" type="Area2D" parent="."]
-monitorable = false
 collision_layer = 2
-collision_mask = 32
+collision_mask = 1056
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatArea"]
 shape = SubResource( 3 )

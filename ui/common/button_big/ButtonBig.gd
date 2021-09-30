@@ -18,9 +18,9 @@ func enable_extended():
 
 func set_icon(_icon):
 	icon = _icon
-	$MarginContainer/VBoxContainer/TextureRect.texture = _icon
+	$TextureRect.texture = _icon
 
 
 func set_text(_text):
 	text = _text
-	$MarginContainer/VBoxContainer/RichTextLabel.bbcode_text = _text
+	$RichTextLabel.bbcode_text = _text

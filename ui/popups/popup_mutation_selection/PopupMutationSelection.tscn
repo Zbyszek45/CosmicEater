@@ -4,8 +4,7 @@
 [ext_resource path="res://ui/common/button_big/ButtonBig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/popups/popup_mutation_selection/PopupMutationSelection.gd" type="Script" id=3]
 
-[node name="PopupBase" instance=ExtResource( 1 )]
-visible = false
+[node name="PopupMutationSelection" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="Title" parent="MargCont/Vbox" index="1"]
@@ -20,13 +19,13 @@ custom_constants/separation = 32
 [node name="SpeedMutButton" parent="MargCont/Vbox/Content/Row1" index="0" instance=ExtResource( 2 )]
 margin_right = 312.0
 margin_bottom = 383.0
-text = "[Center]2% more speed"
+text = "[center]2% more speed"
 
 [node name="MagicMutButton" parent="MargCont/Vbox/Content/Row1" index="1" instance=ExtResource( 2 )]
 margin_left = 344.0
 margin_right = 656.0
 margin_bottom = 383.0
-text = "[Center]2% faster reload speed"
+text = "[center]2% faster reload speed"
 
 [node name="Row2" type="HBoxContainer" parent="MargCont/Vbox/Content" index="1"]
 margin_top = 415.0
@@ -37,10 +36,10 @@ custom_constants/separation = 32
 [node name="GrowthMutButton" parent="MargCont/Vbox/Content/Row2" index="0" instance=ExtResource( 2 )]
 margin_right = 312.0
 margin_bottom = 383.0
-text = "[Center]Grow a little every minute"
+text = "[center]Grow a little every minute"
 
 [node name="HungerMutButton" parent="MargCont/Vbox/Content/Row2" index="1" instance=ExtResource( 2 )]
 margin_left = 344.0
 margin_right = 656.0
 margin_bottom = 383.0
-text = "[Center]2% more food when eating"
+text = "[center]2% more food when eating"

@@ -6,6 +6,7 @@ onready var spawn_point = $SpawnPoint
 onready var spawn_strategy = $SpawnStrategy
 onready var enemies = $Enemies
 onready var decorations = $Decorations
+onready var events = $Events
 onready var messages = $Messages
 onready var player = $Player
 onready var interface = $CanvasInterface/Interface
@@ -23,6 +24,7 @@ func _ready():
 	
 	spawn_strategy.connect("spawn_enemy", self, "spawn_enemy")
 	spawn_strategy.connect("spawn_decoration", self, "spawn_decoration")
+	spawn_strategy.connect("spawn_event", self, "spawn_event")
 	GameEvents.connect("show_message", self, "spawn_message")
 	GameEvents.connect("save_game_state", self, "save_game")
 	
@@ -100,6 +102,13 @@ func spawn_decoration(decoration: PackedScene):
 	new_decoration.global_position = spawn_point.get_rand_point_decoratives(player.global_position)
 	decorations.add_child(new_decoration)
 	new_decoration.set_decoration(player)
+
+
+func spawn_event(event: PackedScene):
+	var new_event = event.instance()
+	new_event.global_position = spawn_point.get_rand_point(player.global_position)
+	events.add_child(new_event)
+	new_event.set_event(player)
 
 
 func spawn_message(message_info):

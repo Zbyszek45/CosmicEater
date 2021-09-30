@@ -14,10 +14,13 @@ var enemies = [
 
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
 
+var event_mutation = preload("res://gameplay/events/event_mutation/EventMutation.tscn")
+
 onready var enemy_spawn_timer = $EnemySpawnTimer
 
 export(int) var enemies_number = 20
 export(int) var decorations_number = 20
+export(int) var events_number = 10
 
 var player_size = 0
 var world_level = 0
@@ -34,6 +37,7 @@ var enemies_queue: int = 0
 
 signal spawn_enemy(enemy)
 signal spawn_decoration(decoration)
+signal spawn_event(event)
 
 
 func _ready():
@@ -52,6 +56,8 @@ func _physics_process(delta):
 			enemies_queue -= 1
 		if get_tree().get_nodes_in_group("decorations").size() < decorations_number:
 			spawn_decoration()
+		if get_tree().get_nodes_in_group("events").size() < events_number:
+			spawn_event()
 
 
 func queue_enemy_to_spawn():
@@ -86,6 +92,10 @@ func spawn_enemy():
 
 func spawn_decoration():
 	emit_signal("spawn_decoration", decoration)
+
+
+func spawn_event():
+	emit_signal("spawn_event", event_mutation)
 
 
 func _update_size(size: int, amount: float):
