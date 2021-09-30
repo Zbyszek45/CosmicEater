@@ -29,3 +29,6 @@ signal world_level_up
 
 # to save game
 signal save_game_state
+
+# picked mutation
+signal mutation_selected

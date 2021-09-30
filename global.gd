@@ -22,6 +22,9 @@ var base_char_size = 88
 # ai enums
 enum AI_Action {ATTACKING, FLEEING, MOVING}
 
+# mutation enums
+enum Mutation {SPEED, MAGIC, GROWTH, HUNGER}
+
 # joystick configuration
 enum JsSides {LEFT, RIGHT}
 enum JsSizes {SMALL, MEDIUM, BIG, HUGE}
