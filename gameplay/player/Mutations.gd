@@ -37,3 +37,9 @@ func _mutation_selected(mutation):
 
 func grow_parent():
 	emit_signal("mutation_new_growth", mutation_growth_number*growth_value)
+
+
+func on_load():
+	emit_signal("mutation_new_speed", mutation_speed_number*speed_value)
+	emit_signal("mutation_new_magic", mutation_magic_number*magic_value)
+	emit_signal("mutation_new_hunger", mutation_hunger_number*hunger_value)

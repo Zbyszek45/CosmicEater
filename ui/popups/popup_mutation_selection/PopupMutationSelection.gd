@@ -16,3 +16,10 @@ func selected(mutation):
 	unpause_tree()
 	GameEvents.emit_signal("mutation_selected", mutation)
 	emit_signal("finished")
+
+
+func set_popup(mutations: Dictionary):
+	speed_mutation_button.number = mutations[Global.Mutation.SPEED]
+	magic_mutation_button.number = mutations[Global.Mutation.MAGIC]
+	growth_mutation_button.number = mutations[Global.Mutation.GROWTH]
+	hunger_mutation_button.number = mutations[Global.Mutation.HUNGER]

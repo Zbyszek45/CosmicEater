@@ -2,6 +2,7 @@ extends TextureButton
 
 export(Texture) var icon setget set_icon
 export(String, MULTILINE) var text setget set_text
+export(int) var number setget set_number
 
 
 func disable_extended():
@@ -24,3 +25,8 @@ func set_icon(_icon):
 func set_text(_text):
 	text = _text
 	$RichTextLabel.bbcode_text = _text
+
+
+func set_number(_number):
+	number = _number
+	$Number.text = str(_number)

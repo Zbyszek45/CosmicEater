@@ -58,6 +58,7 @@ func load_save():
 func set_children_variables():
 	player.joystick = interface.joystick
 	popups.canvas = canvas
+	popups.get_mutations_ref = funcref(self, "get_mutations")
 
 
 func after_ready():
@@ -68,6 +69,10 @@ func save_game():
 	print("saving")
 	var new_save = AlaGameSave.new()
 	new_save.player_size = player.size as int
+	new_save.mutation_speed = player.mutations.mutation_speed_number as int
+	new_save.mutation_magic = player.mutations.mutation_magic_number as int
+	new_save.mutation_growth = player.mutations.mutation_growth_number as int
+	new_save.mutation_hunger = player.mutations.mutation_hunger_number as int
 	new_save.time_h = timer_timer.h as int
 	new_save.time_m = timer_timer.m as int
 	new_save.time_s = timer_timer.s as int
@@ -117,3 +122,13 @@ func spawn_message(message_info):
 	var new_message = message_scene.instance()
 	messages.add_child(new_message)
 	new_message.set_message(player.global_position, message_info)
+
+
+func get_mutations() -> Dictionary:
+	var mutations = {
+		Global.Mutation.SPEED: player.mutations.mutation_speed_number,
+		Global.Mutation.MAGIC: player.mutations.mutation_magic_number,
+		Global.Mutation.GROWTH: player.mutations.mutation_growth_number,
+		Global.Mutation.HUNGER: player.mutations.mutation_hunger_number
+	}
+	return mutations

@@ -76,11 +76,10 @@ func _mutation_new_hunger(_mutation_hunger):
 
 
 func grow_up_by_points(points):
-	var scale_amount = points/Global.size_division
+	var scale_amount = points/Global.size_division as float
 	size += points
 	# every other object should scale down
 	get_tree().call_group("spawnable", "scale_it", -scale_amount)
-	
 	# emit information
 	GameEvents.emit_signal("player_grew_up", size, scale_amount)
 
@@ -106,6 +105,11 @@ func can_eat(body_scale) -> bool:
 
 func on_load(save: AlaGameSave):
 	size = save.player_size
+	mutations.mutation_speed_number = save.mutation_speed
+	mutations.mutation_magic_number = save.mutation_magic
+	mutations.mutation_growth_number = save.mutation_growth
+	mutations.mutation_hunger_number = save.mutation_hunger
+	mutations.on_load()
 
 
 func get_scale():

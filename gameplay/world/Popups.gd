@@ -6,6 +6,8 @@ var popup_mutation_selection: PackedScene = preload("res://ui/popups/popup_mutat
 var popup = null
 var canvas: CanvasLayer = null
 
+# funcref
+var get_mutations_ref: FuncRef
 
 func _ready():
 	GameEvents.connect("show_popup_pause", self, "_show_popup_pause")
@@ -27,6 +29,7 @@ func _show_popup_mutation_selection():
 		popup = popup_mutation_selection.instance()
 		canvas.add_child(popup)
 		popup.connect("finished", self, "resume")
+		popup.set_popup(get_mutations_ref.call_func())
 		popup.popup()
 	else:
 		Global.show_error("res://gameplay/world/Popups.gd", "Canvas is null")
