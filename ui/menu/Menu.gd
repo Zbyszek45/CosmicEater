@@ -5,12 +5,18 @@ onready var exit_button = $ExitButton
 onready var settings_button = $SettingButton
 onready var about_button = $AboutButton
 onready var aipriority_button = $AIPriorityButton
+onready var aistar_button = $AIStarButton
+onready var aicomet_button = $AICometButton
 onready var upgrades_button = $UpgradesButton
 onready var help_button = $HelpButton
 onready var popups = $Popups
 
 
 func _ready():
+	aipriority_button.disable_extended()
+	aistar_button.disable_extended()
+	aicomet_button.disable_extended()
+	
 	start_button.connect("pressed", self, "on_StartButton_pressed")
 	exit_button.connect("pressed", self, "on_ExitButton_pressed")
 	settings_button.connect("pressed", self, "on_SettingsButton_pressed")

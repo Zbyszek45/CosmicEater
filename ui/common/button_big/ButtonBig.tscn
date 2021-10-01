@@ -35,7 +35,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 playing = true
 centered = false
 
@@ -63,3 +63,13 @@ bbcode_enabled = true
 bbcode_text = "[center]Example pretty big text to see how it will fi"
 text = "Example pretty big text to see how it will fi"
 scroll_active = false
+
+[node name="Number" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 120.0
+margin_bottom = 81.0
+text = "8888"
+__meta__ = {
+"_edit_use_anchors_": false
+}

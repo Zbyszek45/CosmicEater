@@ -32,7 +32,7 @@ script = ExtResource( 2 )
 script = ExtResource( 7 )
 
 [node name="GrowthTimer" type="Timer" parent="Mutations"]
-wait_time = 2.0
+wait_time = 10.0
 autostart = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
