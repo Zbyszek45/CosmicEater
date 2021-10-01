@@ -2,25 +2,42 @@ extends KinematicBody2D
 class_name Player
 
 onready var eat_area = $EatArea
+onready var mutations = $Mutations
 
 var joystick: Joystick = null
 
 var direction := Vector2()
 
 export(int) var speed = 100
+var whole_speed = 0
+
 var size = 0
 export(float) var eating_speed = 0.5
+
+var mutation_speed = 0
+var mutation_magic = 0
+var mutation_hunger = 0
 
 var food_multiplier = 0
 
 func _ready():
 	GameEvents.connect("force_player_grow_up", self, "grow_up")
 	eat_area.connect("body_entered", self, "on_eatArea_body_entered")
+	mutations.connect("mutation_new_speed", self, "_mutation_new_speed")
+	mutations.connect("mutation_new_magic", self, "_mutation_new_magic")
+	mutations.connect("mutation_new_hunger", self, "_mutation_new_hunger")
+	mutations.connect("mutation_new_growth", self, "grow_up_by_points")
 	calc_food_multiplier()
+	calc_whole_speed()
 
 
 func calc_food_multiplier():
 	food_multiplier = (Global.size_division/10) * eating_speed
+	food_multiplier += (mutation_hunger*food_multiplier/100)
+
+
+func calc_whole_speed():
+	whole_speed = speed + (mutation_speed*speed/100)
 
 
 func _physics_process(delta):
@@ -31,7 +48,7 @@ func _physics_process(delta):
 	
 	$DirectionJoint.global_rotation = direction.angle()
 	
-	var _vel = move_and_slide(direction * speed)
+	var _vel = move_and_slide(direction * whole_speed)
 
 
 func on_eatArea_body_entered(body: Node):
@@ -41,6 +58,31 @@ func on_eatArea_body_entered(body: Node):
 			body.destroy()
 	else:
 		Global.show_error("res://gameplay/player/Player.gd", "Body don't have method: "+body.name)
+
+
+func _mutation_new_speed(_mutation_speed):
+	mutation_speed = _mutation_speed
+	calc_whole_speed()
+
+
+func _mutation_new_magic(_mutation_magic):
+	# TODO FINISH MAGIC
+	mutation_magic = _mutation_magic
+
+
+func _mutation_new_hunger(_mutation_hunger):
+	mutation_hunger = _mutation_hunger
+	calc_food_multiplier()
+
+
+func grow_up_by_points(points):
+	var scale_amount = points/Global.size_division
+	size += points
+	# every other object should scale down
+	get_tree().call_group("spawnable", "scale_it", -scale_amount)
+	
+	# emit information
+	GameEvents.emit_signal("player_grew_up", size, scale_amount)
 
 
 # food_scale - from 0.1 to 0.9, the real scale of thing that was eaten

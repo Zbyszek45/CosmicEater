@@ -36,7 +36,7 @@ custom_constants/separation = 32
 [node name="GrowthMutButton" parent="MargCont/Vbox/Content/Row2" index="0" instance=ExtResource( 2 )]
 margin_right = 312.0
 margin_bottom = 383.0
-text = "[center]Grow a little every minute"
+text = "[center]Get 2 size every 2 seconds"
 
 [node name="HungerMutButton" parent="MargCont/Vbox/Content/Row2" index="1" instance=ExtResource( 2 )]
 margin_left = 344.0

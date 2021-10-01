@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://gameplay/common/trail/Trail.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://gameplay/player/animation/player_anim0003.png" type="Texture" id=4]
 [ext_resource path="res://gameplay/player/animation/player_anim0001.png" type="Texture" id=5]
 [ext_resource path="res://gameplay/player/animation/player_anim0002.png" type="Texture" id=6]
+[ext_resource path="res://gameplay/player/Mutations.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -27,9 +28,16 @@ radius = 44.0
 collision_mask = 0
 script = ExtResource( 2 )
 
+[node name="Mutations" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="GrowthTimer" type="Timer" parent="Mutations"]
+wait_time = 2.0
+autostart = true
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

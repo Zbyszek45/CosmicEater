@@ -88,6 +88,8 @@ func _input(event):
 		if event.scancode == KEY_H:
 			$Player/Camera2D.zoom.x += 0.05
 			$Player/Camera2D.zoom.y += 0.05
+		if event.scancode == KEY_M:
+			GameEvents.emit_signal("show_popup_mutation_selection")
 
 
 func spawn_enemy(enemy: PackedScene, scale, difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob):
