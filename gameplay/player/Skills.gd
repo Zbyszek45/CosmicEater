@@ -21,6 +21,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	check_dashin()
+
+
+func check_dashin():
 	if can_dashin and attack_area.smaller_bodies.size() > 0:
 		$AreaWatcherDynamic.global_position = attack_area.smaller_bodies[0].global_position
 		if dashin_frames <= 0 and not $AreaWatcherDynamic.is_dangerous():
@@ -30,6 +34,8 @@ func _physics_process(delta):
 			emit_signal("dashin", attack_area.smaller_bodies[0].global_position)
 		else:
 			dashin_frames -= 1
+	else:
+		dashin_frames = 2
 
 
 func on_DashInTimer_timout():

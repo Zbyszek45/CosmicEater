@@ -13,7 +13,7 @@
 [ext_resource path="res://gameplay/player/animation/player_anim0002.png" type="Texture" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 100.0
+radius = 180.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -52,7 +52,6 @@ autostart = true
 script = ExtResource( 2 )
 
 [node name="DashInTimer" type="Timer" parent="Skills"]
-wait_time = 4.0
 one_shot = true
 autostart = true
 
@@ -87,7 +86,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

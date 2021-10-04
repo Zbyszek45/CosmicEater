@@ -20,7 +20,7 @@ onready var enemy_spawn_timer = $EnemySpawnTimer
 
 export(int) var enemies_number = 20
 export(int) var decorations_number = 20
-export(int) var events_number = 10
+export(int) var events_number = 2
 
 var player_size = 0
 var world_level = 0
