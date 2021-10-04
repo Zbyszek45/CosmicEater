@@ -2,7 +2,10 @@ extends KinematicBody2D
 class_name Player
 
 onready var eat_area = $EatArea
+onready var attack_area = $AttackArea
+onready var flee_area = $FleeArea
 onready var mutations = $Mutations
+onready var skills = $Skills
 
 var joystick: Joystick = null
 
@@ -27,6 +30,11 @@ func _ready():
 	mutations.connect("mutation_new_magic", self, "_mutation_new_magic")
 	mutations.connect("mutation_new_hunger", self, "_mutation_new_hunger")
 	mutations.connect("mutation_new_growth", self, "grow_up_by_points")
+	skills.connect("dashin", self, "_dashin")
+	
+	skills.attack_area = attack_area
+	skills.flee_area = flee_area
+	
 	calc_food_multiplier()
 	calc_whole_speed()
 
@@ -94,6 +102,10 @@ func grow_up(food_scale):
 	
 	# emit information
 	GameEvents.emit_signal("player_grew_up", size, scale_amount)
+
+
+func _dashin(pos):
+	global_position = pos
 
 
 func can_eat(body_scale) -> bool:
