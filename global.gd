@@ -14,13 +14,16 @@ var size_division = 1000
 var base_speed = 100
 
 # scale number to see what can eat
-var eat_limit = 0.1
+var eat_limit = 0.05
 
 # the size in pixels
 var base_char_size = 88
 
 # ai enums
 enum AI_Action {ATTACKING, FLEEING, MOVING}
+
+# skill enums
+enum Skill {DASHIN, DASHOUT, SUMMON, PUFF}
 
 # mutation enums
 enum Mutation {SPEED, MAGIC, GROWTH, HUNGER}

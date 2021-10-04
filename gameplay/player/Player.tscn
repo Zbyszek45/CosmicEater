@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://gameplay/common/trail/Trail.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=2]
@@ -22,6 +22,12 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 44.0
 
+[sub_resource type="CircleShape2D" id=4]
+radius = 360.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 180.0
+
 [node name="Player" type="KinematicBody2D" groups=[
 "saved",
 ]]
@@ -34,6 +40,16 @@ script = ExtResource( 7 )
 [node name="GrowthTimer" type="Timer" parent="Mutations"]
 wait_time = 10.0
 autostart = true
+
+[node name="Skills" type="Node2D" parent="."]
+
+[node name="DashInTimer" type="Timer" parent="Skills"]
+
+[node name="DashOutTimer" type="Timer" parent="Skills"]
+
+[node name="SummonTimer" type="Timer" parent="Skills"]
+
+[node name="PuffTimer" type="Timer" parent="Skills"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -67,3 +83,19 @@ collision_mask = 1056
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatArea"]
 shape = SubResource( 3 )
+
+[node name="AttackArea" type="Area2D" parent="."]
+monitorable = false
+collision_layer = 4
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource( 4 )
+
+[node name="FleeArea" type="Area2D" parent="."]
+monitorable = false
+collision_layer = 4
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FleeArea"]
+shape = SubResource( 5 )
