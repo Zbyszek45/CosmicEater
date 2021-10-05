@@ -30,7 +30,8 @@ func _ready():
 	mutations.connect("mutation_new_magic", self, "_mutation_new_magic")
 	mutations.connect("mutation_new_hunger", self, "_mutation_new_hunger")
 	mutations.connect("mutation_new_growth", self, "grow_up_by_points")
-	skills.connect("dashin", self, "_dashin")
+	skills.connect("dashin", self, "_dash")
+	skills.connect("dashout", self, "_dash")
 	
 	skills.attack_area = attack_area
 	skills.flee_area = flee_area
@@ -104,7 +105,7 @@ func grow_up(food_scale):
 	GameEvents.emit_signal("player_grew_up", size, scale_amount)
 
 
-func _dashin(pos):
+func _dash(pos):
 	global_position = pos
 
 

@@ -3,7 +3,7 @@
 [ext_resource path="res://gameplay/common/area_watcher/AreaWatcher.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 50.0
+radius = 100.0
 
 [node name="AreaWatcher" type="Area2D"]
 monitorable = false
