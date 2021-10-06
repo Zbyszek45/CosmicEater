@@ -53,14 +53,13 @@ one_shot = true
 [node name="DashOutTimer" type="Timer" parent="Skills"]
 wait_time = 0.5
 one_shot = true
-autostart = true
 
 [node name="PuffTimer" type="Timer" parent="Skills"]
-wait_time = 4.0
+wait_time = 0.5
 one_shot = true
+autostart = true
 
 [node name="PuffDurationTimer" type="Timer" parent="Skills"]
-wait_time = 3.0
 one_shot = true
 
 [node name="AreaWatcher" parent="Skills" instance=ExtResource( 8 )]
@@ -82,7 +81,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -2,11 +2,13 @@ extends Node2D
 
 onready var dashin_timer = $DashInTimer
 onready var dashout_timer = $DashOutTimer
+onready var puff_timer = $PuffTimer
+onready var puff_duration_timer = $PuffDurationTimer
 
 var skill_dashin: int = 1
 var skill_dashout: int = 1
 var skill_summmon: int = 1
-var skill_puff: int = 1
+var skill_puff: int = 50
 
 var can_dashin: bool = false
 var can_dashout: bool = false
@@ -19,15 +21,20 @@ var dashin_frames = 2
 
 signal dashin
 signal dashout
+signal puff
+signal stop_puff
 
 func _ready():
 	dashin_timer.connect("timeout", self, "on_DashInTimer_timout")
 	dashout_timer.connect("timeout", self, "on_DashOutTimer_timout")
+	puff_timer.connect("timeout", self, "on_PuffTimer_timout")
+	puff_duration_timer.connect("timeout", self, "on_PuffDurationTimer_timeout")
 
 
 func _physics_process(delta):
 	check_dashin()
 	check_dashout()
+	check_puff()
 
 
 func check_dashin():
@@ -61,6 +68,13 @@ func check_dashout():
 		dashout_timer.start()
 
 
+func check_puff():
+	if can_puff and flee_area.is_dangerous():
+		emit_signal("puff", 2.0)
+		puff_duration_timer.start()
+		can_puff = false
+
+
 func on_DashInTimer_timout():
 	can_dashin = true
 
@@ -68,3 +82,11 @@ func on_DashInTimer_timout():
 func on_DashOutTimer_timout():
 	can_dashout = true
 
+
+func on_PuffTimer_timout():
+	can_puff = true
+
+
+func on_PuffDurationTimer_timeout():
+	emit_signal("stop_puff")
+	puff_timer.start()

@@ -32,6 +32,8 @@ func _ready():
 	mutations.connect("mutation_new_growth", self, "grow_up_by_points")
 	skills.connect("dashin", self, "_dash")
 	skills.connect("dashout", self, "_dash")
+	skills.connect("puff", self, "_puff")
+	skills.connect("stop_puff", self, "_stop_puff")
 	
 	skills.attack_area = attack_area
 	skills.flee_area = flee_area
@@ -107,6 +109,14 @@ func grow_up(food_scale):
 
 func _dash(pos):
 	global_position = pos
+
+
+func _puff(size):
+	scale = Vector2(size, size)
+
+
+func _stop_puff():
+	scale = Vector2(1.0, 1.0)
 
 
 func can_eat(body_scale) -> bool:
