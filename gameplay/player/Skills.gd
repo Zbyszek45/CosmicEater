@@ -1,5 +1,7 @@
 extends Node2D
 
+var support_scene = preload("res://gameplay/player/support/Support.tscn")
+
 onready var dashin_timer = $DashInTimer
 onready var dashout_timer = $DashOutTimer
 onready var puff_timer = $PuffTimer
@@ -7,8 +9,8 @@ onready var puff_duration_timer = $PuffDurationTimer
 
 var skill_dashin: int = 1
 var skill_dashout: int = 1
-var skill_summmon: int = 1
-var skill_puff: int = 50
+var skill_summon: int = 10
+var skill_puff: int = 1
 
 var can_dashin: bool = false
 var can_dashout: bool = false
@@ -23,12 +25,16 @@ signal dashin
 signal dashout
 signal puff
 signal stop_puff
+signal summon
 
 func _ready():
 	dashin_timer.connect("timeout", self, "on_DashInTimer_timout")
 	dashout_timer.connect("timeout", self, "on_DashOutTimer_timout")
 	puff_timer.connect("timeout", self, "on_PuffTimer_timout")
 	puff_duration_timer.connect("timeout", self, "on_PuffDurationTimer_timeout")
+	
+	#tmp
+	call_deferred("spawn_support")
 
 
 func _physics_process(delta):
@@ -73,6 +79,10 @@ func check_puff():
 		emit_signal("puff", 2.0)
 		puff_duration_timer.start()
 		can_puff = false
+
+
+func spawn_support():
+	GameEvents.emit_signal("spawn_support", support_scene, skill_summon)
 
 
 func on_DashInTimer_timout():

@@ -27,6 +27,7 @@ func _ready():
 	spawn_strategy.connect("spawn_event", self, "spawn_event")
 	GameEvents.connect("show_message", self, "spawn_message")
 	GameEvents.connect("save_game_state", self, "save_game")
+	GameEvents.connect("spawn_support", self, "spawn_support")
 	
 	load_save()
 	set_children_variables()
@@ -122,6 +123,18 @@ func spawn_message(message_info):
 	var new_message = message_scene.instance()
 	messages.add_child(new_message)
 	new_message.set_message(player.global_position, message_info)
+
+
+func spawn_support(support: PackedScene, skill):
+	# deleting existing support
+	for i in get_tree().get_nodes_in_group("support"):
+		i.queue_free()
+	# creating a new one
+	var new_support = support.instance()
+	new_support.player = player
+	enemies.add_child(new_support)
+	new_support.global_position = player.global_position
+	new_support.set_support(skill)
 
 
 func get_mutations() -> Dictionary:

@@ -24,6 +24,7 @@ var mutation_hunger = 0
 var food_multiplier = 0
 
 func _ready():
+	add_to_group("player")
 	GameEvents.connect("force_player_grow_up", self, "grow_up")
 	eat_area.connect("body_entered", self, "on_eatArea_body_entered")
 	mutations.connect("mutation_new_speed", self, "_mutation_new_speed")

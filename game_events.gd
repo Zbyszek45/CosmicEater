@@ -33,3 +33,6 @@ signal save_game_state
 
 # picked mutation
 signal mutation_selected
+
+# spawning support
+signal spawn_support
