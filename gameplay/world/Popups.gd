@@ -2,16 +2,19 @@ extends Node
 
 var popup_pause_scene: PackedScene = preload("res://ui/popups/popup_pause/PopupPause.tscn")
 var popup_mutation_selection: PackedScene = preload("res://ui/popups/popup_mutation_selection/PopupMutationSelection.tscn")
+var popup_skill_selection: PackedScene = preload("res://ui/popups/popup_skill_selection/PopupSkillSelection.tscn")
 
 var popup = null
 var canvas: CanvasLayer = null
 
 # funcref
 var get_mutations_ref: FuncRef
+var get_skills_ref: FuncRef
 
 func _ready():
 	GameEvents.connect("show_popup_pause", self, "_show_popup_pause")
 	GameEvents.connect("show_popup_mutation_selection", self, "_show_popup_mutation_selection")
+	GameEvents.connect("show_popup_skill_selection", self, "_show_popup_skill_selection")
 
 
 func _show_popup_pause():
@@ -30,6 +33,17 @@ func _show_popup_mutation_selection():
 		canvas.add_child(popup)
 		popup.connect("finished", self, "resume")
 		popup.set_popup(get_mutations_ref.call_func())
+		popup.popup()
+	else:
+		Global.show_error("res://gameplay/world/Popups.gd", "Canvas is null")
+
+
+func _show_popup_skill_selection():
+	if canvas:
+		popup = popup_skill_selection.instance()
+		canvas.add_child(popup)
+		popup.connect("finished", self, "resume")
+		popup.set_popup(get_skills_ref.call_func())
 		popup.popup()
 	else:
 		Global.show_error("res://gameplay/world/Popups.gd", "Canvas is null")

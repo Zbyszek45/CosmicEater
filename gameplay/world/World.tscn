@@ -41,8 +41,8 @@ should_clear = true
 size_trigger = 3999
 
 [sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0, 0.335404, 0.89441, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.3, 1, 1, 1, 0.3, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.248731, 0.766497, 1 )
+colors = PoolColorArray( 0.196078, 0.196078, 0.196078, 0, 1, 1, 1, 0.117647, 1, 1, 1, 0.117647, 1, 1, 1, 0 )
 
 [sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.353982, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.699115, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -95,7 +95,7 @@ script = ExtResource( 7 )
 
 [node name="DustParticles" type="CPUParticles2D" parent="Player/Camera2D"]
 amount = 22
-lifetime = 4.0
+lifetime = 6.0
 fract_delta = false
 local_coords = false
 texture = ExtResource( 12 )
@@ -103,14 +103,15 @@ emission_shape = 2
 emission_rect_extents = Vector2( 460, 740 )
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 20.0
+initial_velocity = 100.0
 initial_velocity_random = 1.0
-scale_amount = 0.0
-scale_amount_random = 0.75
+scale_amount = 12.0
+scale_amount_random = 1.0
 color_ramp = SubResource( 4 )
 
 [node name="StarParticles" type="CPUParticles2D" parent="Player/Camera2D"]
-lifetime = 5.0
+amount = 44
+lifetime = 4.0
 lifetime_randomness = 0.9
 fract_delta = false
 local_coords = false
@@ -118,7 +119,6 @@ texture = ExtResource( 13 )
 emission_shape = 2
 emission_rect_extents = Vector2( 460, 740 )
 gravity = Vector2( 0, 0 )
-scale_amount = 0.0
 scale_amount_random = 1.0
 scale_amount_curve = SubResource( 5 )
 

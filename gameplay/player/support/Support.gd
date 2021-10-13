@@ -20,8 +20,8 @@ func _ready():
 
 
 func set_support(skill):
-	scale.x = 0.5 + (skill * 0.05)
-	scale.y = 0.5 + (skill * 0.05)
+	scale.x = 0.4 + (skill * 0.01)
+	scale.y = 0.4 + (skill * 0.01)
 	state = ATTACKING
 
 
@@ -37,6 +37,10 @@ func _physics_process(delta):
 	elif state == FEEDING:
 		var direction = player.global_position - global_position
 		global_position += direction.normalized() * (player.whole_speed * 1.5)  * delta
+	else:
+		var direction: Vector2 = player.global_position - global_position + Vector2(100, 100)
+		if direction.length() > 60:
+			global_position += direction.normalized() * (player.whole_speed * 1.5)  * delta
 	
 	for i in area.get_overlapping_bodies():
 		if state == FEEDING:
@@ -54,10 +58,6 @@ func on_Area_body_entered(body: Node):
 				state = FEEDING
 		else:
 			Global.show_error("res://gameplay/player/support/Support.gd", "Body don't have method: "+body.name)
-	elif body.is_in_group("player"):
-		if body.has_method("grow_up"):
-			body.grow_up(food_scale)
-			state = ATTACKING
 
 
 func on_body_AttackArea_entered(body: Node):

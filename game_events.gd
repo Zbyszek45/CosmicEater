@@ -24,6 +24,7 @@ signal time_changed
 # emited when pause popup shows
 signal show_popup_pause
 signal show_popup_mutation_selection
+signal show_popup_skill_selection
 
 # world level up
 signal world_level_up
@@ -34,5 +35,12 @@ signal save_game_state
 # picked mutation
 signal mutation_selected
 
+# picked skill
+signal skill_selected
+
 # spawning support
 signal spawn_support
+
+# skills reload time changed
+signal skills_reload_time_update
+signal skills_max_reload_time_update

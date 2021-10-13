@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ui/common/button_skill/ButtonSmallSkills.gd" type="Script" id=1]
+[ext_resource path="res://ui/common/button_small/assets/animation/button_small_anim0001.png" type="Texture" id=2]
+[ext_resource path="res://ui/common/button_small/assets/animation/button_small_anim0000.png" type="Texture" id=3]
+[ext_resource path="res://ui/common/button_small/assets/animation/button_small_anim0003.png" type="Texture" id=4]
+[ext_resource path="res://ui/common/button_small/assets/animation/button_small_anim0002.png" type="Texture" id=5]
+[ext_resource path="res://ui/common/button_small/icons/icon_help.png" type="Texture" id=6]
+[ext_resource path="res://ui/common/button_skill/assets/CosmicEater_small_button_disabled_behind.png" type="Texture" id=7]
+[ext_resource path="res://ui/common/button_skill/assets/CosmicEater_small_button_disabled_over.png" type="Texture" id=8]
+[ext_resource path="res://ui/common/button_skill/assets/CosmicEater_small_button_texture_progres.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="ButtonSmallSkills" type="TextureButton"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 80 )
+texture_disabled = ExtResource( 7 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+playing = true
+centered = false
+
+[node name="Icon" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+
+[node name="DisablingTextureOver" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+step = 0.01
+texture_progress = ExtResource( 9 )
+fill_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -60,6 +60,7 @@ func set_children_variables():
 	player.joystick = interface.joystick
 	popups.canvas = canvas
 	popups.get_mutations_ref = funcref(self, "get_mutations")
+	popups.get_skills_ref = funcref(self, "get_skills")
 
 
 func after_ready():
@@ -96,6 +97,8 @@ func _input(event):
 			$Player/Camera2D.zoom.y += 0.05
 		if event.scancode == KEY_M:
 			GameEvents.emit_signal("show_popup_mutation_selection")
+		if event.scancode == KEY_S:
+			GameEvents.emit_signal("show_popup_skill_selection")
 
 
 func spawn_enemy(enemy: PackedScene, scale, difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob):
@@ -145,3 +148,13 @@ func get_mutations() -> Dictionary:
 		Global.Mutation.HUNGER: player.mutations.mutation_hunger_number
 	}
 	return mutations
+
+
+func get_skills() -> Dictionary:
+	var skills = {
+		Global.Skill.DASHIN: player.skills.skill_dashin,
+		Global.Skill.DASHOUT: player.skills.skill_dashout,
+		Global.Skill.PUFF: player.skills.skill_puff,
+		Global.Skill.SUMMON: player.skills.skill_summon
+	}
+	return skills

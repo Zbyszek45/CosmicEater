@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/interface/JoystickAnchor.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ui/common/button_small/ButtonSmall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/common/button_small/icons/icon_help.png" type="Texture" id=6]
 [ext_resource path="res://ui/common/button_small/icons/icon_pause.png" type="Texture" id=7]
+[ext_resource path="res://ui/common/button_skill/ButtonSmallSkills.tscn" type="PackedScene" id=8]
 
 [node name="Interface" type="Control" groups=[
 "saved",
@@ -73,3 +74,45 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SkillsLeft" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -362.0
+margin_right = 80.0
+margin_bottom = -170.0
+custom_constants/separation = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DashInButton" parent="SkillsLeft" instance=ExtResource( 8 )]
+margin_right = 80.0
+margin_bottom = 80.0
+
+[node name="DashOutButton" parent="SkillsLeft" instance=ExtResource( 8 )]
+margin_top = 112.0
+margin_right = 80.0
+margin_bottom = 192.0
+
+[node name="SkillsRight" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -362.0
+margin_bottom = -170.0
+custom_constants/separation = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PuffButton" parent="SkillsRight" instance=ExtResource( 8 )]
+margin_right = 80.0
+margin_bottom = 80.0
+
+[node name="SummonButton" parent="SkillsRight" instance=ExtResource( 8 )]
+margin_top = 112.0
+margin_right = 80.0
+margin_bottom = 192.0

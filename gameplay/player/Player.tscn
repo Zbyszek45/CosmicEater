@@ -48,14 +48,15 @@ autostart = true
 script = ExtResource( 2 )
 
 [node name="DashInTimer" type="Timer" parent="Skills"]
+wait_time = 20.0
 one_shot = true
 
 [node name="DashOutTimer" type="Timer" parent="Skills"]
-wait_time = 0.5
+wait_time = 20.0
 one_shot = true
 
 [node name="PuffTimer" type="Timer" parent="Skills"]
-wait_time = 0.5
+wait_time = 20.0
 one_shot = true
 
 [node name="PuffDurationTimer" type="Timer" parent="Skills"]
@@ -77,6 +78,10 @@ position = Vector2( 0, -800 )
 
 [node name="CollisionShape2D" parent="Skills/AreaWatcherDynamic" index="0"]
 shape = SubResource( 1 )
+
+[node name="UpdateSkillsTimer" type="Timer" parent="Skills"]
+wait_time = 0.01
+autostart = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
