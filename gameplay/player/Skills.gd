@@ -13,9 +13,9 @@ var skill_dashout: int = 0
 var skill_summon: int = 0
 var skill_puff: int = 0
 
-var time_reload_dashin_base = 160
-var time_reload_dashout_base = 160
-var time_reload_puff_base = 160
+var time_reload_dashin_base = 1
+var time_reload_dashout_base = 1
+var time_reload_puff_base = 1
 
 var time_reload_dashin
 var time_reload_dashout

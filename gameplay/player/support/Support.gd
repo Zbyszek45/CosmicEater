@@ -21,7 +21,9 @@ func _ready():
 
 func set_support(skill):
 	scale.x = 0.4 + (skill * 0.01)
+	scale.x = clamp(scale.x, 0.4, 1.0)
 	scale.y = 0.4 + (skill * 0.01)
+	scale.y = clamp(scale.y, 0.4, 1.0)
 	state = ATTACKING
 
 
@@ -33,14 +35,14 @@ func _physics_process(delta):
 	
 	if state == ATTACKING and bodies.size() > 0:
 		var direction = bodies[0].global_position - global_position
-		global_position += direction.normalized() * (player.whole_speed * 1.5)  * delta
+		global_position += direction.normalized() * (player.whole_speed * 2.0)  * delta
 	elif state == FEEDING:
 		var direction = player.global_position - global_position
-		global_position += direction.normalized() * (player.whole_speed * 1.5)  * delta
+		global_position += direction.normalized() * (player.whole_speed * 2.0)  * delta
 	else:
 		var direction: Vector2 = player.global_position - global_position + Vector2(100, 100)
 		if direction.length() > 60:
-			global_position += direction.normalized() * (player.whole_speed * 1.5)  * delta
+			global_position += direction.normalized() * (player.whole_speed * 2.0)  * delta
 	
 	for i in area.get_overlapping_bodies():
 		if state == FEEDING:

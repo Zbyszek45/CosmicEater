@@ -28,6 +28,7 @@ func _ready():
 	GameEvents.connect("show_message", self, "spawn_message")
 	GameEvents.connect("save_game_state", self, "save_game")
 	GameEvents.connect("spawn_support", self, "spawn_support")
+	GameEvents.connect("world_level_up", self, "world_level_up")
 	
 	load_save()
 	set_children_variables()
@@ -138,6 +139,10 @@ func spawn_support(support: PackedScene, skill):
 	enemies.add_child(new_support)
 	new_support.global_position = player.global_position
 	new_support.set_support(skill)
+
+
+func world_level_up(_level):
+	player.global_position = Vector2(0, 0)
 
 
 func get_mutations() -> Dictionary:

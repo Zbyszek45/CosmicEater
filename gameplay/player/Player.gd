@@ -65,7 +65,7 @@ func _physics_process(delta):
 
 func on_eatArea_body_entered(body: Node):
 	if body.has_method("get_scale"):
-		if can_eat(body.get_scale()):
+		if can_eat_actuall_eating(body.get_scale()):
 			grow_up(body.get_scale())
 			body.destroy()
 	else:
@@ -121,11 +121,16 @@ func _stop_puff():
 
 
 func can_eat(body_scale) -> bool:
-	if body_scale <= scale.x - Global.eat_limit:
+	if body_scale <= 1.0 - Global.eat_limit:
 		return true
 	else:
 		return false
 
+func can_eat_actuall_eating(body_scale) -> bool:
+	if body_scale <= scale.x - Global.eat_limit:
+		return true
+	else:
+		return false
 
 func on_load(save: AlaGameSave):
 	size = save.player_size
