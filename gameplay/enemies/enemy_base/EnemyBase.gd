@@ -25,6 +25,7 @@ export(float) var idle_speed_divider = 1.2
 var idle_speed: int = 0
 var run_speed: int = 0
 var temper = 0
+var push_force: Vector2 = Vector2.ZERO
 
 var direction = Vector2()
 
@@ -82,6 +83,11 @@ func set_enemy(_player, _scale, _difficulty_speed, _difficulty_ai_time, _difficu
 	difficulty_speed = _difficulty_speed
 	scale = Vector2(_scale, _scale)
 	
+	if scale.x <= 1.0 - Global.eat_limit:
+		add_to_group("attackable")
+	else:
+		add_to_group("avoidable")
+	
 	# setting run and idle speed
 	var random_speed = randi()%int(Global.base_speed/2 + difficulty_speed)
 	run_speed = TemperData[temper].min_speed + random_speed
@@ -110,6 +116,7 @@ func _physics_process(delta):
 	if should_destroy and destroy_particles.emitting == false:
 		queue_free()
 	
+	
 	if abs(player.global_position.x - global_position.x) > Global.range_spawn.x + 10:
 		destroy()
 	if abs(player.global_position.y - global_position.y) > Global.range_spawn.y + 10:
@@ -118,16 +125,22 @@ func _physics_process(delta):
 	if ai_action == Global.AI_Action.ATTACKING and is_instance_valid(ai_target):
 		var new_dir = (ai_target.global_position-global_position).normalized()
 		animation_sprite.global_rotation = new_dir.angle()
-		var _vel = move_and_slide(new_dir * run_speed)
+		var _vel = move_and_slide((new_dir * run_speed) + push_force)
 		
 	elif ai_action == Global.AI_Action.FLEEING and is_instance_valid(ai_target):
 		var new_dir = (global_position-ai_target.global_position).normalized()
 		animation_sprite.global_rotation = new_dir.angle()
-		var _vel = move_and_slide(new_dir * run_speed)
+		var _vel = move_and_slide((new_dir * run_speed) + push_force)
 		
 	else:
 		animation_sprite.global_rotation = direction.angle()
-		var _vel = move_and_slide(direction * idle_speed)
+		var _vel = move_and_slide((direction * idle_speed) + push_force)
+	
+	# reduce slowly push_force
+	if push_force != Vector2.ZERO:
+		push_force /= 1.5
+		if push_force.x < 1 and push_force.y < 1:
+			push_force = Vector2.ZERO
 
 
 func on_eatArea_body_entered(body: Node):
@@ -158,6 +171,15 @@ func scale_it(amount: float) -> void:
 	
 	#when scaling up
 	if amount > 0: amount = amount + amount
+	
+	if scale.x <= 1.0 - Global.eat_limit:
+		add_to_group("attackable")
+		if self.is_in_group("avoidable"):
+			remove_from_group("avoidable")
+	else:
+		add_to_group("avoidable")
+		if self.is_in_group("attackable"):
+			remove_from_group("attackable")
 	
 	var dir = (player.global_position - global_position)*amount
 	global_position -= dir
@@ -192,3 +214,7 @@ func destroy():
 
 func vanish():
 	should_vanish = true
+
+
+func push(force):
+	push_force = force

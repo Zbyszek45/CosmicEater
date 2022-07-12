@@ -25,6 +25,7 @@ role = 1
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
 animation = "idle"
+frame = 2
 playing = true
 
 [editable path="AI"]

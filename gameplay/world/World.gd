@@ -27,7 +27,6 @@ func _ready():
 	spawn_strategy.connect("spawn_event", self, "spawn_event")
 	GameEvents.connect("show_message", self, "spawn_message")
 	GameEvents.connect("save_game_state", self, "save_game")
-	GameEvents.connect("spawn_support", self, "spawn_support")
 	GameEvents.connect("world_level_up", self, "world_level_up")
 	
 	load_save()
@@ -129,18 +128,6 @@ func spawn_message(message_info):
 	new_message.set_message(player.global_position, message_info)
 
 
-func spawn_support(support: PackedScene, skill):
-	# deleting existing support
-	for i in get_tree().get_nodes_in_group("support"):
-		i.queue_free()
-	# creating a new one
-	var new_support = support.instance()
-	new_support.player = player
-	enemies.add_child(new_support)
-	new_support.global_position = player.global_position
-	new_support.set_support(skill)
-
-
 func world_level_up(_level):
 	player.global_position = Vector2(0, 0)
 
@@ -157,9 +144,9 @@ func get_mutations() -> Dictionary:
 
 func get_skills() -> Dictionary:
 	var skills = {
-		Global.Skill.DASHIN: player.skills.skill_dashin,
-		Global.Skill.DASHOUT: player.skills.skill_dashout,
-		Global.Skill.PUFF: player.skills.skill_puff,
-		Global.Skill.SUMMON: player.skills.skill_summon
+		Global.Skill.PUSH: player.skills.skill_push,
+		Global.Skill.PULL: player.skills.skill_pull,
+		Global.Skill.PUSHAOE: player.skills.skill_push_aoe,
+		Global.Skill.PULLAOE: player.skills.skill_pull_aoe
 	}
 	return skills

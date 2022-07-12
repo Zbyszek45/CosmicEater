@@ -86,11 +86,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DashInButton" parent="SkillsLeft" instance=ExtResource( 8 )]
+[node name="PushButton" parent="SkillsLeft" instance=ExtResource( 8 )]
 margin_right = 80.0
 margin_bottom = 80.0
 
-[node name="DashOutButton" parent="SkillsLeft" instance=ExtResource( 8 )]
+[node name="PullButton" parent="SkillsLeft" instance=ExtResource( 8 )]
 margin_top = 112.0
 margin_right = 80.0
 margin_bottom = 192.0
@@ -108,11 +108,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PuffButton" parent="SkillsRight" instance=ExtResource( 8 )]
+[node name="PushAoeButton" parent="SkillsRight" instance=ExtResource( 8 )]
 margin_right = 80.0
 margin_bottom = 80.0
 
-[node name="SummonButton" parent="SkillsRight" instance=ExtResource( 8 )]
+[node name="PullAoeButton" parent="SkillsRight" instance=ExtResource( 8 )]
 margin_top = 112.0
 margin_right = 80.0
 margin_bottom = 192.0

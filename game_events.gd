@@ -38,9 +38,6 @@ signal mutation_selected
 # picked skill
 signal skill_selected
 
-# spawning support
-signal spawn_support
-
 # skills reload time changed
 signal skills_reload_time_update
 signal skills_max_reload_time_update

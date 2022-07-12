@@ -23,7 +23,7 @@ var base_char_size = 88
 enum AI_Action {ATTACKING, FLEEING, MOVING}
 
 # skill enums
-enum Skill {DASHIN, DASHOUT, SUMMON, PUFF}
+enum Skill {PUSH, PULL, PUSHAOE, PULLAOE}
 
 # mutation enums
 enum Mutation {SPEED, MAGIC, GROWTH, HUNGER}

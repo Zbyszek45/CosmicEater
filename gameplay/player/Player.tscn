@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://gameplay/common/trail/Trail.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/player/Skills.gd" type="Script" id=2]
-[ext_resource path="res://gameplay/player/AttackArea.gd" type="Script" id=3]
+[ext_resource path="res://gameplay/world/assets/dust_texture.png" type="Texture" id=3]
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=5]
 [ext_resource path="res://gameplay/player/Mutations.gd" type="Script" id=6]
 [ext_resource path="res://gameplay/player/animation/player_anim0000.png" type="Texture" id=7]
@@ -11,10 +11,7 @@
 [ext_resource path="res://gameplay/player/animation/player_anim0001.png" type="Texture" id=10]
 [ext_resource path="res://gameplay/player/animation/player_anim0002.png" type="Texture" id=11]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 180.0
-
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ) ],
 "loop": true,
@@ -22,14 +19,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 32.0
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=3]
 radius = 44.0
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 360.0
 
 [node name="Player" type="KinematicBody2D" groups=[
 "saved",
@@ -47,49 +41,56 @@ autostart = true
 [node name="Skills" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="DashInTimer" type="Timer" parent="Skills"]
+[node name="PushTimer" type="Timer" parent="Skills"]
 wait_time = 20.0
-one_shot = true
 
-[node name="DashOutTimer" type="Timer" parent="Skills"]
+[node name="PushAoeTimer" type="Timer" parent="Skills"]
 wait_time = 20.0
-one_shot = true
 
-[node name="PuffTimer" type="Timer" parent="Skills"]
+[node name="PullTimer" type="Timer" parent="Skills"]
 wait_time = 20.0
-one_shot = true
 
-[node name="PuffDurationTimer" type="Timer" parent="Skills"]
-one_shot = true
-
-[node name="AreaWatcher" parent="Skills" instance=ExtResource( 8 )]
-position = Vector2( 0, -200 )
-
-[node name="AreaWatcher2" parent="Skills" instance=ExtResource( 8 )]
-position = Vector2( 0, -400 )
-
-[node name="AreaWatcher3" parent="Skills" instance=ExtResource( 8 )]
-position = Vector2( 0, -600 )
-
-[node name="AreaWatcher4" parent="Skills" instance=ExtResource( 8 )]
-position = Vector2( 0, -800 )
-
-[node name="AreaWatcherDynamic" parent="Skills" instance=ExtResource( 8 )]
-
-[node name="CollisionShape2D" parent="Skills/AreaWatcherDynamic" index="0"]
-shape = SubResource( 1 )
+[node name="PullAoeTimer" type="Timer" parent="Skills"]
+wait_time = 20.0
 
 [node name="UpdateSkillsTimer" type="Timer" parent="Skills"]
 wait_time = 0.01
 autostart = true
 
+[node name="PushAoeParticles" type="CPUParticles2D" parent="Skills"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.97
+randomness = 0.32
+lifetime_randomness = 0.64
+texture = ExtResource( 3 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 1000.0
+
+[node name="PullAoeParticles" type="CPUParticles2D" parent="Skills"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.97
+randomness = 0.32
+lifetime_randomness = 0.64
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 320, 320 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 1000.0
+orbit_velocity = 0.5
+scale_amount = 0.5
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
-frame = 1
+frames = SubResource( 1 )
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Trail" parent="." instance=ExtResource( 1 )]
 width = 50.0
@@ -115,17 +116,6 @@ collision_layer = 2
 collision_mask = 1056
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatArea"]
-shape = SubResource( 4 )
-
-[node name="AttackArea" type="Area2D" parent="."]
-monitorable = false
-collision_layer = 4
-collision_mask = 1056
-script = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="FleeArea" parent="." instance=ExtResource( 8 )]
-
-[editable path="Skills/AreaWatcherDynamic"]

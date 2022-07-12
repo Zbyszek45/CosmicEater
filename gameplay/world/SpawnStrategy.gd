@@ -112,7 +112,7 @@ func set_world_level(level):
 	level_ceiling = Global.size_division*(world_level+1)*enemies.size()
 	
 	GameEvents.emit_signal("world_level_up", world_level)
-	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
+	#print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
 
 
 func on_load(save: AlaGameSave):
@@ -126,7 +126,7 @@ func on_load(save: AlaGameSave):
 	can_spawn = true
 	enemies_queue = 0
 	
-	print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
+	#print("level: ", world_level, " ,diffspeed: ", difficulty_speed, " ,world ceiling: ", level_ceiling)
 
 
 func set_difficulty():

@@ -1,15 +1,15 @@
 extends "res://ui/popups/popup_base/PopupBase.gd"
 
-onready var dashin_skill_button = $MargCont/Vbox/Content/Row1/DashInButton
-onready var dashout_skill_button = $MargCont/Vbox/Content/Row1/DashOutButton
-onready var puff_skill_button = $MargCont/Vbox/Content/Row2/PuffButton
-onready var summon_skill_button = $MargCont/Vbox/Content/Row2/SummonButton
+onready var push_skill_button = $MargCont/Vbox/Content/Row1/PushButton
+onready var pull_skill_button = $MargCont/Vbox/Content/Row1/PullButton
+onready var push_aoe_skill_button = $MargCont/Vbox/Content/Row2/PushAoeButton
+onready var pull_aoe_skill_button = $MargCont/Vbox/Content/Row2/PullAoeButton
 
 func _ready():
-	dashin_skill_button.connect("pressed", self, "selected", [Global.Skill.DASHIN])
-	dashout_skill_button.connect("pressed", self, "selected", [Global.Skill.DASHOUT])
-	puff_skill_button.connect("pressed", self, "selected", [Global.Skill.PUFF])
-	summon_skill_button.connect("pressed", self, "selected", [Global.Skill.SUMMON])
+	push_skill_button.connect("pressed", self, "selected", [Global.Skill.PUSH])
+	pull_skill_button.connect("pressed", self, "selected", [Global.Skill.PULL])
+	push_aoe_skill_button.connect("pressed", self, "selected", [Global.Skill.PUSHAOE])
+	pull_aoe_skill_button.connect("pressed", self, "selected", [Global.Skill.PULLAOE])
 
 
 func selected(skill):
@@ -19,7 +19,7 @@ func selected(skill):
 
 
 func set_popup(skills: Dictionary):
-	dashin_skill_button.number = skills[Global.Skill.DASHIN]
-	dashout_skill_button.number = skills[Global.Skill.DASHOUT]
-	puff_skill_button.number = skills[Global.Skill.PUFF]
-	summon_skill_button.number = skills[Global.Skill.SUMMON]
+	push_skill_button.number = skills[Global.Skill.PUSH]
+	pull_skill_button.number = skills[Global.Skill.PULL]
+	push_aoe_skill_button.number = skills[Global.Skill.PUSHAOE]
+	pull_aoe_skill_button.number = skills[Global.Skill.PULLAOE]

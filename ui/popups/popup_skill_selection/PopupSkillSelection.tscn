@@ -12,21 +12,24 @@ script = ExtResource( 3 )
 bbcode_text = "[center][color=blue][shake level=10]Skill"
 text = "Skill"
 
+[node name="Content" parent="MargCont/Vbox" index="2"]
+margin_bottom = 1119.0
+
 [node name="Row1" type="HBoxContainer" parent="MargCont/Vbox/Content" index="0"]
 margin_right = 656.0
 margin_bottom = 383.0
 custom_constants/separation = 32
 
-[node name="DashInButton" parent="MargCont/Vbox/Content/Row1" index="0" instance=ExtResource( 2 )]
+[node name="PushButton" parent="MargCont/Vbox/Content/Row1" index="0" instance=ExtResource( 2 )]
 margin_right = 312.0
 margin_bottom = 383.0
-text = "[center]Dash to eat the small enemy"
+text = "[center]Push bigger enemy away"
 
-[node name="DashOutButton" parent="MargCont/Vbox/Content/Row1" index="1" instance=ExtResource( 2 )]
+[node name="PullButton" parent="MargCont/Vbox/Content/Row1" index="1" instance=ExtResource( 2 )]
 margin_left = 344.0
 margin_right = 656.0
 margin_bottom = 383.0
-text = "[center]Dash out from big enemy"
+text = "[center]Pull smaller enemies"
 
 [node name="Row2" type="HBoxContainer" parent="MargCont/Vbox/Content" index="1"]
 margin_top = 415.0
@@ -34,13 +37,22 @@ margin_right = 656.0
 margin_bottom = 798.0
 custom_constants/separation = 32
 
-[node name="PuffButton" parent="MargCont/Vbox/Content/Row2" index="0" instance=ExtResource( 2 )]
+[node name="PushAoeButton" parent="MargCont/Vbox/Content/Row2" index="0" instance=ExtResource( 2 )]
 margin_right = 312.0
 margin_bottom = 383.0
-text = "[center]Temporarily get bigger as self defence"
+text = "[center]Slightly push bigger enemies away"
 
-[node name="SummonButton" parent="MargCont/Vbox/Content/Row2" index="1" instance=ExtResource( 2 )]
+[node name="PullAoeButton" parent="MargCont/Vbox/Content/Row2" index="1" instance=ExtResource( 2 )]
 margin_left = 344.0
 margin_right = 656.0
 margin_bottom = 383.0
-text = "[center]Summon a minion that will feed you"
+text = "[center]Pull sligthly smaller enemies"
+
+[node name="Buttons" parent="MargCont/Vbox" index="3"]
+margin_top = 1151.0
+
+[node name="Label" type="Label" parent="MargCont/Vbox/Buttons" index="0"]
+margin_left = 55.0
+margin_right = 601.0
+margin_bottom = 65.0
+text = "Upgrading reduce time"

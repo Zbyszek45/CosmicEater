@@ -1,152 +1,129 @@
 extends Node2D
 
-var support_scene = preload("res://gameplay/player/support/Support.tscn")
 
-onready var dashin_timer = $DashInTimer
-onready var dashout_timer = $DashOutTimer
-onready var puff_timer = $PuffTimer
-onready var puff_duration_timer = $PuffDurationTimer
+onready var push_timer = $PushTimer
+onready var pull_timer = $PullTimer
+onready var push_aoe_timer = $PushAoeTimer
+onready var pull_aoe_timer = $PullAoeTimer
 onready var update_skills_timer = $UpdateSkillsTimer
+onready var push_aoe_particles = $PushAoeParticles
+onready var pull_aoe_particles = $PullAoeParticles
 
-var skill_dashin: int = 0
-var skill_dashout: int = 0
-var skill_summon: int = 0
-var skill_puff: int = 0
 
-var time_reload_dashin_base = 1
-var time_reload_dashout_base = 1
-var time_reload_puff_base = 1
+var skill_push: int = 0
+var skill_pull: int = 0
+var skill_push_aoe: int = 0
+var skill_pull_aoe: int = 0
 
-var time_reload_dashin
-var time_reload_dashout
-var time_reload_puff
 
-var can_dashin: bool = false
-var can_dashout: bool = false
-var can_puff: bool = false
+var time_reload_push_base = 5
+var time_reload_pull_base = 5
+var time_reload_push_aoe_base = 5
+var time_reload_pull_aoe_base = 5
 
-var attack_area
+var time_reload_push
+var time_reload_pull
+var time_reload_push_aoe
+var time_reload_pull_aoe
+
+
+var push_force: int = 2000
+var pull_force: int = 2000
+var push_aoe_force: int = 700
+var pull_aoe_force: int = 700
+
+
 var flee_area
 
-var dashin_frames = 2
 
-signal dashin
-signal dashout
-signal puff
-signal stop_puff
-signal summon
+signal push
+signal pull
+signal push_aoe
+signal pull_aoe
 
 func _ready():
-	dashin_timer.connect("timeout", self, "on_DashInTimer_timout")
-	dashout_timer.connect("timeout", self, "on_DashOutTimer_timout")
-	puff_timer.connect("timeout", self, "on_PuffTimer_timout")
-	puff_duration_timer.connect("timeout", self, "on_PuffDurationTimer_timeout")
+	push_timer.connect("timeout", self, "on_PushTimer_timout")
+	pull_timer.connect("timeout", self, "on_PullTimer_timout")
+	push_aoe_timer.connect("timeout", self, "on_PushAoeTimer_timout")
+	pull_aoe_timer.connect("timeout", self, "on_PullAoeTimer_timout")
+	
 	
 	update_skills_timer.connect("timeout", self, "on_update_skills_timer")
 	
 	GameEvents.connect("skill_selected", self, "_skill_selected")
 	
-	set_reload_timers()
+	#set_reload_timers()
 
 
 func _skill_selected(skill):
-	if skill == Global.Skill.DASHIN:
-		skill_dashin += 1
-		can_dashin = true
-		dashin_timer.stop()
-	elif skill == Global.Skill.DASHOUT:
-		skill_dashout += 1
-		can_dashout = true
-		dashout_timer.stop()
-	elif skill == Global.Skill.PUFF:
-		skill_puff += 1
-		can_puff = true
-		puff_timer.stop()
-	elif skill == Global.Skill.SUMMON:
-		skill_summon += 1
-		spawn_support()
+	if skill == Global.Skill.PUSH:
+		skill_push += 1
+	elif skill == Global.Skill.PULL:
+		skill_pull += 1
+	elif skill == Global.Skill.PUSHAOE:
+		skill_push_aoe += 1
+	elif skill == Global.Skill.PULLAOE:
+		skill_pull_aoe += 1
 	
 	set_reload_timers()
 	
+	if skill == Global.Skill.PUSH:
+		push_timer.start()
+	elif skill == Global.Skill.PULL:
+		pull_timer.start()
+	elif skill == Global.Skill.PUSHAOE:
+		push_aoe_timer.start()
+	elif skill == Global.Skill.PULLAOE:
+		pull_aoe_timer.start()
+	
 	GameEvents.emit_signal("skills_max_reload_time_update" \
-	, time_reload_dashin, time_reload_dashout, time_reload_puff)
+	, time_reload_push, time_reload_pull, time_reload_push_aoe, time_reload_pull_aoe)
 
 
 func set_reload_timers():
-	time_reload_dashin = (time_reload_dashin_base / (skill_dashin+0.01)) as float
-	time_reload_dashout = (time_reload_dashout_base / (skill_dashout+0.01)) as float
-	time_reload_puff = (time_reload_puff_base / (skill_puff+0.01)) as float
+	time_reload_push = (time_reload_push_base / (skill_push+0.01)) as float
+	time_reload_pull = (time_reload_pull_base / (skill_pull+0.01)) as float
+	time_reload_push_aoe = (time_reload_push_aoe_base / (skill_push_aoe+0.01)) as float
+	time_reload_pull_aoe = (time_reload_pull_aoe_base / (skill_pull_aoe+0.01)) as float
 	
-	dashin_timer.wait_time = time_reload_dashin
-	dashout_timer.wait_time = time_reload_dashout
-	puff_timer.wait_time = time_reload_puff
+	push_timer.wait_time = time_reload_push
+	pull_timer.wait_time = time_reload_pull
+	push_aoe_timer.wait_time = time_reload_push_aoe
+	pull_aoe_timer.wait_time = time_reload_pull_aoe
 
 
-func _physics_process(delta):
-	check_dashin()
-	check_dashout()
-	check_puff()
+func on_PushTimer_timout():
+	if get_tree().get_nodes_in_group("avoidable").size() > 0:
+		var x = get_tree().get_nodes_in_group("avoidable")[0]
+		var dir:Vector2 = x.global_position - global_position
+		if x.has_method("push"):
+			x.push(dir.normalized() * push_force)
 
 
-func check_dashin():
-	if can_dashin and attack_area.smaller_bodies.size() > 0:
-		$AreaWatcherDynamic.global_position = attack_area.smaller_bodies[0].global_position
-		if dashin_frames <= 0 and not $AreaWatcherDynamic.is_dangerous():
-			can_dashin = false
-			dashin_timer.start()
-			dashin_frames = 2
-			emit_signal("dashin", attack_area.smaller_bodies[0].global_position)
-		else:
-			dashin_frames -= 1
-	else:
-		dashin_frames = 2
+func on_PullTimer_timout():
+	if get_tree().get_nodes_in_group("attackable").size() > 0:
+		var x = get_tree().get_nodes_in_group("attackable")[0]
+		var dir:Vector2 = global_position - x.global_position
+		if x.has_method("push"):
+			x.push(dir.normalized() * pull_force)
 
 
-func check_dashout():
-	if can_dashout and flee_area.is_dangerous():
-		if not $AreaWatcher.is_dangerous():
-			emit_signal("dashout", $AreaWatcher.global_position)
-		elif not $AreaWatcher2.is_dangerous():
-			emit_signal("dashout", $AreaWatcher2.global_position)
-		elif not $AreaWatcher3.is_dangerous():
-			emit_signal("dashout", $AreaWatcher3.global_position)
-		elif not $AreaWatcher4.is_dangerous():
-			emit_signal("dashout", $AreaWatcher4.global_position)
-		else:
-			return
-		
-		can_dashout = false
-		dashout_timer.start()
+func on_PushAoeTimer_timout():
+	push_aoe_particles.emitting = true
+	for i in get_tree().get_nodes_in_group("avoidable"):
+		var dir:Vector2 = i.global_position - global_position
+		if i.has_method("push"):
+			i.push(dir.normalized() * push_aoe_force)
 
 
-func check_puff():
-	if can_puff and flee_area.is_dangerous():
-		emit_signal("puff", 2.0)
-		puff_duration_timer.start()
-		can_puff = false
-
-
-func spawn_support():
-	GameEvents.emit_signal("spawn_support", support_scene, skill_summon)
-
-
-func on_DashInTimer_timout():
-	can_dashin = true
-
-
-func on_DashOutTimer_timout():
-	can_dashout = true
-
-
-func on_PuffTimer_timout():
-	can_puff = true
-
-
-func on_PuffDurationTimer_timeout():
-	emit_signal("stop_puff")
-	puff_timer.start()
+func on_PullAoeTimer_timout():
+	pull_aoe_particles.emitting = true
+	for i in get_tree().get_nodes_in_group("attackable"):
+		var dir:Vector2 = global_position - i.global_position
+		if i.has_method("push"):
+			i.push(dir.normalized() * pull_aoe_force)
 
 
 func on_update_skills_timer():
 	GameEvents.emit_signal("skills_reload_time_update" \
-	, dashin_timer.time_left, dashout_timer.time_left, puff_timer.time_left)
+	, push_timer.time_left, pull_timer.time_left, push_aoe_timer.time_left, pull_aoe_timer.time_left)

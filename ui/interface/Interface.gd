@@ -5,10 +5,10 @@ onready var joystick = $JoystickAnchor/Joystick
 onready var size_label = $HBoxContainer/SizeLabel
 onready var time_label = $TimerLabel
 onready var pause_button = $HBoxContainer/PauseButton
-onready var dashin_button = $SkillsLeft/DashInButton
-onready var dashout_button = $SkillsLeft/DashOutButton
-onready var puff_button = $SkillsRight/PuffButton
-onready var summon_button = $SkillsRight/SummonButton
+onready var push_button = $SkillsLeft/PushButton
+onready var pull_button = $SkillsLeft/PullButton
+onready var push_aoe_button = $SkillsRight/PushAoeButton
+onready var pull_aoe_button = $SkillsRight/PullAoeButton
 
 func _ready():
 	GameEvents.connect("player_grew_up", self, "_update_size")
@@ -43,16 +43,20 @@ func on_load(save: AlaGameSave):
 	size_label.text = "Size: " + str(save.player_size)
 
 
-func update_skills_timers(dashin_timeleft: float, dashout_timeleft: float, puff_timeleft: float):
-	dashin_button.progress.value = dashin_timeleft
-	dashout_button.progress.value = dashout_timeleft
-	puff_button.progress.value = puff_timeleft
+func update_skills_timers(push_timeleft: float, pull_timeleft: float\
+	, push_aoe_timeleft: float, pull_aoe_timeleft: float):
+	push_button.progress.value = push_timeleft
+	pull_button.progress.value = pull_timeleft
+	push_aoe_button.progress.value = push_aoe_timeleft
+	pull_aoe_button.progress.value = pull_aoe_timeleft
 
 
-func update_max_skills_timers(dashin_timeleft, dashout_timeleft, puff_timeleft):
-	dashin_button.progress.max_value = dashin_timeleft
-	dashout_button.progress.max_value = dashout_timeleft
-	puff_button.progress.max_value = puff_timeleft
+func update_max_skills_timers(push_timeleft, pull_timeleft,\
+	push_aoe_timeleft, pull_aoe_timeleft):
+	push_button.progress.max_value = push_timeleft
+	pull_button.progress.max_value = pull_timeleft
+	push_aoe_button.progress.max_value = push_aoe_timeleft
+	pull_aoe_button.progress.max_value = pull_aoe_timeleft
 
 #func on_skill_pressed(skill):
 #	if skill == Global.Skill.DASHIN:
