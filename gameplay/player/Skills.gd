@@ -29,10 +29,10 @@ var time_reload_push_aoe
 var time_reload_pull_aoe
 
 
-var push_force: int = 2000
-var pull_force: int = 2000
-var push_aoe_force: int = 700
-var pull_aoe_force: int = 700
+var push_force: int = 2500
+var pull_force: int = 2500
+var push_aoe_force: int = 1000
+var pull_aoe_force: int = 1000
 
 
 var flee_area
