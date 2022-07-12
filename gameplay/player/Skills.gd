@@ -8,6 +8,8 @@ onready var pull_aoe_timer = $PullAoeTimer
 onready var update_skills_timer = $UpdateSkillsTimer
 onready var push_aoe_particles = $PushAoeParticles
 onready var pull_aoe_particles = $PullAoeParticles
+onready var push_particles = $PushParticles
+onready var pull_particles = $PullParticles
 
 
 var skill_push: int = 0
@@ -95,6 +97,12 @@ func set_reload_timers():
 func on_PushTimer_timout():
 	if get_tree().get_nodes_in_group("avoidable").size() > 0:
 		var x = get_tree().get_nodes_in_group("avoidable")[0]
+		
+		# parrticles
+		push_particles.look_at(x.global_position)
+		push_particles.restart()
+		push_particles.emitting = true
+		
 		var dir:Vector2 = x.global_position - global_position
 		if x.has_method("push"):
 			x.push(dir.normalized() * push_force)
@@ -103,12 +111,19 @@ func on_PushTimer_timout():
 func on_PullTimer_timout():
 	if get_tree().get_nodes_in_group("attackable").size() > 0:
 		var x = get_tree().get_nodes_in_group("attackable")[0]
+		
+		# parrticles
+		pull_particles.look_at(x.global_position)
+		pull_particles.restart()
+		pull_particles.emitting = true
+		
 		var dir:Vector2 = global_position - x.global_position
 		if x.has_method("push"):
 			x.push(dir.normalized() * pull_force)
 
 
 func on_PushAoeTimer_timout():
+	push_aoe_particles.restart()
 	push_aoe_particles.emitting = true
 	for i in get_tree().get_nodes_in_group("avoidable"):
 		var dir:Vector2 = i.global_position - global_position
@@ -117,6 +132,7 @@ func on_PushAoeTimer_timout():
 
 
 func on_PullAoeTimer_timout():
+	pull_aoe_particles.restart()
 	pull_aoe_particles.emitting = true
 	for i in get_tree().get_nodes_in_group("attackable"):
 		var dir:Vector2 = global_position - i.global_position

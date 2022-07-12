@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://gameplay/common/trail/Trail.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/player/Skills.gd" type="Script" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://gameplay/player/animation/player_anim0003.png" type="Texture" id=9]
 [ext_resource path="res://gameplay/player/animation/player_anim0001.png" type="Texture" id=10]
 [ext_resource path="res://gameplay/player/animation/player_anim0002.png" type="Texture" id=11]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.27957, 0.704301, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -84,6 +88,41 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 1000.0
 orbit_velocity = 0.5
 scale_amount = 0.5
+
+[node name="PushParticles" type="CPUParticles2D" parent="Skills"]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.72
+randomness = 0.32
+lifetime_randomness = 0.64
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 640, 40 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 500.0
+scale_amount = 0.5
+color_ramp = SubResource( 4 )
+
+[node name="PullParticles" type="CPUParticles2D" parent="Skills"]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.72
+randomness = 0.32
+lifetime_randomness = 0.64
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 640, 40 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 500.0
+scale_amount = 0.5
+color_ramp = SubResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
