@@ -1,12 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/popups/popup_base/PopupBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/common/button_big/ButtonBig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/popups/popup_skill_selection/PopupSkillSelection.gd" type="Script" id=3]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutations.png" type="Texture" id=4]
+[ext_resource path="res://ui/common/button_base/icons/skill_pull.png" type="Texture" id=5]
+[ext_resource path="res://ui/common/button_base/icons/skill_pull_aoe.png" type="Texture" id=6]
+[ext_resource path="res://ui/common/button_base/icons/skill_push_aoe.png" type="Texture" id=7]
+[ext_resource path="res://ui/common/button_base/icons/skill_push.png" type="Texture" id=8]
 
 [node name="PopupSkillSelection" instance=ExtResource( 1 )]
-visible = false
+visible = true
 script = ExtResource( 3 )
+
+[node name="Icon" parent="MargCont/Vbox" index="0"]
+self_modulate = Color( 0, 0.14902, 1, 1 )
+texture = ExtResource( 4 )
 
 [node name="Title" parent="MargCont/Vbox" index="1"]
 bbcode_text = "[center][color=blue][shake level=10]Skill"
@@ -23,12 +32,14 @@ custom_constants/separation = 32
 [node name="PushButton" parent="MargCont/Vbox/Content/Row1" index="0" instance=ExtResource( 2 )]
 margin_right = 312.0
 margin_bottom = 383.0
+icon = ExtResource( 8 )
 text = "[center]Push bigger enemy away"
 
 [node name="PullButton" parent="MargCont/Vbox/Content/Row1" index="1" instance=ExtResource( 2 )]
 margin_left = 344.0
 margin_right = 656.0
 margin_bottom = 383.0
+icon = ExtResource( 5 )
 text = "[center]Pull smaller enemies"
 
 [node name="Row2" type="HBoxContainer" parent="MargCont/Vbox/Content" index="1"]
@@ -40,12 +51,14 @@ custom_constants/separation = 32
 [node name="PushAoeButton" parent="MargCont/Vbox/Content/Row2" index="0" instance=ExtResource( 2 )]
 margin_right = 312.0
 margin_bottom = 383.0
+icon = ExtResource( 7 )
 text = "[center]Slightly push bigger enemies away"
 
 [node name="PullAoeButton" parent="MargCont/Vbox/Content/Row2" index="1" instance=ExtResource( 2 )]
 margin_left = 344.0
 margin_right = 656.0
 margin_bottom = 383.0
+icon = ExtResource( 6 )
 text = "[center]Pull sligthly smaller enemies"
 
 [node name="Buttons" parent="MargCont/Vbox" index="3"]

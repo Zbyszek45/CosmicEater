@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/interface/JoystickAnchor.gd" type="Script" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://ui/common/button_small/icons/icon_help.png" type="Texture" id=6]
 [ext_resource path="res://ui/common/button_small/icons/icon_pause.png" type="Texture" id=7]
 [ext_resource path="res://ui/common/button_skill/ButtonSmallSkills.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/common/button_base/icons/skill_pull.png" type="Texture" id=9]
+[ext_resource path="res://ui/common/button_base/icons/skill_pull_aoe.png" type="Texture" id=10]
+[ext_resource path="res://ui/common/button_base/icons/skill_push_aoe.png" type="Texture" id=11]
+[ext_resource path="res://ui/common/button_base/icons/skill_push.png" type="Texture" id=12]
 
 [node name="Interface" type="Control" groups=[
 "saved",
@@ -89,11 +93,13 @@ __meta__ = {
 [node name="PushButton" parent="SkillsLeft" instance=ExtResource( 8 )]
 margin_right = 80.0
 margin_bottom = 80.0
+icon = ExtResource( 12 )
 
 [node name="PullButton" parent="SkillsLeft" instance=ExtResource( 8 )]
 margin_top = 112.0
 margin_right = 80.0
 margin_bottom = 192.0
+icon = ExtResource( 9 )
 
 [node name="SkillsRight" type="VBoxContainer" parent="."]
 anchor_left = 1.0
@@ -111,8 +117,10 @@ __meta__ = {
 [node name="PushAoeButton" parent="SkillsRight" instance=ExtResource( 8 )]
 margin_right = 80.0
 margin_bottom = 80.0
+icon = ExtResource( 11 )
 
 [node name="PullAoeButton" parent="SkillsRight" instance=ExtResource( 8 )]
 margin_top = 112.0
 margin_right = 80.0
 margin_bottom = 192.0
+icon = ExtResource( 10 )

@@ -10,9 +10,11 @@
 [ext_resource path="res://ui/common/button_base/icons/icon_mutation_magic.png" type="Texture" id=8]
 
 [node name="PopupMutationSelection" instance=ExtResource( 1 )]
+visible = true
 script = ExtResource( 3 )
 
 [node name="Icon" parent="MargCont/Vbox" index="0"]
+self_modulate = Color( 1, 0.909804, 0.00392157, 1 )
 texture = ExtResource( 4 )
 
 [node name="Title" parent="MargCont/Vbox" index="1"]
