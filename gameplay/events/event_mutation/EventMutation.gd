@@ -3,7 +3,7 @@ extends "res://gameplay/events/sprite_event_base/SpriteEventBase.gd"
 var push_force: Vector2 = Vector2.ZERO
 
 func _ready():
-	add_to_group("attackable")
+	#add_to_group("attackable")
 	body_area.connect("area_entered", self, "on_area_entered")
 
 

@@ -99,6 +99,9 @@ func _input(event):
 			GameEvents.emit_signal("show_popup_mutation_selection")
 		if event.scancode == KEY_S:
 			GameEvents.emit_signal("show_popup_skill_selection")
+		if event.scancode == KEY_3:
+			for i in range(4):
+				GameEvents.emit_signal("show_popup_skill_selection")
 
 
 func spawn_enemy(enemy: PackedScene, scale, difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob):

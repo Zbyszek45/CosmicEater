@@ -9,7 +9,6 @@ func _ready():
 
 
 func on_accept_pressed():
-	unpause_tree()
 	
 	if has_method(on_accept_method):
 		call(on_accept_method)

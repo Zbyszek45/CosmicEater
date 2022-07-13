@@ -15,5 +15,4 @@ func _on_accept():
 func on_rejectButton_pressed():
 	Global.delete_save()
 	
-	unpause_tree()
 	emit_signal("finished")

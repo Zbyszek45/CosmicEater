@@ -13,7 +13,6 @@ func _ready():
 
 
 func selected(mutation):
-	unpause_tree()
 	GameEvents.emit_signal("mutation_selected", mutation)
 	emit_signal("finished")
 

@@ -10,13 +10,12 @@ func _ready():
 
 func on_exit_pressed():
 	Global.delete_save()
-	
-	unpause_tree()
+	emit_signal("finished")
 	ScenesHandler.switch_scene(ScenesHandler.MENU)
 
 
 func on_save_exit_pressed():
-	unpause_tree()
+	emit_signal("finished")
 	GameEvents.emit_signal("save_game_state")
 	get_tree().quit()
 

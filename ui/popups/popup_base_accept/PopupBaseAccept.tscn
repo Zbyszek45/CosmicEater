@@ -6,6 +6,7 @@
 [ext_resource path="res://ui/common/button_base/icons/icon_accept.png" type="Texture" id=4]
 
 [node name="PopupBaseAccept" instance=ExtResource( 1 )]
+visible = true
 script = ExtResource( 2 )
 
 [node name="Content" parent="MargCont/Vbox" index="2"]

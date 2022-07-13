@@ -13,7 +13,6 @@ func _ready():
 
 
 func selected(skill):
-	unpause_tree()
 	GameEvents.emit_signal("skill_selected", skill)
 	emit_signal("finished")
 
