@@ -15,6 +15,12 @@ var enemies = [
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
 
 var event_mutation = preload("res://gameplay/events/event_mutation/EventMutation.tscn")
+var event_skill = preload("res://gameplay/events/event_skill/EventSkill.tscn")
+
+var events = [
+	event_mutation,
+	event_skill
+]
 
 onready var enemy_spawn_timer = $EnemySpawnTimer
 
@@ -95,7 +101,13 @@ func spawn_decoration():
 
 
 func spawn_event():
-	emit_signal("spawn_event", event_mutation)
+	var e
+	var random_f = randf()
+	if random_f < 0.5:
+		e = event_mutation
+	else:
+		e = event_skill
+	emit_signal("spawn_event", e)
 
 
 func _update_size(size: int, amount: float):

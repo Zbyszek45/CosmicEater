@@ -15,7 +15,7 @@
 [ext_resource path="res://gameplay/world/assets/star_texture.png" type="Texture" id=13]
 [ext_resource path="res://resources/saves/initial_save.tres" type="Resource" id=14]
 
-[sub_resource type="Resource" id=2]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 8 )
 text1 = "[center]Eat [wave amp=80]smaller[/wave]
 Run away from [shake level=20]bigger"
@@ -24,7 +24,7 @@ time = 20.0
 should_clear = false
 size_trigger = 0
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=2]
 script = ExtResource( 8 )
 text1 = "[center]Something feels  [rainbow freq=0.2 sat=10 val=20]diffrent...[/rainbow]"
 text2 = "[center]Will [shake level=20]you[/shake] explore more?"
@@ -32,11 +32,11 @@ time = 10.0
 should_clear = true
 size_trigger = 3999
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.248731, 0.766497, 1 )
 colors = PoolColorArray( 0.196078, 0.196078, 0.196078, 0, 1, 1, 1, 0.117647, 1, 1, 1, 0.117647, 1, 1, 1, 0 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.353982, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.699115, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="World" type="Node2D"]
@@ -68,8 +68,8 @@ autostart = true
 "saved",
 ]]
 script = ExtResource( 3 )
-starting_message = SubResource( 2 )
-new_world_message = SubResource( 3 )
+starting_message = SubResource( 1 )
+new_world_message = SubResource( 2 )
 
 [node name="Decorations" type="Node2D" parent="."]
 
@@ -98,7 +98,7 @@ initial_velocity = 100.0
 initial_velocity_random = 1.0
 scale_amount = 12.0
 scale_amount_random = 1.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 3 )
 
 [node name="StarParticles" type="CPUParticles2D" parent="Player/Camera2D"]
 amount = 44
@@ -111,7 +111,7 @@ emission_shape = 2
 emission_rect_extents = Vector2( 460, 740 )
 gravity = Vector2( 0, 0 )
 scale_amount_random = 1.0
-scale_amount_curve = SubResource( 5 )
+scale_amount_curve = SubResource( 4 )
 
 [node name="Events" type="Node2D" parent="."]
 

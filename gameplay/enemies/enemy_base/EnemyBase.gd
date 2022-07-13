@@ -146,8 +146,6 @@ func _physics_process(delta):
 func on_eatArea_body_entered(body: Node):
 	if body.has_method("get_scale"):
 		if can_eat(body.get_scale()):
-			if scale.x < 2.0:
-				scale += Vector2(0.1, 0.1)
 			body.destroy()
 	else:
 		Global.show_error("res://gameplay/enemies/enemy_base/EnemyBase.gd", "Body don't have method: "+body.name)
