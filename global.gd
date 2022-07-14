@@ -1,5 +1,7 @@
 extends Node
 
+var initial_player_save = preload("res://resources/saves/initial_player_save.tres")
+
 # size of opened app window
 var wind_size: Vector2
 
@@ -19,6 +21,11 @@ var eat_limit = 0.05
 # the size in pixels
 var base_char_size = 88
 
+# loaded player save
+var coins
+var mutation_upgrade
+var skill_upgrade
+
 # ai enums
 enum AI_Action {ATTACKING, FLEEING, MOVING}
 
@@ -37,6 +44,7 @@ var js_size = JsSizes.MEDIUM
 # save location if exists
 const SAVE_NAME_PATH = "savegame.tres"
 const SAVE_FOLDER_PATH = "user://save"
+const PLAYER_SAVE_PATH = "player_save.tres"
 
 # used to check if game was just started up
 var just_started: bool = true
@@ -49,6 +57,7 @@ func _ready():
 	range_spawn.x = (Global.wind_size.x/2) + (Global.base_char_size*2)
 	range_spawn.y = (Global.wind_size.y/2) + (Global.base_char_size*2)
 	range_limit = Vector2(0, 0).distance_to(wind_size) * 1.05
+	load_player_save()
 
 
 func show_error(script_name, description):
@@ -85,3 +94,33 @@ func delete_save():
 	var dir = Directory.new()
 	if dir.file_exists(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH)):
 		dir.remove(Global.SAVE_FOLDER_PATH.plus_file(Global.SAVE_NAME_PATH))
+
+
+func save_player():
+	var new_save = AlaPlayerSave.new()
+	new_save.coins = coins as int
+	new_save.mutation_upgrade = mutation_upgrade
+	new_save.skill_upgrade = skill_upgrade
+	
+	print("Saved ",coins," ",mutation_upgrade," ",skill_upgrade)
+	
+	var dir = Directory.new()
+	if not dir.dir_exists(Global.SAVE_FOLDER_PATH):
+		dir.make_dir_recursive(Global.SAVE_FOLDER_PATH)
+	
+	ResourceSaver.save(Global.SAVE_FOLDER_PATH.plus_file(Global.PLAYER_SAVE_PATH), new_save)
+
+
+func load_player_save():
+	var res = null
+	var dir = Directory.new()
+	if dir.file_exists(Global.SAVE_FOLDER_PATH.plus_file(Global.PLAYER_SAVE_PATH)):
+		res = load(Global.SAVE_FOLDER_PATH.plus_file(Global.PLAYER_SAVE_PATH))
+	else:
+		res = initial_player_save
+	
+	coins = res.coins
+	mutation_upgrade = res.mutation_upgrade
+	skill_upgrade = res.skill_upgrade
+	
+	print("Loaded ",coins," ",mutation_upgrade," ",skill_upgrade)

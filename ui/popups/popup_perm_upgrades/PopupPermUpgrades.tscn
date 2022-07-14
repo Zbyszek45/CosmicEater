@@ -9,7 +9,6 @@
 [ext_resource path="res://ui/common/button_base/icons/icon_accept.png" type="Texture" id=7]
 
 [node name="PopupPermUpgrades" instance=ExtResource( 1 )]
-visible = true
 script = ExtResource( 3 )
 
 [node name="Icon" parent="MargCont/Vbox" index="0"]
@@ -27,7 +26,7 @@ margin_right = 656.0
 margin_bottom = 65.0
 alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="MargCont/Vbox/Content/Row1" index="0"]
+[node name="CoinsLabel" type="Label" parent="MargCont/Vbox/Content/Row1" index="0"]
 margin_left = 211.0
 margin_right = 445.0
 margin_bottom = 65.0
@@ -81,7 +80,7 @@ text = "[center]Number of starting skills"
 [node name="Buttons" parent="MargCont/Vbox" index="3"]
 margin_top = 1088.0
 
-[node name="ButtonBase" parent="MargCont/Vbox/Buttons" index="0" instance=ExtResource( 6 )]
+[node name="AcceptButton" parent="MargCont/Vbox/Buttons" index="0" instance=ExtResource( 6 )]
 margin_left = 264.0
 margin_right = 392.0
 icon = ExtResource( 7 )

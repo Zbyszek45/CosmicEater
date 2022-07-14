@@ -94,7 +94,7 @@ func set_reload_timers():
 	time_reload_push_aoe = (time_reload_push_aoe * 100) / (100 + mutation_magic_value)
 	time_reload_pull_aoe = (time_reload_pull_aoe * 100) / (100 + mutation_magic_value)
 	
-	
+	print(time_reload_push_aoe)
 	push_timer.wait_time = time_reload_push
 	pull_timer.wait_time = time_reload_pull
 	push_aoe_timer.wait_time = time_reload_push_aoe

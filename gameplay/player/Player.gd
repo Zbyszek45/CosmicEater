@@ -132,4 +132,4 @@ func get_scale():
 
 
 func destroy():
-	ScenesHandler.switch_scene(ScenesHandler.MENU)
+	GameEvents.emit_signal("end_game")

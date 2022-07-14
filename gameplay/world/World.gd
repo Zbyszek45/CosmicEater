@@ -28,6 +28,7 @@ func _ready():
 	GameEvents.connect("show_message", self, "spawn_message")
 	GameEvents.connect("save_game_state", self, "save_game")
 	GameEvents.connect("world_level_up", self, "world_level_up")
+	GameEvents.connect("end_game", self, "_end_game")
 	
 	load_save()
 	set_children_variables()
@@ -65,10 +66,13 @@ func set_children_variables():
 
 func after_ready():
 	messages_handler.check_size(player.size, 0)
+	for i in range(Global.mutation_upgrade):
+		GameEvents.emit_signal("show_popup_mutation_selection")
+	for i in range(Global.skill_upgrade):
+		GameEvents.emit_signal("show_popup_skill_selection")
 
 
 func save_game():
-	print("saving")
 	var new_save = AlaGameSave.new()
 	new_save.player_size = player.size as int
 	new_save.skill_push = player.skills.skill_push as int
@@ -137,6 +141,12 @@ func spawn_message(message_info):
 
 func world_level_up(_level):
 	player.global_position = Vector2(0, 0)
+
+
+func _end_game():
+	Global.coins += int(player.size/100)
+	ScenesHandler.switch_scene(ScenesHandler.MENU)
+	print(Global.coins)
 
 
 func get_mutations() -> Dictionary:

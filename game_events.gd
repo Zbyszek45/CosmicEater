@@ -41,3 +41,6 @@ signal skill_selected
 # skills reload time changed
 signal skills_reload_time_update
 signal skills_max_reload_time_update
+
+# player destroyed
+signal end_game

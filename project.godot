@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/message_res/AlaMessageRes.gd"
 }, {
+"base": "Resource",
+"class": "AlaPlayerSave",
+"language": "GDScript",
+"path": "res://resources/save_game_res/player_save.gd"
+}, {
 "base": "Sprite",
 "class": "Decoration",
 "language": "GDScript",
@@ -53,6 +58,7 @@ _global_script_class_icons={
 "AI": "",
 "AlaGameSave": "",
 "AlaMessageRes": "",
+"AlaPlayerSave": "",
 "Decoration": "",
 "EnemyBase": "",
 "Joystick": "",
