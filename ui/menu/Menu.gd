@@ -63,7 +63,7 @@ func on_AIPriority_pressed():
 
 
 func on_UpgradesButton_pressed():
-	pass
+	popups.show_popup_perm_upgrades(self)
 
 
 func on_HelpButton_pressed():
