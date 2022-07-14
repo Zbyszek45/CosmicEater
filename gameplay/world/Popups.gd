@@ -32,7 +32,6 @@ func queue_popup(type):
 func _physics_process(delta):
 	if popups.size() > 0:
 		if canvas:
-			print("pause game")
 			get_tree().paused = true
 			var popup = popup_dict[popups[0]].instance()
 			canvas.add_child(popup)
@@ -92,10 +91,8 @@ func _physics_process(delta):
 
 
 func resume(p):
-	print("resume")
 	popups.remove(0)
 	p.queue_free()
 	
-	print("unpause game")
 	get_tree().paused = false
 

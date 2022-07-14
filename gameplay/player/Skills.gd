@@ -18,10 +18,10 @@ var skill_push_aoe: int = 0
 var skill_pull_aoe: int = 0
 
 
-var time_reload_push_base = 5
-var time_reload_pull_base = 5
-var time_reload_push_aoe_base = 5
-var time_reload_pull_aoe_base = 5
+var time_reload_push_base = 10
+var time_reload_pull_base = 10
+var time_reload_push_aoe_base = 10
+var time_reload_pull_aoe_base = 10
 
 var time_reload_push
 var time_reload_pull
@@ -36,6 +36,8 @@ var pull_aoe_force: int = 1000
 
 
 var flee_area
+
+var mutation_magic_value
 
 
 signal push
@@ -78,20 +80,28 @@ func _skill_selected(skill):
 	elif skill == Global.Skill.PULLAOE:
 		pull_aoe_timer.start()
 	
-	GameEvents.emit_signal("skills_max_reload_time_update" \
-	, time_reload_push, time_reload_pull, time_reload_push_aoe, time_reload_pull_aoe)
 
 
 func set_reload_timers():
-	time_reload_push = (time_reload_push_base / (skill_push+0.01)) as float
-	time_reload_pull = (time_reload_pull_base / (skill_pull+0.01)) as float
-	time_reload_push_aoe = (time_reload_push_aoe_base / (skill_push_aoe+0.01)) as float
-	time_reload_pull_aoe = (time_reload_pull_aoe_base / (skill_pull_aoe+0.01)) as float
+	time_reload_push = ((time_reload_push_base*100.0)/(100+skill_push)) as float
+	time_reload_pull = ((time_reload_pull_base*100.0)/(100+skill_pull)) as float
+	time_reload_push_aoe = ((time_reload_push_aoe_base*100.0)/(100+skill_push_aoe)) as float
+	time_reload_pull_aoe = ((time_reload_pull_aoe_base*100.0)/(100+skill_pull_aoe)) as float
+	
+	
+	time_reload_push = (time_reload_push * 100) / (100 + mutation_magic_value)
+	time_reload_pull = (time_reload_pull * 100) / (100 + mutation_magic_value)
+	time_reload_push_aoe = (time_reload_push_aoe * 100) / (100 + mutation_magic_value)
+	time_reload_pull_aoe = (time_reload_pull_aoe * 100) / (100 + mutation_magic_value)
+	
 	
 	push_timer.wait_time = time_reload_push
 	pull_timer.wait_time = time_reload_pull
 	push_aoe_timer.wait_time = time_reload_push_aoe
 	pull_aoe_timer.wait_time = time_reload_pull_aoe
+	
+	GameEvents.emit_signal("skills_max_reload_time_update" \
+	, time_reload_push, time_reload_pull, time_reload_push_aoe, time_reload_pull_aoe)
 
 
 func on_PushTimer_timout():
@@ -143,3 +153,15 @@ func on_PullAoeTimer_timout():
 func on_update_skills_timer():
 	GameEvents.emit_signal("skills_reload_time_update" \
 	, push_timer.time_left, pull_timer.time_left, push_aoe_timer.time_left, pull_aoe_timer.time_left)
+
+
+func on_load():
+	set_reload_timers()
+	if skill_push > 0:
+		push_timer.start()
+	if skill_pull > 0:
+		pull_timer.start()
+	if skill_push_aoe > 0:
+		push_aoe_timer.start()
+	if skill_pull_aoe > 0:
+		pull_aoe_timer.start()

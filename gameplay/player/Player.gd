@@ -17,7 +17,6 @@ var size = 0
 export(float) var eating_speed = 0.5
 
 var mutation_speed = 0
-var mutation_magic = 0
 var mutation_hunger = 0
 
 var food_multiplier = 0
@@ -72,8 +71,8 @@ func _mutation_new_speed(_mutation_speed):
 
 
 func _mutation_new_magic(_mutation_magic):
-	# TODO FINISH MAGIC
-	mutation_magic = _mutation_magic
+	skills.mutation_magic_value = _mutation_magic
+	skills.set_reload_timers()
 
 
 func _mutation_new_hunger(_mutation_hunger):
@@ -116,11 +115,16 @@ func can_eat_actuall_eating(body_scale) -> bool:
 
 func on_load(save: AlaGameSave):
 	size = save.player_size
+	skills.skill_push = save.skill_push
+	skills.skill_pull = save.skill_pull
+	skills.skill_push_aoe = save.skill_push_aoe
+	skills.skill_pull_aoe = save.skill_pull_aoe
 	mutations.mutation_speed_number = save.mutation_speed
 	mutations.mutation_magic_number = save.mutation_magic
 	mutations.mutation_growth_number = save.mutation_growth
 	mutations.mutation_hunger_number = save.mutation_hunger
 	mutations.on_load()
+	skills.on_load()
 
 
 func get_scale():

@@ -11,11 +11,11 @@
 [ext_resource path="res://gameplay/player/animation/player_anim0001.png" type="Texture" id=10]
 [ext_resource path="res://gameplay/player/animation/player_anim0002.png" type="Texture" id=11]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.27957, 0.704301, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ) ],
 "loop": true,
@@ -23,10 +23,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 32.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 44.0
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -104,7 +104,7 @@ spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 500.0
 scale_amount = 0.5
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 1 )
 
 [node name="PullParticles" type="CPUParticles2D" parent="Skills"]
 emitting = false
@@ -122,14 +122,15 @@ spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 500.0
 scale_amount = 0.5
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Trail" parent="." instance=ExtResource( 1 )]
 width = 50.0
@@ -155,6 +156,6 @@ collision_layer = 2
 collision_mask = 1056
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatArea"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="FleeArea" parent="." instance=ExtResource( 8 )]

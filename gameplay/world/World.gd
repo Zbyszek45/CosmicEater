@@ -71,6 +71,10 @@ func save_game():
 	print("saving")
 	var new_save = AlaGameSave.new()
 	new_save.player_size = player.size as int
+	new_save.skill_push = player.skills.skill_push as int
+	new_save.skill_pull = player.skills.skill_pull as int
+	new_save.skill_push_aoe = player.skills.skill_push_aoe as int
+	new_save.skill_pull_aoe = player.skills.skill_pull_aoe as int
 	new_save.mutation_speed = player.mutations.mutation_speed_number as int
 	new_save.mutation_magic = player.mutations.mutation_magic_number as int
 	new_save.mutation_growth = player.mutations.mutation_growth_number as int
