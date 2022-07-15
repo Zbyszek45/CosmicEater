@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://gameplay/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/interface/Interface.tscn" type="PackedScene" id=2]
@@ -14,6 +14,20 @@
 [ext_resource path="res://gameplay/world/assets/dust_texture.png" type="Texture" id=12]
 [ext_resource path="res://gameplay/world/assets/star_texture.png" type="Texture" id=13]
 [ext_resource path="res://resources/saves/initial_save.tres" type="Resource" id=14]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0006.png" type="Texture" id=15]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0012.png" type="Texture" id=16]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0014.png" type="Texture" id=17]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0016.png" type="Texture" id=18]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0004.png" type="Texture" id=19]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0008.png" type="Texture" id=20]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0018.png" type="Texture" id=21]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0010.png" type="Texture" id=22]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0020.png" type="Texture" id=23]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0022.png" type="Texture" id=24]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0026.png" type="Texture" id=25]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0024.png" type="Texture" id=26]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0002.png" type="Texture" id=27]
+[ext_resource path="res://gameplay/world/assets/mile_animation/frame0000.png" type="Texture" id=28]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 8 )
@@ -32,11 +46,19 @@ time = 10.0
 should_clear = true
 size_trigger = 3999
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 28 ), ExtResource( 27 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 25 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.248731, 0.766497, 1 )
 colors = PoolColorArray( 0.196078, 0.196078, 0.196078, 0, 1, 1, 1, 0.117647, 1, 1, 1, 0.117647, 1, 1, 1, 0 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.353982, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.699115, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="World" type="Node2D"]
@@ -58,6 +80,7 @@ script = ExtResource( 4 )
 "saved",
 ]]
 script = ExtResource( 6 )
+enemies_number = 14
 events_number = 1
 
 [node name="EnemySpawnTimer" type="Timer" parent="SpawnStrategy"]
@@ -83,6 +106,10 @@ current = true
 smoothing_enabled = true
 script = ExtResource( 7 )
 
+[node name="MileAnimation" type="AnimatedSprite" parent="Player/Camera2D"]
+visible = false
+frames = SubResource( 3 )
+
 [node name="Tween" type="Tween" parent="Player/Camera2D"]
 
 [node name="DustParticles" type="CPUParticles2D" parent="Player/Camera2D"]
@@ -99,7 +126,7 @@ initial_velocity = 100.0
 initial_velocity_random = 1.0
 scale_amount = 12.0
 scale_amount_random = 1.0
-color_ramp = SubResource( 3 )
+color_ramp = SubResource( 4 )
 
 [node name="StarParticles" type="CPUParticles2D" parent="Player/Camera2D"]
 amount = 44
@@ -112,7 +139,7 @@ emission_shape = 2
 emission_rect_extents = Vector2( 460, 740 )
 gravity = Vector2( 0, 0 )
 scale_amount_random = 1.0
-scale_amount_curve = SubResource( 4 )
+scale_amount_curve = SubResource( 5 )
 
 [node name="Events" type="Node2D" parent="."]
 

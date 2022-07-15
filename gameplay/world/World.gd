@@ -14,6 +14,7 @@ onready var popups = $Popups
 onready var canvas = $CanvasInterface
 onready var timer_timer = $TimeTimer
 onready var messages_handler = $MessagesHandler
+onready var mile_animation = $Player/Camera2D/MileAnimation
 
 
 export(Resource) var initial_save = initial_save as AlaGameSave
@@ -29,6 +30,8 @@ func _ready():
 	GameEvents.connect("save_game_state", self, "save_game")
 	GameEvents.connect("world_level_up", self, "world_level_up")
 	GameEvents.connect("end_game", self, "_end_game")
+	
+	mile_animation.connect("animation_finished", self, "_mile_animation_finished")
 	
 	load_save()
 	set_children_variables()
@@ -98,6 +101,10 @@ func save_game():
 func _input(event):
 	# Zoming for debug
 	if event is InputEventKey:
+		if event.scancode == KEY_4:
+			mile_animation.frame = 0
+			mile_animation.visible = true
+			mile_animation.play()
 		if event.scancode == KEY_G:
 			$Player/Camera2D.zoom.x -= 0.05
 			$Player/Camera2D.zoom.y -= 0.05
@@ -151,6 +158,10 @@ func _end_game():
 
 func _get_earned_coins() -> int:
 	return int(player.size/100)
+
+
+func _mile_animation_finished():
+	mile_animation.visible = false
 
 
 func get_mutations() -> Dictionary:

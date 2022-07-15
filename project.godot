@@ -70,7 +70,8 @@ _global_script_class_icons={
 
 config/name="Cosmic Eater"
 run/main_scene="res://ui/menu/Menu.tscn"
-boot_splash/image="res://boot_splash.png"
+boot_splash/image="res://handdrawn_splash_screen.png"
+boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"

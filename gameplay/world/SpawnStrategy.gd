@@ -4,12 +4,24 @@ var enemy_bouncy = preload("res://gameplay/enemies/enemy_bouncy/EnemyBouncy.tscn
 var enemy_mouthy = preload("res://gameplay/enemies/enemy_mouthy/EnemyMouthy.tscn")
 var enemy_spiky = preload("res://gameplay/enemies/enemy_spiky/EnemySpiky.tscn")
 var enemy_wavy = preload("res://gameplay/enemies/enemy_wavy/EnemyWavy.tscn")
+var enemy_tentacy = preload("res://gameplay/enemies/enemy_tentacy/EnemyTentacy.tscn")
+var enemy_bouncy_v2 = preload("res://gameplay/enemies/enemy_bouncyv2/EnemyBouncyV2.tscn")
+var enemy_mouthy_v2 = preload("res://gameplay/enemies/enemy_mouthyv2/EnemyMouthyV2.tscn")
+var enemy_spiky_v2 = preload("res://gameplay/enemies/enemy_spikyv2/EnemySpikyV2.tscn")
+var enemy_wavy_v2 = preload("res://gameplay/enemies/enemy_wavyv2/EnemyWavyV2.tscn")
+var enemy_tentacy_v2 = preload("res://gameplay/enemies/enemy_tentacyv2/EnemyTentacyV2.tscn")
 
 var enemies = [
 	enemy_bouncy,
 	enemy_wavy,
 	enemy_spiky,
-	enemy_mouthy
+	enemy_tentacy,
+	enemy_mouthy,
+	enemy_bouncy_v2,
+	enemy_wavy_v2,
+	enemy_spiky_v2,
+	enemy_tentacy_v2,
+	enemy_mouthy_v2
 ]
 
 var decoration = preload("res://gameplay/decorations/Decoration.tscn")
