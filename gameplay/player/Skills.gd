@@ -20,8 +20,8 @@ var skill_pull_aoe: int = 0
 
 var time_reload_push_base = 10
 var time_reload_pull_base = 10
-var time_reload_push_aoe_base = 10
-var time_reload_pull_aoe_base = 10
+var time_reload_push_aoe_base = 20
+var time_reload_pull_aoe_base = 20
 
 var time_reload_push
 var time_reload_pull
