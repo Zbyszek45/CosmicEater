@@ -22,6 +22,7 @@ func _ready():
 		, "Particles dont have rect emmision shape")
 
 func animate_camera(size, amount):
-	tween.interpolate_property(self, "zoom", Vector2(1-amount, 1-amount), Vector2(1, 1) \
+	if amount >= 1.0: amount = 0.9
+	tween.interpolate_property(self, "zoom", Vector2(1.0-amount, 1.0-amount), Vector2(1, 1) \
 		, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()

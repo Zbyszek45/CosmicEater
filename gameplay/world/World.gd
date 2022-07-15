@@ -101,10 +101,6 @@ func save_game():
 func _input(event):
 	# Zoming for debug
 	if event is InputEventKey:
-		if event.scancode == KEY_4:
-			mile_animation.frame = 0
-			mile_animation.visible = true
-			mile_animation.play()
 		if event.scancode == KEY_G:
 			$Player/Camera2D.zoom.x -= 0.05
 			$Player/Camera2D.zoom.y -= 0.05
@@ -148,7 +144,10 @@ func spawn_message(message_info):
 
 
 func world_level_up(_level):
-	player.global_position = Vector2(0, 0)
+	GameEvents.emit_signal("stop_spawning_spawnable")
+	mile_animation.frame = 0
+	mile_animation.visible = true
+	mile_animation.play()
 
 
 func _end_game():
@@ -161,7 +160,10 @@ func _get_earned_coins() -> int:
 
 
 func _mile_animation_finished():
+	player.global_position = Vector2(0, 0)
 	mile_animation.visible = false
+	GameEvents.emit_signal("start_spawning_spawnable")
+	messages_handler.show_new_world_message(spawn_strategy.world_level)
 
 
 func get_mutations() -> Dictionary:

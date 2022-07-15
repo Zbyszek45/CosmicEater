@@ -33,7 +33,7 @@ func on_GrowSmall_pressed():
 
 
 func on_GrowBig_pressed():
-	GameEvents.emit_signal("force_player_grow_up", 2.0)
+	GameEvents.emit_signal("force_player_grow_up", 20.0)
 
 
 func enemies_number_label_update(amount):

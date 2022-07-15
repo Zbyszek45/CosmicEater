@@ -7,7 +7,6 @@ export(Resource) onready var new_world_message = new_world_message as AlaMessage
 
 func _ready():
 	GameEvents.connect("player_grew_up", self, "check_size")
-	GameEvents.connect("world_level_up", self, "show_new_world_message")
 
 
 func check_size(player_size: int, amount: float):
