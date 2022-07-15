@@ -25,6 +25,7 @@ signal time_changed
 signal show_popup_pause
 signal show_popup_mutation_selection
 signal show_popup_skill_selection
+signal show_end_game
 
 # world level up
 signal world_level_up

@@ -62,6 +62,7 @@ func set_children_variables():
 	popups.canvas = canvas
 	popups.get_mutations_ref = funcref(self, "get_mutations")
 	popups.get_skills_ref = funcref(self, "get_skills")
+	popups.get_end_stat_ref = funcref(self, "get_send_stats")
 
 
 func after_ready():
@@ -144,9 +145,12 @@ func world_level_up(_level):
 
 
 func _end_game():
-	Global.coins += int(player.size/100)
-	ScenesHandler.switch_scene(ScenesHandler.MENU)
-	print(Global.coins)
+	Global.coins += _get_earned_coins()
+	GameEvents.emit_signal("show_end_game")
+
+
+func _get_earned_coins() -> int:
+	return int(player.size/100)
 
 
 func get_mutations() -> Dictionary:
@@ -167,3 +171,15 @@ func get_skills() -> Dictionary:
 		Global.Skill.PULLAOE: player.skills.skill_pull_aoe
 	}
 	return skills
+
+func get_send_stats() -> Dictionary:
+	var mutations:Dictionary = get_mutations()
+	var skills:Dictionary = get_skills()
+	
+	var stats = {
+		"coins": _get_earned_coins(),
+		"time": timer_timer.get_formated_time(),
+		"mutations": mutations,
+		"skills": skills
+	}
+	return stats

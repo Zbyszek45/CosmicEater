@@ -8,7 +8,6 @@
 [ext_resource path="res://ui/common/button_base/icons/icon_save.png" type="Texture" id=6]
 
 [node name="PopupPause" instance=ExtResource( 3 )]
-visible = false
 popup_exclusive = true
 script = ExtResource( 4 )
 

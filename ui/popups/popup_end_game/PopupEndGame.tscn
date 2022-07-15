@@ -1,0 +1,230 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://ui/popups/popup_base_accept/PopupBaseAccept.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/common/button_base/icons/icon_reject.png" type="Texture" id=2]
+[ext_resource path="res://ui/popups/popup_end_game/PopupEndGame.gd" type="Script" id=3]
+[ext_resource path="res://ui/common/button_base/icons/skill_push_aoe.png" type="Texture" id=4]
+[ext_resource path="res://ui/common/button_base/icons/skill_push.png" type="Texture" id=5]
+[ext_resource path="res://ui/common/button_base/icons/skill_pull.png" type="Texture" id=6]
+[ext_resource path="res://ui/common/button_base/icons/skill_pull_aoe.png" type="Texture" id=7]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_speed.png" type="Texture" id=8]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_magic.png" type="Texture" id=9]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_hunger.png" type="Texture" id=10]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_growth.png" type="Texture" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="PopupEndGame" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Icon" parent="MargCont/Vbox" index="0"]
+texture = ExtResource( 2 )
+
+[node name="Title" parent="MargCont/Vbox" index="1"]
+bbcode_text = "[center][color=purple][shake level=10]You lost"
+text = "You lost"
+
+[node name="Content" parent="MargCont/Vbox" index="2"]
+custom_constants/separation = 16
+
+[node name="CoinsLabel" type="Label" parent="MargCont/Vbox/Content" index="0"]
+margin_right = 656.0
+margin_bottom = 65.0
+text = "Coins earned: X"
+align = 1
+
+[node name="TimeLabel" type="Label" parent="MargCont/Vbox/Content" index="1"]
+margin_top = 81.0
+margin_right = 656.0
+margin_bottom = 146.0
+text = "Time: xx:xx:xx"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="MargCont/Vbox/Content" index="2"]
+margin_top = 162.0
+margin_right = 656.0
+margin_bottom = 226.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 64
+
+[node name="Title1" type="Label" parent="MargCont/Vbox/Content" index="3"]
+self_modulate = Color( 0.984314, 1, 0.454902, 1 )
+margin_top = 242.0
+margin_right = 656.0
+margin_bottom = 307.0
+text = "Mutations:"
+align = 1
+
+[node name="MutationRow1" type="HBoxContainer" parent="MargCont/Vbox/Content" index="4"]
+margin_top = 323.0
+margin_right = 656.0
+margin_bottom = 388.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MargCont/Vbox/Content/MutationRow1" index="0"]
+margin_left = 146.0
+margin_right = 210.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 8 )
+expand = true
+
+[node name="MutSpeedLabel" type="Label" parent="MargCont/Vbox/Content/MutationRow1" index="1"]
+margin_left = 214.0
+margin_right = 292.0
+margin_bottom = 65.0
+text = "123"
+
+[node name="VSeparator" type="VSeparator" parent="MargCont/Vbox/Content/MutationRow1" index="2"]
+margin_left = 296.0
+margin_right = 360.0
+margin_bottom = 65.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 64
+
+[node name="TextureRect2" type="TextureRect" parent="MargCont/Vbox/Content/MutationRow1" index="3"]
+margin_left = 364.0
+margin_right = 428.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 9 )
+expand = true
+
+[node name="MutMagicLabel" type="Label" parent="MargCont/Vbox/Content/MutationRow1" index="4"]
+margin_left = 432.0
+margin_right = 510.0
+margin_bottom = 65.0
+text = "123"
+
+[node name="MutationRow2" type="HBoxContainer" parent="MargCont/Vbox/Content" index="5"]
+margin_top = 404.0
+margin_right = 656.0
+margin_bottom = 469.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MargCont/Vbox/Content/MutationRow2" index="0"]
+margin_left = 146.0
+margin_right = 210.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 11 )
+expand = true
+
+[node name="MutGrowthLabel" type="Label" parent="MargCont/Vbox/Content/MutationRow2" index="1"]
+margin_left = 214.0
+margin_right = 292.0
+margin_bottom = 65.0
+text = "123"
+
+[node name="VSeparator2" type="VSeparator" parent="MargCont/Vbox/Content/MutationRow2" index="2"]
+margin_left = 296.0
+margin_right = 360.0
+margin_bottom = 65.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 64
+
+[node name="TextureRect2" type="TextureRect" parent="MargCont/Vbox/Content/MutationRow2" index="3"]
+margin_left = 364.0
+margin_right = 428.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 10 )
+expand = true
+
+[node name="MutHungerLabel" type="Label" parent="MargCont/Vbox/Content/MutationRow2" index="4"]
+margin_left = 432.0
+margin_right = 510.0
+margin_bottom = 65.0
+text = "123"
+
+[node name="Title2" type="Label" parent="MargCont/Vbox/Content" index="6"]
+self_modulate = Color( 0.454902, 0.517647, 1, 1 )
+margin_top = 485.0
+margin_right = 656.0
+margin_bottom = 550.0
+text = "Skills:"
+align = 1
+
+[node name="SkillRow1" type="HBoxContainer" parent="MargCont/Vbox/Content" index="7"]
+margin_top = 566.0
+margin_right = 656.0
+margin_bottom = 631.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MargCont/Vbox/Content/SkillRow1" index="0"]
+margin_left = 146.0
+margin_right = 210.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="PushLabel" type="Label" parent="MargCont/Vbox/Content/SkillRow1" index="1"]
+margin_left = 214.0
+margin_right = 292.0
+margin_bottom = 65.0
+text = "123"
+
+[node name="VSeparator2" type="VSeparator" parent="MargCont/Vbox/Content/SkillRow1" index="2"]
+margin_left = 296.0
+margin_right = 360.0
+margin_bottom = 65.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 64
+
+[node name="TextureRect2" type="TextureRect" parent="MargCont/Vbox/Content/SkillRow1" index="3"]
+margin_left = 364.0
+margin_right = 428.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="PullLabel" type="Label" parent="MargCont/Vbox/Content/SkillRow1" index="4"]
+margin_left = 432.0
+margin_right = 510.0
+margin_bottom = 65.0
+text = "123"
+
+[node name="SkillRow2" type="HBoxContainer" parent="MargCont/Vbox/Content" index="8"]
+margin_top = 647.0
+margin_right = 656.0
+margin_bottom = 712.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MargCont/Vbox/Content/SkillRow2" index="0"]
+margin_left = 146.0
+margin_right = 210.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="PushAoeLabel" type="Label" parent="MargCont/Vbox/Content/SkillRow2" index="1"]
+margin_left = 214.0
+margin_right = 292.0
+margin_bottom = 65.0
+text = "123"
+
+[node name="VSeparator3" type="VSeparator" parent="MargCont/Vbox/Content/SkillRow2" index="2"]
+margin_left = 296.0
+margin_right = 360.0
+margin_bottom = 65.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 64
+
+[node name="TextureRect2" type="TextureRect" parent="MargCont/Vbox/Content/SkillRow2" index="3"]
+margin_left = 364.0
+margin_right = 428.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 7 )
+expand = true
+
+[node name="PullAoeLabel" type="Label" parent="MargCont/Vbox/Content/SkillRow2" index="4"]
+margin_left = 432.0
+margin_right = 510.0
+margin_bottom = 65.0
+text = "123"
