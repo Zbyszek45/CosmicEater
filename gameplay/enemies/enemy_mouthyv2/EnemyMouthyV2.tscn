@@ -21,11 +21,12 @@ animations = [ {
 
 [node name="EnemyMouthyV2" instance=ExtResource( 1 )]
 role = 2
+idle_speed_divider = 1.1
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [editable path="AI"]
