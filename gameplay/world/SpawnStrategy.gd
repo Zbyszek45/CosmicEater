@@ -48,6 +48,7 @@ var difficulty_speed = 0
 var difficulty_ai_time = 0.0
 var difficulty_ai_prob = 0.0
 var level_ceiling = 4000
+var difficulty_color = Color( 1, 1, 1, 1 )
 
 # check if can spawn things
 var can_spawn: bool = true
@@ -105,7 +106,7 @@ func spawn_enemy():
 	
 #	print("Player index: ", player_index, ", choose indes: ", choose_index)
 	emit_signal("spawn_enemy", enemies[choose_index], scale, difficulty_speed \
-	, difficulty_ai_time, difficulty_ai_prob)
+	, difficulty_ai_time, difficulty_ai_prob, difficulty_color)
 
 
 func spawn_decoration():
@@ -158,6 +159,10 @@ func set_difficulty():
 	difficulty_ai_time = 2.0 - (world_level*0.1)
 	if difficulty_ai_time < 1.0: difficulty_ai_time = 1.0
 	difficulty_ai_prob = 0.05 * world_level
+	
+	var gb = 1.0 - (world_level * 0.1)
+	if gb < 0: gb = 0
+	difficulty_color = Color(1, gb, gb, 1)
 
 
 func _increase_enemies_number(amount):

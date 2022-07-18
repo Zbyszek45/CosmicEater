@@ -116,11 +116,11 @@ func _input(event):
 				GameEvents.emit_signal("show_popup_skill_selection")
 
 
-func spawn_enemy(enemy: PackedScene, scale, difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob):
+func spawn_enemy(enemy: PackedScene, scale, difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob, _difficulty_color):
 	var new_enemy: EnemyBase = enemy.instance()
 	new_enemy.global_position = spawn_point.get_rand_point(player.global_position)
 	enemies.add_child(new_enemy)
-	new_enemy.set_enemy(player, scale, difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob)
+	new_enemy.set_enemy(player, scale, difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob, _difficulty_color)
 
 
 func spawn_decoration(decoration: PackedScene):

@@ -70,6 +70,7 @@ func _skill_selected(skill):
 		skill_pull_aoe += 1
 	
 	set_reload_timers()
+	_set_color()
 	
 	if skill == Global.Skill.PUSH:
 		push_timer.start()
@@ -94,7 +95,6 @@ func set_reload_timers():
 	time_reload_push_aoe = (time_reload_push_aoe * 100) / (100 + mutation_magic_value)
 	time_reload_pull_aoe = (time_reload_pull_aoe * 100) / (100 + mutation_magic_value)
 	
-	print(time_reload_push_aoe)
 	push_timer.wait_time = time_reload_push
 	pull_timer.wait_time = time_reload_pull
 	push_aoe_timer.wait_time = time_reload_push_aoe
@@ -102,6 +102,23 @@ func set_reload_timers():
 	
 	GameEvents.emit_signal("skills_max_reload_time_update" \
 	, time_reload_push, time_reload_pull, time_reload_push_aoe, time_reload_pull_aoe)
+
+
+func _set_color():
+	var change = 0.01
+	var rg_push = 1.0 - (change * skill_push)
+	if rg_push < 0: rg_push = 0.0
+	var rg_pull = 1.0 - (change * skill_pull)
+	if rg_pull < 0: rg_pull = 0.0
+	var rg_push_aoe = 1.0 - (change * skill_push_aoe)
+	if rg_push_aoe < 0: rg_push_aoe = 0.0
+	var rg_pull_aoe = 1.0 - (change * skill_pull_aoe)
+	if rg_pull_aoe < 0: rg_pull_aoe = 0.0
+	
+	push_particles.modulate = Color(rg_push, rg_push, 1, 1)
+	pull_particles.modulate = Color(rg_pull, rg_pull, 1, 1)
+	push_aoe_particles.modulate = Color(rg_push_aoe, rg_push_aoe, 1, 1)
+	pull_aoe_particles.modulate = Color(rg_pull_aoe, rg_pull_aoe, 1, 1)
 
 
 func on_PushTimer_timout():

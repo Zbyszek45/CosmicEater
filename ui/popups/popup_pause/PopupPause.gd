@@ -12,7 +12,8 @@ func _ready():
 func on_exit_pressed():
 	Global.delete_save()
 	emit_signal("finished")
-	ScenesHandler.switch_scene(ScenesHandler.MENU)
+	#ScenesHandler.switch_scene(ScenesHandler.MENU)
+	GameEvents.emit_signal("end_game")
 
 
 func on_save_exit_pressed():

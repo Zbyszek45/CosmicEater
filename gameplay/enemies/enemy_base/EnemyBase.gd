@@ -78,10 +78,11 @@ func set_temper():
 			temper = Temper.HYPERAGGRESSIVE
 
 
-func set_enemy(_player, _scale, _difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob) -> void:
+func set_enemy(_player, _scale, _difficulty_speed, _difficulty_ai_time, _difficulty_ai_prob, _color) -> void:
 	player = _player
 	difficulty_speed = _difficulty_speed
 	scale = Vector2(_scale, _scale)
+	animation_sprite.modulate = _color
 	
 	if scale.x <= 1.0 - Global.eat_limit:
 		add_to_group("attackable")
