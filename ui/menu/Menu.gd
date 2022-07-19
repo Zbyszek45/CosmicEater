@@ -55,7 +55,7 @@ func on_SettingsButton_pressed():
 
 
 func on_AboutButton_pressed():
-	pass
+	popups.show_popup_information(self)
 
 
 func on_AIPriority_pressed():
