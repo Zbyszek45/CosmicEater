@@ -152,6 +152,7 @@ func world_level_up(_level):
 
 func _end_game():
 	Global.coins += _get_earned_coins()
+	Global.save_player()
 	GameEvents.emit_signal("show_end_game")
 
 

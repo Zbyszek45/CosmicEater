@@ -40,8 +40,8 @@ func on_upgrade_pressed(type):
 
 
 func update_cost():
-	mutation_cost = 100 * (Global.mutation_upgrade+1)
-	skill_cost = 100 * (Global.skill_upgrade+1)
+	mutation_cost = 20 * (Global.mutation_upgrade+1)
+	skill_cost = 20 * (Global.skill_upgrade+1)
 	mutation_cost_label.text = "Cost: " + String(mutation_cost)
 	skill_cost_label.text = "Cost: " + String(skill_cost)
 
