@@ -1,6 +1,7 @@
 extends Node
 
 var initial_player_save = preload("res://resources/saves/initial_player_save.tres")
+var initial_settings_save = preload("res://resources/saves/initial_settings.tres")
 
 # size of opened app window
 var wind_size: Vector2
@@ -45,6 +46,7 @@ var js_size = JsSizes.MEDIUM
 const SAVE_NAME_PATH = "savegame.tres"
 const SAVE_FOLDER_PATH = "user://save"
 const PLAYER_SAVE_PATH = "player_save.tres"
+const SETTINGS_SAVE_PATH = "settings_save.tres"
 
 # used to check if game was just started up
 var just_started: bool = true
@@ -58,6 +60,7 @@ func _ready():
 	range_spawn.y = (Global.wind_size.y/2) + (Global.base_char_size*2)
 	range_limit = Vector2(0, 0).distance_to(wind_size) * 1.05
 	load_player_save()
+	load_settings_save()
 
 
 func show_error(script_name, description):
@@ -124,3 +127,28 @@ func load_player_save():
 	skill_upgrade = res.skill_upgrade
 	
 	print("Loaded ",coins," ",mutation_upgrade," ",skill_upgrade)
+
+
+func save_settings():
+	var new_save = AlaSettingsSave.new()
+	new_save.joystick_side = js_side
+	new_save.joystick_size = js_size
+	
+	
+	var dir = Directory.new()
+	if not dir.dir_exists(Global.SAVE_FOLDER_PATH):
+		dir.make_dir_recursive(Global.SAVE_FOLDER_PATH)
+	
+	ResourceSaver.save(Global.SAVE_FOLDER_PATH.plus_file(Global.SETTINGS_SAVE_PATH), new_save)
+
+
+func load_settings_save():
+	var res: AlaSettingsSave = null
+	var dir = Directory.new()
+	if dir.file_exists(Global.SAVE_FOLDER_PATH.plus_file(Global.SETTINGS_SAVE_PATH)):
+		res = load(Global.SAVE_FOLDER_PATH.plus_file(Global.SETTINGS_SAVE_PATH))
+	else:
+		res = initial_settings_save
+	
+	js_side = res.joystick_side
+	js_size = res.joystick_size

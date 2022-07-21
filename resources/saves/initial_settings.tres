@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resources/save_game_res/settings_save.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+joystick_side = 1
+joystick_size = 1

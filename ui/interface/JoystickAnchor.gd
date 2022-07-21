@@ -18,12 +18,16 @@ func set_position_scale(side, scale) -> void:
 	
 	set_js_anchor(side)
 	$Joystick.scale = Vector2(js_scale, js_scale)
-	margin_top = -1 * (js_size.y * js_scale)
+#	margin_top = -1 * (js_size.y * js_scale)
+#	if side == Global.JsSides.LEFT:
+#		$Joystick.position.x = js_size.x * js_scale
+#	if side == Global.JsSides.RIGHT:
+#		$Joystick.position.x = -1 * js_size.x * js_scale\
+	margin_top = -140 * js_scale
 	if side == Global.JsSides.LEFT:
-		$Joystick.position.x = js_size.x * js_scale
+		$Joystick.position.x = 140 * js_scale
 	if side == Global.JsSides.RIGHT:
-		$Joystick.position.x = -1 * js_size.x * js_scale
-	
+		$Joystick.position.x = -140 * js_scale
 
 func set_js_anchor(side) -> void:
 	if side == Global.JsSides.LEFT:

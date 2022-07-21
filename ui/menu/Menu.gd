@@ -51,7 +51,7 @@ func on_ExitButton_pressed():
 
 
 func on_SettingsButton_pressed():
-	pass
+	popups.show_popup_settings(self)
 
 
 func on_AboutButton_pressed():

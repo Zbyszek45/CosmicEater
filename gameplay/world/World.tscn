@@ -150,3 +150,4 @@ scale_amount_curve = SubResource( 5 )
 [node name="Interface" parent="CanvasInterface" instance=ExtResource( 2 )]
 
 [node name="DebugScreen" parent="CanvasInterface" instance=ExtResource( 9 )]
+visible = false
