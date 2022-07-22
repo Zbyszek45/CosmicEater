@@ -33,8 +33,8 @@ func _ready():
 	
 	mile_animation.connect("animation_finished", self, "_mile_animation_finished")
 	
-	load_save()
 	set_children_variables()
+	load_save()
 	after_ready()
 
 
@@ -48,6 +48,10 @@ func load_save():
 		Global.delete_save()
 	else:
 		save = initial_save
+		for i in range(Global.mutation_upgrade):
+			GameEvents.emit_signal("show_popup_mutation_selection")
+		for i in range(Global.skill_upgrade):
+			GameEvents.emit_signal("show_popup_skill_selection")
 	
 	# call group seems very looose, it will call but after some time
 #	get_tree().call_group("saved", "on_load", save)
@@ -70,10 +74,6 @@ func set_children_variables():
 
 func after_ready():
 	messages_handler.check_size(player.size, 0)
-	for i in range(Global.mutation_upgrade):
-		GameEvents.emit_signal("show_popup_mutation_selection")
-	for i in range(Global.skill_upgrade):
-		GameEvents.emit_signal("show_popup_skill_selection")
 
 
 func save_game():
