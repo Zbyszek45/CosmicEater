@@ -86,23 +86,29 @@ func queue_enemy_to_spawn():
 
 
 func spawn_enemy():
-	var player_size_division = player_size%(Global.size_division*enemies.size())
+	var tmp_player_size = player_size
+	if player_size < 1000:
+		tmp_player_size = 1000
+	
+	var player_size_division = tmp_player_size%(Global.size_division*enemies.size())
 	var player_index = round(player_size_division/Global.size_division as float) as int
 	var choose_index = 0
 	var scale = 1.0
 	var random_f = randf()
 	if random_f < 0.2:
 		choose_index = clamp(player_index-2, 0, enemies.size()-1)
-		scale = rand_range(0.1, 1.0)
-	elif random_f < 0.5:
+	elif random_f < 0.4:
 		choose_index = clamp(player_index-1, 0, enemies.size()-1)
-		scale = rand_range(0.43, 1.33)
-	elif random_f < 0.8:
+	elif random_f < 0.6:
 		choose_index = clamp(player_index, 0, enemies.size()-1)
-		scale = rand_range(0.76, 1.66)
-	else:
+	elif random_f < 0.8:
 		choose_index = clamp(player_index+1, 0, enemies.size()-1)
-		scale = rand_range(1.1, 2.0)
+	else:
+		choose_index = clamp(player_index+2, 0, enemies.size()-1)
+	
+	# set scale for enemies to spawn
+	var enemy_points = choose_index * Global.size_division
+	scale = ((enemy_points-tmp_player_size)+2500) * 2.4 / 5000 + 0.1
 	
 #	print("Player index: ", player_index, ", choose indes: ", choose_index)
 	emit_signal("spawn_enemy", enemies[choose_index], scale, difficulty_speed \
