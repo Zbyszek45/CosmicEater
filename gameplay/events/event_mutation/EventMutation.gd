@@ -13,6 +13,7 @@ func on_area_entered(area):
 
 
 func _physics_process(delta):
+	
 	if should_vanish:
 		modulate.a -= 1.0*delta
 		if modulate.a <= 0.1:

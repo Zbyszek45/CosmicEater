@@ -56,8 +56,8 @@ var continue_save: bool = false
 
 func _ready():
 	wind_size = get_viewport().get_visible_rect().size
-	range_spawn.x = (Global.wind_size.x/2) + (Global.base_char_size*2)
-	range_spawn.y = (Global.wind_size.y/2) + (Global.base_char_size*2)
+	range_spawn.x = Global.wind_size.x
+	range_spawn.y = Global.wind_size.y
 	range_limit = Vector2(0, 0).distance_to(wind_size) * 1.05
 	load_player_save()
 	load_settings_save()
