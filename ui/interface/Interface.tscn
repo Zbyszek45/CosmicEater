@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/interface/JoystickAnchor.gd" type="Script" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://ui/common/button_base/icons/skill_pull_aoe.png" type="Texture" id=10]
 [ext_resource path="res://ui/common/button_base/icons/skill_push_aoe.png" type="Texture" id=11]
 [ext_resource path="res://ui/common/button_base/icons/skill_push.png" type="Texture" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Interface" type="Control" groups=[
 "saved",
@@ -49,7 +51,14 @@ __meta__ = {
 visible = false
 icon = ExtResource( 6 )
 
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 80.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 80
+
 [node name="SizeLabel" type="Label" parent="HBoxContainer"]
+margin_left = 84.0
 margin_top = 7.0
 margin_right = 572.0
 margin_bottom = 72.0

@@ -48,10 +48,6 @@ func load_save():
 		Global.delete_save()
 	else:
 		save = initial_save
-		for i in range(Global.mutation_upgrade):
-			GameEvents.emit_signal("show_popup_mutation_selection")
-		for i in range(Global.skill_upgrade):
-			GameEvents.emit_signal("show_popup_skill_selection")
 	
 	# call group seems very looose, it will call but after some time
 #	get_tree().call_group("saved", "on_load", save)

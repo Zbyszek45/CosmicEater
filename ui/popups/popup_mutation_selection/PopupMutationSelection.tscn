@@ -10,6 +10,7 @@
 [ext_resource path="res://ui/common/button_base/icons/icon_mutation_magic.png" type="Texture" id=8]
 
 [node name="PopupMutationSelection" instance=ExtResource( 1 )]
+visible = true
 script = ExtResource( 3 )
 
 [node name="Icon" parent="MargCont/Vbox" index="0"]
@@ -19,6 +20,9 @@ texture = ExtResource( 4 )
 [node name="Title" parent="MargCont/Vbox" index="1"]
 bbcode_text = "[center][color=#fcfcba][shake level=10]Choose Mutation"
 text = "Choose Mutation"
+
+[node name="Content" parent="MargCont/Vbox" index="2"]
+margin_bottom = 1119.0
 
 [node name="Row1" type="HBoxContainer" parent="MargCont/Vbox/Content" index="0"]
 margin_right = 656.0
@@ -58,3 +62,12 @@ margin_right = 656.0
 margin_bottom = 383.0
 icon = ExtResource( 6 )
 text = "[center]2% more food when eating"
+
+[node name="Buttons" parent="MargCont/Vbox" index="3"]
+margin_top = 1151.0
+
+[node name="Label" type="Label" parent="MargCont/Vbox/Buttons" index="0"]
+margin_left = 55.0
+margin_right = 601.0
+margin_bottom = 65.0
+text = "Upgrading reduce time"

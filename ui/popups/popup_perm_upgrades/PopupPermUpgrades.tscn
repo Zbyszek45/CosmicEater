@@ -1,81 +1,68 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/popups/popup_base/PopupBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/common/button_base/icons/icon_upgrades.png" type="Texture" id=2]
 [ext_resource path="res://ui/popups/popup_perm_upgrades/PopupPermUpgrades.gd" type="Script" id=3]
 [ext_resource path="res://ui/common/button_big/ButtonBig.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/common/button_base/icons/icon_mutations.png" type="Texture" id=5]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_hunger.png" type="Texture" id=5]
 [ext_resource path="res://ui/common/button_base/ButtonBase.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/common/button_base/icons/icon_accept.png" type="Texture" id=7]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_growth.png" type="Texture" id=8]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_magic.png" type="Texture" id=9]
+[ext_resource path="res://ui/common/button_base/icons/icon_mutation_speed.png" type="Texture" id=10]
 
 [node name="PopupPermUpgrades" instance=ExtResource( 1 )]
+visible = true
 script = ExtResource( 3 )
 
 [node name="Icon" parent="MargCont/Vbox" index="0"]
 texture = ExtResource( 2 )
 
 [node name="Title" parent="MargCont/Vbox" index="1"]
-bbcode_text = "[center][color=red][shake level=10]Permanent Upgrades"
-text = "Permanent Upgrades"
+bbcode_text = "[center][color=red][shake level=10]Starting xxxxx"
+text = "Starting xxxxx"
 
 [node name="Content" parent="MargCont/Vbox" index="2"]
 margin_bottom = 1056.0
 
 [node name="Row1" type="HBoxContainer" parent="MargCont/Vbox/Content" index="0"]
 margin_right = 656.0
-margin_bottom = 65.0
+margin_bottom = 383.0
+custom_constants/separation = 32
 alignment = 1
 
-[node name="CoinsLabel" type="Label" parent="MargCont/Vbox/Content/Row1" index="0"]
-margin_left = 211.0
-margin_right = 445.0
-margin_bottom = 65.0
-text = "Coins: 10"
+[node name="SpeedMutButton" parent="MargCont/Vbox/Content/Row1" index="0" instance=ExtResource( 4 )]
+margin_right = 312.0
+margin_bottom = 383.0
+icon = ExtResource( 10 )
+text = "[center]2% more speed"
+
+[node name="MagicMutButton" parent="MargCont/Vbox/Content/Row1" index="1" instance=ExtResource( 4 )]
+margin_left = 344.0
+margin_right = 656.0
+margin_bottom = 383.0
+icon = ExtResource( 9 )
+text = "[center]2% faster skills reload speed"
 
 [node name="Row2" type="HBoxContainer" parent="MargCont/Vbox/Content" index="1"]
-margin_top = 97.0
+margin_top = 415.0
 margin_right = 656.0
-margin_bottom = 162.0
+margin_bottom = 798.0
 custom_constants/separation = 32
 alignment = 1
 
-[node name="MutationCost" type="Label" parent="MargCont/Vbox/Content/Row2" index="0"]
-margin_right = 312.0
-margin_bottom = 65.0
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Cost: 222"
-align = 2
-
-[node name="SkillCost" type="Label" parent="MargCont/Vbox/Content/Row2" index="1"]
-margin_left = 344.0
-margin_right = 656.0
-margin_bottom = 65.0
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Cost: 100"
-
-[node name="Row3" type="HBoxContainer" parent="MargCont/Vbox/Content" index="2"]
-margin_top = 194.0
-margin_right = 656.0
-margin_bottom = 577.0
-custom_constants/separation = 32
-alignment = 1
-
-[node name="MutationButton" parent="MargCont/Vbox/Content/Row3" index="0" instance=ExtResource( 4 )]
-modulate = Color( 0.980392, 1, 0.639216, 1 )
+[node name="GrowthMutButton" parent="MargCont/Vbox/Content/Row2" index="0" instance=ExtResource( 4 )]
 margin_right = 312.0
 margin_bottom = 383.0
-icon = ExtResource( 5 )
-text = "[center]Number of starting mutations"
+icon = ExtResource( 8 )
+text = "[center]Get 2 size every 10 seconds"
 
-[node name="SkillButton" parent="MargCont/Vbox/Content/Row3" index="1" instance=ExtResource( 4 )]
-modulate = Color( 0.419608, 0.498039, 1, 1 )
+[node name="HungerMutButton" parent="MargCont/Vbox/Content/Row2" index="1" instance=ExtResource( 4 )]
 margin_left = 344.0
 margin_right = 656.0
 margin_bottom = 383.0
 icon = ExtResource( 5 )
-text = "[center]Number of starting skills"
+text = "[center]2% more food when eating"
 
 [node name="Buttons" parent="MargCont/Vbox" index="3"]
 margin_top = 1088.0
