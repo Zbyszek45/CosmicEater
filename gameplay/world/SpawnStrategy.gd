@@ -87,8 +87,8 @@ func queue_enemy_to_spawn():
 
 func spawn_enemy():
 	var tmp_player_size = player_size
-	if player_size < 1000:
-		tmp_player_size = 1000
+	if player_size < 800:
+		tmp_player_size = 800
 	
 	var player_size_division = tmp_player_size%(Global.size_division*enemies.size())
 	var player_index = round(player_size_division/Global.size_division as float) as int

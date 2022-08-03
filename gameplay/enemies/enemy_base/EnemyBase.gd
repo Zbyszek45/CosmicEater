@@ -160,28 +160,29 @@ func can_eat(body_scale) -> bool:
 
 
 func scale_it(amount: float) -> void:
-	if scale.x + amount < 0.1: scale = Vector2(0.1, 0.1)
-	else: scale += Vector2(amount, amount)
-	
-	idle_speed *=(1+amount)
-	if idle_speed < 50: idle_speed = 50
-	
-	# scale also ten run speed
-	
-	#when scaling up
-	if amount > 0: amount = amount + amount
-	
-	if scale.x <= 1.0 - Global.eat_limit:
-		add_to_group("attackable")
-		if self.is_in_group("avoidable"):
-			remove_from_group("avoidable")
-	else:
-		add_to_group("avoidable")
-		if self.is_in_group("attackable"):
-			remove_from_group("attackable")
-	
-	var dir = (player.global_position - global_position)*amount
-	global_position -= dir
+	pass
+#	if scale.x + amount < 0.1: scale = Vector2(0.1, 0.1)
+#	else: scale += Vector2(amount, amount)
+#
+#	idle_speed *=(1+amount)
+#	if idle_speed < 50: idle_speed = 50
+#
+#	# scale also ten run speed
+#
+#	#when scaling up
+#	if amount > 0: amount = amount + amount
+#
+#	if scale.x <= 1.0 - Global.eat_limit:
+#		add_to_group("attackable")
+#		if self.is_in_group("avoidable"):
+#			remove_from_group("avoidable")
+#	else:
+#		add_to_group("avoidable")
+#		if self.is_in_group("attackable"):
+#			remove_from_group("attackable")
+#
+#	var dir = (player.global_position - global_position)*amount
+#	global_position -= dir
 
 
 func attack_ai(body):
