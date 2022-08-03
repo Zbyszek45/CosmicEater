@@ -5,5 +5,11 @@
 [resource]
 script = ExtResource( 1 )
 coins = 0
-mutation_upgrade = 0
-skill_upgrade = 0
+skill_push = 0
+skill_pull = 0
+skill_push_aoe = 0
+skill_pull_aoe = 0
+mut_speed = 0
+mut_magic = 0
+mut_growth = 0
+mut_hunger = 0

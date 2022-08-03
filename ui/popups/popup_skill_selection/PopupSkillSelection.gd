@@ -13,7 +13,7 @@ func _ready():
 
 
 func selected(skill):
-	GameEvents.emit_signal("skill_selected", skill)
+	GameEvents.emit_signal("skill_selected", skill, 1)
 	emit_signal("finished")
 
 

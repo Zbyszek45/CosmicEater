@@ -13,7 +13,7 @@ func _ready():
 
 
 func selected(mutation):
-	GameEvents.emit_signal("mutation_selected", mutation)
+	GameEvents.emit_signal("mutation_selected", mutation, 1)
 	emit_signal("finished")
 
 

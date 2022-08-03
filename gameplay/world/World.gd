@@ -48,6 +48,16 @@ func load_save():
 		Global.delete_save()
 	else:
 		save = initial_save
+		
+		save.skill_pull = Global.player_save.skill_pull
+		save.skill_push = Global.player_save.skill_push
+		save.skill_pull_aoe = Global.player_save.skill_pull_aoe
+		save.skill_push_aoe = Global.player_save.skill_push_aoe
+		
+		save.mutation_growth = Global.player_save.mut_growth
+		save.mutation_speed = Global.player_save.mut_speed
+		save.mutation_magic = Global.player_save.mut_magic
+		save.mutation_hunger = Global.player_save.mut_hunger
 	
 	# call group seems very looose, it will call but after some time
 #	get_tree().call_group("saved", "on_load", save)
@@ -147,7 +157,7 @@ func world_level_up(_level):
 
 
 func _end_game():
-	Global.coins += _get_earned_coins()
+	Global.player_save.coins += _get_earned_coins()
 	Global.save_player()
 	GameEvents.emit_signal("show_end_game")
 

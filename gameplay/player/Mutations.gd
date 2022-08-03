@@ -21,17 +21,17 @@ func _ready():
 	$GrowthTimer.connect("timeout", self, "grow_parent")
 
 
-func _mutation_selected(mutation):
+func _mutation_selected(mutation, levels):
 	if mutation == Global.Mutation.SPEED:
-		mutation_speed_number += 1
+		mutation_speed_number += levels
 		emit_signal("mutation_new_speed", mutation_speed_number*speed_value)
 	elif mutation == Global.Mutation.MAGIC:
-		mutation_magic_number += 1
+		mutation_magic_number += levels
 		emit_signal("mutation_new_magic", mutation_magic_number*magic_value)
 	elif mutation == Global.Mutation.GROWTH:
-		mutation_growth_number += 1
+		mutation_growth_number += levels
 	elif mutation == Global.Mutation.HUNGER:
-		mutation_hunger_number += 1
+		mutation_hunger_number += levels
 		emit_signal("mutation_new_hunger", mutation_hunger_number*hunger_value)
 
 

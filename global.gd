@@ -23,9 +23,7 @@ var eat_limit = 0.05
 var base_char_size = 88
 
 # loaded player save
-var coins
-var mutation_upgrade
-var skill_upgrade
+var player_save: AlaPlayerSave
 
 # ai enums
 enum AI_Action {ATTACKING, FLEEING, MOVING}
@@ -100,18 +98,11 @@ func delete_save():
 
 
 func save_player():
-	var new_save = AlaPlayerSave.new()
-	new_save.coins = coins as int
-	new_save.mutation_upgrade = mutation_upgrade
-	new_save.skill_upgrade = skill_upgrade
-	
-	print("Saved ",coins," ",mutation_upgrade," ",skill_upgrade)
-	
 	var dir = Directory.new()
 	if not dir.dir_exists(Global.SAVE_FOLDER_PATH):
 		dir.make_dir_recursive(Global.SAVE_FOLDER_PATH)
 	
-	ResourceSaver.save(Global.SAVE_FOLDER_PATH.plus_file(Global.PLAYER_SAVE_PATH), new_save)
+	ResourceSaver.save(Global.SAVE_FOLDER_PATH.plus_file(Global.PLAYER_SAVE_PATH), player_save)
 
 
 func load_player_save():
@@ -122,11 +113,7 @@ func load_player_save():
 	else:
 		res = initial_player_save
 	
-	coins = res.coins
-	mutation_upgrade = res.mutation_upgrade
-	skill_upgrade = res.skill_upgrade
-	
-	print("Loaded ",coins," ",mutation_upgrade," ",skill_upgrade)
+	player_save = res
 
 
 func save_settings():

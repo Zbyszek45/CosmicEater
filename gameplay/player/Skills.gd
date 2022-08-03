@@ -59,15 +59,15 @@ func _ready():
 	#set_reload_timers()
 
 
-func _skill_selected(skill):
+func _skill_selected(skill, levels):
 	if skill == Global.Skill.PUSH:
-		skill_push += 1
+		skill_push += levels
 	elif skill == Global.Skill.PULL:
-		skill_pull += 1
+		skill_pull += levels
 	elif skill == Global.Skill.PUSHAOE:
-		skill_push_aoe += 1
+		skill_push_aoe += levels
 	elif skill == Global.Skill.PULLAOE:
-		skill_pull_aoe += 1
+		skill_pull_aoe += levels
 	
 	set_reload_timers()
 	_set_color()
@@ -174,6 +174,7 @@ func on_update_skills_timer():
 
 func on_load():
 	set_reload_timers()
+	_set_color()
 	if skill_push > 0:
 		push_timer.start()
 	if skill_pull > 0:
