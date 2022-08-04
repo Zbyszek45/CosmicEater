@@ -39,6 +39,7 @@ func _ready():
 func calc_food_multiplier():
 	food_multiplier = (Global.size_division/10) * eating_speed
 	food_multiplier += (mutation_hunger*food_multiplier/100)
+	if food_multiplier > 150.0: food_multiplier = 150.0
 
 
 func calc_whole_speed():
