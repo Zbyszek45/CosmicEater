@@ -43,6 +43,7 @@ func calc_food_multiplier():
 
 func calc_whole_speed():
 	whole_speed = speed + (mutation_speed*speed/100)
+	if whole_speed > 400: whole_speed = 400
 
 
 func _physics_process(delta):
