@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/popups/popup_perm_upgrades/PopupPermUpgrades.tscn" type="PackedScene" id=1]
+
+[node name="PopupPermUpgradesMut" instance=ExtResource( 1 )]
+type = 1
+
+[node name="Icon" parent="MargCont/Vbox" index="0"]
+modulate = Color( 1, 0.909804, 0, 1 )
+
+[node name="Title" parent="MargCont/Vbox" index="1"]
+bbcode_text = "[center][color=yellow][shake level=10]Starting mutations"
+text = "Starting mutations"

@@ -51,9 +51,9 @@ func on_AboutButton_pressed():
 
 
 func on_SkillUpgradesButton_pressed():
-	pass
+	popups.show_popup_perm_upgrades_skills(self)
 
 
 func on_MutUpgradesButton_pressed():
-	popups.show_popup_perm_upgrades(self)
+	popups.show_popup_perm_upgrades_mut(self)
 
