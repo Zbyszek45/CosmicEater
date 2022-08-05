@@ -87,6 +87,7 @@ config/icon="res://icon.png"
 ScenesHandler="*res://scenes_handler.gd"
 Global="*res://global.gd"
 GameEvents="*res://game_events.gd"
+AudioHandler="*res://audio_handler.gd"
 
 [display]
 

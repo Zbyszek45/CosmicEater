@@ -62,6 +62,7 @@ func on_eatArea_body_entered(body: Node):
 	if body.has_method("get_scale"):
 		if can_eat_actuall_eating(body.get_scale()):
 			grow_up(body.get_scale())
+			AudioHandler.play_effect(AudioHandler.Effect.EAT)
 			body.destroy()
 	else:
 		Global.show_error("res://gameplay/player/Player.gd", "Body don't have method: "+body.name)

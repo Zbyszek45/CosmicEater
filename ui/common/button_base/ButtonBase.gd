@@ -19,3 +19,7 @@ func enable_extended():
 func set_icon(_icon):
 	icon = _icon
 	$TextureRect.texture = _icon
+
+
+func _on_ButtonBase_pressed():
+	AudioHandler.play_effect(AudioHandler.Effect.GUI_CLICK)

@@ -30,3 +30,7 @@ func set_text(_text):
 func set_number(_number):
 	number = _number
 	$Number.text = str(_number)
+
+
+func _on_ButtonBig_pressed():
+	AudioHandler.play_effect(AudioHandler.Effect.GUI_CLICK)

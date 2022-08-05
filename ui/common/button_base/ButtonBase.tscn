@@ -38,3 +38,5 @@ frames = SubResource( 1 )
 frame = 2
 playing = true
 centered = false
+
+[connection signal="pressed" from="." to="." method="_on_ButtonBase_pressed"]

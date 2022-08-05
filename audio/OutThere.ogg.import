@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/OutThere.ogg-f3e3f69acef0e037706c2c3ca3d409c3.oggstr"
+
+[deps]
+
+source_file="res://audio/OutThere.ogg"
+dest_files=[ "res://.import/OutThere.ogg-f3e3f69acef0e037706c2c3ca3d409c3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

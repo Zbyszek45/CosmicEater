@@ -35,7 +35,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
+frame = 2
 playing = true
 centered = false
 
@@ -73,3 +73,5 @@ text = "8888"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="." to="." method="_on_ButtonBig_pressed"]

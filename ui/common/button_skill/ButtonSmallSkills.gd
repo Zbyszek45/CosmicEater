@@ -23,3 +23,7 @@ func enable_extended():
 func set_icon(_icon):
 	icon = _icon
 	$Icon.texture = _icon
+
+
+func _on_ButtonSmallSkills_pressed():
+	pass
