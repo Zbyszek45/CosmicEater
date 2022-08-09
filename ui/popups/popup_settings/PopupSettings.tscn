@@ -5,23 +5,18 @@
 [ext_resource path="res://ui/popups/popup_settings/PopupSettings.gd" type="Script" id=3]
 
 [node name="PopupSettings" instance=ExtResource( 1 )]
+visible = true
 script = ExtResource( 3 )
 
 [node name="Icon" parent="MargCont/Vbox" index="0"]
-margin_left = 282.0
-margin_right = 410.0
 texture = ExtResource( 2 )
 
 [node name="Title" parent="MargCont/Vbox" index="1"]
-margin_right = 692.0
 bbcode_text = "[center][color=gray][shake level=10]Settings"
 text = "Settings"
 
-[node name="Content" parent="MargCont/Vbox" index="2"]
-margin_right = 692.0
-
 [node name="Joystick" type="HBoxContainer" parent="MargCont/Vbox/Content" index="0"]
-margin_right = 692.0
+margin_right = 656.0
 margin_bottom = 65.0
 alignment = 1
 
@@ -32,60 +27,101 @@ text = "Joystick:"
 
 [node name="LeftButton" type="Button" parent="MargCont/Vbox/Content/Joystick" index="1"]
 margin_left = 238.0
-margin_right = 463.0
+margin_right = 445.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 text = "LEFT"
 
 [node name="RightButton" type="Button" parent="MargCont/Vbox/Content/Joystick" index="2"]
-margin_left = 467.0
-margin_right = 692.0
+margin_left = 449.0
+margin_right = 656.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 text = "RIGHT"
 
 [node name="Label2" type="Label" parent="MargCont/Vbox/Content" index="1"]
 margin_top = 97.0
-margin_right = 692.0
+margin_right = 656.0
 margin_bottom = 162.0
 text = "Joystick Size:"
 align = 1
 
 [node name="JoystickSize" type="HBoxContainer" parent="MargCont/Vbox/Content" index="2"]
 margin_top = 194.0
-margin_right = 692.0
+margin_right = 656.0
 margin_bottom = 259.0
 
 [node name="SmallButton" type="Button" parent="MargCont/Vbox/Content/JoystickSize" index="0"]
-margin_right = 170.0
+margin_right = 161.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 text = "SMALL"
 
 [node name="MediumButton" type="Button" parent="MargCont/Vbox/Content/JoystickSize" index="1"]
-margin_left = 174.0
-margin_right = 344.0
+margin_left = 165.0
+margin_right = 326.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 text = "MEDIUM"
 
 [node name="BigButton" type="Button" parent="MargCont/Vbox/Content/JoystickSize" index="2"]
-margin_left = 348.0
-margin_right = 518.0
+margin_left = 330.0
+margin_right = 491.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 text = "BIG"
 
 [node name="HugeButton" type="Button" parent="MargCont/Vbox/Content/JoystickSize" index="3"]
-margin_left = 522.0
-margin_right = 692.0
+margin_left = 495.0
+margin_right = 656.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 text = "HUGE"
 
-[node name="Buttons" parent="MargCont/Vbox" index="3"]
-margin_right = 692.0
+[node name="Sound" type="HBoxContainer" parent="MargCont/Vbox/Content" index="3"]
+margin_top = 291.0
+margin_right = 656.0
+margin_bottom = 356.0
 
-[node name="AcceptButton" parent="MargCont/Vbox/Buttons" index="0"]
-margin_left = 282.0
-margin_right = 410.0
+[node name="Label" type="Label" parent="MargCont/Vbox/Content/Sound" index="0"]
+margin_right = 182.0
+margin_bottom = 65.0
+text = "Sound: "
+
+[node name="OnButton" type="Button" parent="MargCont/Vbox/Content/Sound" index="1"]
+margin_left = 186.0
+margin_right = 419.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+text = "ON"
+
+[node name="OffButton" type="Button" parent="MargCont/Vbox/Content/Sound" index="2"]
+margin_left = 423.0
+margin_right = 656.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+text = "OFF"
+
+[node name="Music" type="HBoxContainer" parent="MargCont/Vbox/Content" index="4"]
+margin_top = 388.0
+margin_right = 656.0
+margin_bottom = 453.0
+
+[node name="Label" type="Label" parent="MargCont/Vbox/Content/Music" index="0"]
+margin_right = 182.0
+margin_bottom = 65.0
+text = "Music: "
+
+[node name="OnButton" type="Button" parent="MargCont/Vbox/Content/Music" index="1"]
+margin_left = 186.0
+margin_right = 419.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+text = "ON"
+
+[node name="OffButton" type="Button" parent="MargCont/Vbox/Content/Music" index="2"]
+margin_left = 423.0
+margin_right = 656.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+text = "OFF"

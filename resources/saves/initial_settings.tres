@@ -6,3 +6,5 @@
 script = ExtResource( 1 )
 joystick_side = 1
 joystick_size = 1
+sounds = true
+music = true

@@ -40,6 +40,10 @@ enum JsSizes {SMALL, MEDIUM, BIG, HUGE}
 var js_side = JsSides.RIGHT
 var js_size = JsSizes.MEDIUM
 
+# audio
+var sound
+var music
+
 # save location if exists
 const SAVE_NAME_PATH = "savegame.tres"
 const SAVE_FOLDER_PATH = "user://save"
@@ -120,6 +124,8 @@ func save_settings():
 	var new_save = AlaSettingsSave.new()
 	new_save.joystick_side = js_side
 	new_save.joystick_size = js_size
+	new_save.sounds = sound
+	new_save.music = music
 	
 	
 	var dir = Directory.new()
@@ -139,3 +145,5 @@ func load_settings_save():
 	
 	js_side = res.joystick_side
 	js_size = res.joystick_size
+	sound = res.sounds
+	music = res.music

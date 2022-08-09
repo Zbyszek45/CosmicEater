@@ -28,3 +28,19 @@ margin_bottom = 366.0
 text = "Game made using Godot Engine"
 align = 1
 autowrap = true
+
+[node name="Label3" type="Label" parent="MargCont/Vbox/Content" index="2"]
+margin_top = 398.0
+margin_right = 656.0
+margin_bottom = 531.0
+text = "\"Space Music: Out There\" by yd licensed CC0"
+align = 1
+autowrap = true
+
+[node name="Label4" type="Label" parent="MargCont/Vbox/Content" index="3"]
+margin_top = 563.0
+margin_right = 656.0
+margin_bottom = 764.0
+text = "\"bong_001\" and \"impactBell_heavy_000\" by Kenney.nl licensed CC0"
+align = 1
+autowrap = true

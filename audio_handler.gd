@@ -21,11 +21,12 @@ func _ready():
 	add_child(effect_player)
 	
 	background_player.stream = background_music
-	background_player.play()
+	if Global.music:
+		background_player.play()
 
 
 func play_background_music():
-	if !background_player.playing:
+	if !background_player.playing and Global.music:
 		background_player.play()
 
 
@@ -35,9 +36,10 @@ func stop_background_music():
 
 
 func play_effect(type):
-	if type == Effect.EAT:
-		effect_player.stream = impact_sound
-	else:
-		effect_player.stream = gui_sound
-	
-	effect_player.play()
+	if Global.sound:
+		if type == Effect.EAT:
+			effect_player.stream = impact_sound
+		else:
+			effect_player.stream = gui_sound
+		
+		effect_player.play()

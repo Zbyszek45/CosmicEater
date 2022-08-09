@@ -9,6 +9,12 @@ onready var joystick_medium = $MargCont/Vbox/Content/JoystickSize/MediumButton
 onready var joystick_big = $MargCont/Vbox/Content/JoystickSize/BigButton
 onready var joystick_huge = $MargCont/Vbox/Content/JoystickSize/HugeButton
 
+onready var sound_button_on = $MargCont/Vbox/Content/Sound/OnButton
+onready var sound_button_off = $MargCont/Vbox/Content/Sound/OffButton
+
+onready var music_button_on = $MargCont/Vbox/Content/Music/OnButton
+onready var music_button_off = $MargCont/Vbox/Content/Music/OffButton
+
 
 func _ready():
 	joystick_left.connect("pressed", self, "_on_joystick_left_pressed")
@@ -17,8 +23,14 @@ func _ready():
 	joystick_medium.connect("pressed", self, "_on_joystick_size_pressed", [Global.JsSizes.MEDIUM])
 	joystick_big.connect("pressed", self, "_on_joystick_size_pressed", [Global.JsSizes.BIG])
 	joystick_huge.connect("pressed", self, "_on_joystick_size_pressed", [Global.JsSizes.HUGE])
+	sound_button_on.connect("pressed", self, "_on_sound_on_pressed")
+	sound_button_off.connect("pressed", self, "_on_sound_off_pressed")
+	music_button_on.connect("pressed", self, "_on_music_on_pressed")
+	music_button_off.connect("pressed", self, "_on_music_off_pressed")
 	set_allign_colors()
 	set_size_colors()
+	set_sound_colors()
+	set_music_colors()
 
 
 func _on_joystick_left_pressed():
@@ -76,6 +88,44 @@ func set_size_colors():
 		joystick_huge.modulate = Color(0, 0, 1, 1)
 
 
+func _on_sound_on_pressed():
+	Global.sound = true
+	set_sound_colors()
+
+
+func _on_sound_off_pressed():
+	Global.sound = false
+	set_sound_colors()
+
+
+func set_sound_colors():
+	if Global.sound == true:
+		sound_button_on.modulate = Color(0, 0, 1, 1)
+		sound_button_off.modulate = Color(1, 1, 1, 1)
+	else:
+		sound_button_off.modulate = Color(0, 0, 1, 1)
+		sound_button_on.modulate = Color(1, 1, 1, 1)
+
+
+func _on_music_on_pressed():
+	Global.music = true
+	AudioHandler.play_background_music()
+	set_music_colors()
+
+
+func _on_music_off_pressed():
+	Global.music = false
+	AudioHandler.stop_background_music()
+	set_music_colors()
+
+
+func set_music_colors():
+	if Global.music == true:
+		music_button_on.modulate = Color(0, 0, 1, 1)
+		music_button_off.modulate = Color(1, 1, 1, 1)
+	else:
+		music_button_off.modulate = Color(0, 0, 1, 1)
+		music_button_on.modulate = Color(1, 1, 1, 1)
+
 func _on_accept():
-	print("saving settings")
 	Global.save_settings()
